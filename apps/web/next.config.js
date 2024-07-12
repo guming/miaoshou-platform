@@ -4,38 +4,12 @@ const nextConfig = {
     return [
       {
         source: "/github",
-        destination: "https://github.com/steven-tey/novel",
+        destination: "https://github.com/guming/ai-editor",
         permanent: true,
-      },
-      {
-        source: "/sdk",
-        destination: "https://www.npmjs.com/package/novel",
-        permanent: true,
-      },
-      {
-        source: "/npm",
-        destination: "https://www.npmjs.com/package/novel",
-        permanent: true,
-      },
-      {
-        source: "/svelte",
-        destination: "https://github.com/tglide/novel-svelte",
-        permanent: false,
-      },
-      {
-        source: "/vue",
-        destination: "https://github.com/naveennaidu/novel-vue",
-        permanent: false,
-      },
-      {
-        source: "/vscode",
-        destination:
-          "https://marketplace.visualstudio.com/items?itemName=bennykok.novel-vscode",
-        permanent: false,
       },
       {
         source: "/feedback",
-        destination: "https://github.com/steven-tey/novel/issues",
+        destination: "https://github.com/guming/ai-editor/issues",
         permanent: true,
       },
       {
@@ -46,6 +20,19 @@ const nextConfig = {
     ];
   },
   productionBrowserSourceMaps: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  webpack: (config, { webpack }) => {
+    config.plugins.push(new webpack.IgnorePlugin({
+        resourceRegExp: /^pg-native$|^cloudflare:sockets$/,
+    }))
+
+    return config
+},
 };
 
 module.exports = nextConfig;

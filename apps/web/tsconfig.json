@@ -2,6 +2,8 @@
   "extends": "tsconfig/next.json",
 
   "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "plugins": [
       {
         "name": "next"
