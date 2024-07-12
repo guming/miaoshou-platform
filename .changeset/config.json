@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "steven-tey/novel"
+      "repo": "guming/ai-editor"
     }
   ],
   "commit": false,
@@ -12,5 +12,7 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["novel-next-app"]
+  "ignore": [
+    "novel-next-app"
+  ]
 }
