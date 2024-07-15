@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/prosemirror.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -6,7 +7,7 @@ import Provider from "./provider"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AIdeation YT",
+  title: "MiaoShou",
 };
 
 export default function RootLayout({
@@ -16,10 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <Provider>
-          <body className={inter.className}>{children}</body>
-        </Provider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={inter.className}><Provider>{children}</Provider></body>
       </html>
     </ClerkProvider>
   );

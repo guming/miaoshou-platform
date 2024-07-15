@@ -24,12 +24,17 @@ import GenerativeMenuSwitch from "./tailwind/generative/generative-menu-switch";
 import { uploadFn } from "./tailwind/image-upload";
 import { TextButtons } from "./tailwind/selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./tailwind/slash-command";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { NoteType } from "@/lib/db/schema";
 
 const hljs = require('highlight.js');
 
 const extensions = [...defaultExtensions, slashCommand];
 
-const NoteEditor = () => {
+type Props = { note: NoteType };
+
+const NoteEditor = ({ note }: Props) => {
   const [initialContent, setInitialContent] = useState<null | JSONContent>(null);
   const [saveStatus, setSaveStatus] = useState("Saved");
   const [charsCount, setCharsCount] = useState();
@@ -49,14 +54,36 @@ const NoteEditor = () => {
     });
     return new XMLSerializer().serializeToString(doc);
   };
+  const [editorState, setEditorState] = useState(
+    note.editorState || `${note.name}`
+  );
+
+  const saveNote = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post("/api/saveNote", {
+        noteId: note.id,
+        editorState,
+      });
+      return response.data;
+    },
+  });
 
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
+    console.log(editorState);
     setCharsCount(editor.storage.characterCount.words());
     window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
     window.localStorage.setItem("note-content", JSON.stringify(json));
     window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
     setSaveStatus("Saved");
+    saveNote.mutate(undefined, {
+      onSuccess: (data) => {
+        console.log("success update!", data);
+      },
+      onError: (err) => {
+        console.error(err);
+      },
+    });
   }, 500);
 
   useEffect(() => {
@@ -92,6 +119,7 @@ const NoteEditor = () => {
             },
           }}
           onUpdate={({ editor }) => {
+            setEditorState(JSON.stringify(editor.getJSON()));
             debouncedUpdates(editor);
             setSaveStatus("Unsaved");
           }}

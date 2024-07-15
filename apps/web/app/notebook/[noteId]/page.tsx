@@ -1,13 +1,17 @@
-import DeleteButton from "@/components/DeleteButton";
 import NoteEditor from "@/components/NoteEditor";
-import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 import { $notes } from "@/lib/db/schema";
 import { auth ,currentUser } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+
+import { Button } from "@/components/tailwind/ui/button";
+import Menu from "@/components/tailwind/ui/menu";
+import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
+import DeleteButton from "@/components/DeleteButton";
+
 
 type Props = {
   params: {
@@ -30,32 +34,24 @@ const NotebookPage = async ({ params: { noteId } }: Props) => {
     return redirect("/notebook/dashboard");
   }
   const note = notes[0];
-
+  console.log('noteId', note.id);
   return (
-    <div className="min-h-screen grainy p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="border shadow-xl border-stone-200 rounded-lg p-4 flex items-center">
-          <Link href="/notebook/dashboard">
-            <Button className="bg-green-600" size="sm">
-              Back
-            </Button>
-          </Link>
-          <div className="w-3"></div>
-          <span className="font-semibold">
-            {user.firstName} {user.lastName}
-          </span>
-          <span className="inline-block mx-1">/</span>
-          <span className="text-stone-500 font-semibold">{note.name}</span>
+    <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
+      <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
+          <Button>
+            <Link href="/notebook/dashboard">back</Link>
+          </Button>
+          <div>{note.name}</div>
+
+          <UserButton />
+
           <div className="ml-auto">
             <DeleteButton noteId={note.id} />
           </div>
-        </div>
-
-        <div className="h-4"></div>
-        <div className="border-stone-200 shadow-xl border rounded-lg px-16 py-8 w-full">
-          <NoteEditor />
-        </div>
+          
+          <Menu />
       </div>
+      <NoteEditor note={note}></NoteEditor>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Page() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
-      <div className="flex w-full max-w-screen-lg items-center gap-2 px-4 sm:mb-[calc(20vh)]">
+      <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
         <Button size="icon" variant="outline">
           <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">
             <GithubIcon />
