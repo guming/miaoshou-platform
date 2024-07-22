@@ -16,11 +16,7 @@ export default function Page() {
             <GithubIcon />
           </a>
         </Button>
-        <Button size="icon" variant="outline">
-          <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">
-            <Plus />
-          </a>
-        </Button>
+        
         <Dialog>
           <DialogTrigger asChild>
             <Button className="ml gap-2">
