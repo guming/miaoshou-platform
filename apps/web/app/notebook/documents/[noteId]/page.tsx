@@ -20,11 +20,10 @@ type Props = {
 };
 
 const NotebookPage = async ({ params: { noteId } }: Props) => {
-  const { userId } = await auth();
+  const { userId } = auth();
   if (!userId) {
     return redirect("/notebook/dashboard");
   }
-  const user = await currentUser();
   const notes = await db
     .select()
     .from($notes)
@@ -34,21 +33,16 @@ const NotebookPage = async ({ params: { noteId } }: Props) => {
     return redirect("/notebook/dashboard");
   }
   const note = notes[0];
-  console.log('noteId', note.id);
   return (
     <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
-      <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
+      <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(2vh)]">
           <Button>
-            <Link href="/notebook/dashboard">back</Link>
+            <Link href="/notebook/documents">Assistant</Link>
           </Button>
           <div>{note.name}</div>
-
-          <UserButton />
-
           <div className="ml-auto">
             <DeleteButton noteId={note.id} />
           </div>
-          
           <Menu />
       </div>
       <NoteEditor note={note}></NoteEditor>

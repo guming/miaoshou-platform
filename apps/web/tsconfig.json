@@ -3,7 +3,8 @@
 
   "compilerOptions": {
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
+    
     "plugins": [
       {
         "name": "next"
