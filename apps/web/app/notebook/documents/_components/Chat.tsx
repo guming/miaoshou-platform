@@ -4,7 +4,7 @@ import { Message, useChat } from 'ai/react';
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, data } = useChat({
-    api: '/api/use-chat-streamdata',
+    api: '/api/chat',
   });
 
   return (
