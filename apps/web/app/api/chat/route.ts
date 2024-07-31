@@ -1,4 +1,4 @@
-import { CoreMessage, embed, streamText } from 'ai';
+import { convertToCoreMessages, embed, streamText } from 'ai';
 import { codeBlock, oneLine } from 'common-tags'
 import { openai } from '@ai-sdk/openai';
 import { createClient } from '@/utils/supabase/server'
@@ -38,6 +38,8 @@ export async function POST(req: Request) {
     }
   )
 
+  console.log("supabase query:",pageSections)
+
   const tokenizer = new GPT3Tokenizer({ type: 'gpt3' })
     let tokenCount = 0
     let contextText = ''
@@ -56,7 +58,7 @@ export async function POST(req: Request) {
     }
 
   console.log("contextText:",contextText);
-  
+
     const prompt = codeBlock`
       ${oneLine`
          Given the following sections from the Supabase
@@ -79,8 +81,8 @@ export async function POST(req: Request) {
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),
     temperature: 0,
-    system: 'You are a helpful assistant.',
-    messages: prompt,
+    // system: 'You are a helpful assistant.',
+    messages: convertToCoreMessages(prompt),
   });
 
   return result.toAIStreamResponse();
