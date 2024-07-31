@@ -28,6 +28,15 @@ export async function POST(req: Request) {
 //     data: [{ embeddings }],
 //   }: CreateEmbeddingResponse = await embedding.json()
 
+
+let { data, error } = await supabase
+  .rpc('get_page_parents', {
+    27
+  })
+if (error) console.error(error)
+else console.log(data)
+
+
   const { error: matchError, data: pageSections } = await supabase.rpc(
     'match_page_sections',
     {
@@ -38,7 +47,7 @@ export async function POST(req: Request) {
     }
   )
 
-  console.log("supabase query:",matchError)
+  console.log("supabase query:",pageSections)
 
   const tokenizer = new GPT3Tokenizer({ type: 'gpt3' })
     let tokenCount = 0
