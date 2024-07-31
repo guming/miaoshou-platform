@@ -58,6 +58,9 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "usehooks-ts": "^3.1.0",
+    "gpt3-tokenizer": "^1.1.5",
+    "openai-edge": "^1.2.2",
+    "common-tags": "1.8.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
