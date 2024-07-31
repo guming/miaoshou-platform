@@ -17,7 +17,7 @@ export async function POST(req: Request) {
   // Create embedding from query
   const sanitizedQuery = messages[0].content.trim()
   const { embedding } = await embed({
-    model: openai.embedding('text-embedding-3-small'),
+    model: openai.embedding('text-embedding-ada-002'),
     value: sanitizedQuery.replaceAll('\n', ' '),
   });
 
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     }
   )
 
-  console.log("supabase query:",pageSections)
+  console.log("supabase query:",matchError)
 
   const tokenizer = new GPT3Tokenizer({ type: 'gpt3' })
     let tokenCount = 0
@@ -77,7 +77,6 @@ export async function POST(req: Request) {
 
       Answer as markdown (including related code snippets if available):
     `
-  
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),
     temperature: 0,
