@@ -1,26 +1,14 @@
+import { CoreMessage, streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import { StreamData, streamText } from 'ai';
-
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
-
-  // optional: use stream data
-  const data = new StreamData();
-  data.append('initialized call');
-
-  data.append('initialized call2');
+  const { messages }: { messages: CoreMessage[] } = await req.json();
 
   const result = await streamText({
-    model: openai('gpt-3.5-turbo'),
+    model: openai('gpt-4'),
+    system: 'You are a helpful assistant.',
     messages,
-    onFinish() {
-        data.append('call completed');
-        data.close();
-    },
   });
 
-  return result.pipeAIStreamToResponse(data);
+  return result.toAIStreamResponse();
 }
