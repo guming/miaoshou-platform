@@ -22,5 +22,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return result.toDataStreamResponse({ data: data });
+  return result.pipeAIStreamToResponse(data);
 }
