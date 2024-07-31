@@ -11,6 +11,8 @@ export async function POST(req: Request) {
   const data = new StreamData();
   data.append('initialized call');
 
+  data.append('initialized call2');
+
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),
     messages,
