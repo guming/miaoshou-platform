@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
 let { data, error } = await supabase
   .rpc('get_page_parents', {
-    27
+    page_id:27,
   })
 if (error) console.error(error)
 else console.log(data)
