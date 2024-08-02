@@ -29,7 +29,10 @@ export async function POST(req: Request) {
 //   }: CreateEmbeddingResponse = await embedding.json()
 
 
-let { data, error } = await supabaseClient.rpc('get_page_parents').eq('page_id', 27)
+let { data, error } = await supabaseClient
+  .rpc('get_page_parents', {
+    page_id:27
+  })
 
 if (error) 
     console.error(error)
