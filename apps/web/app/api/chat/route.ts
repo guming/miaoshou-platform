@@ -1,7 +1,6 @@
 import { convertToCoreMessages, embed, streamText } from 'ai';
 import { codeBlock, oneLine } from 'common-tags'
 import { openai } from '@ai-sdk/openai';
-import { createClient } from '@/utils/supabase/server'
 import GPT3Tokenizer from 'gpt3-tokenizer'
 import {
     Configuration,
@@ -10,6 +9,9 @@ import {
     CreateEmbeddingResponse,
     ChatCompletionRequestMessage,
   } from 'openai-edge'
+
+import { createClient } from '@supabase/supabase-js'
+
 
 export async function POST(req: Request) {
   const { messages  } = await req.json();
@@ -23,13 +25,15 @@ export async function POST(req: Request) {
 
   console.log("embedding:",embedding);
 
-  const supabaseClient = createClient()
+  const supabaseUrl = 'https://izhdisdiocplkxvbuzop.supabase.co'
+  const supabaseKey = process.env.SUPABASE_KEY
+  const supabase = createClient(supabaseUrl, supabaseKey)
 //   const {
 //     data: [{ embeddings }],
 //   }: CreateEmbeddingResponse = await embedding.json()
 
 
-let { data, error } = await supabaseClient
+let { data, error } = await supabase
   .rpc('get_page_parents', {
     page_id:27
   })
@@ -40,13 +44,13 @@ else
     console.log(data)
 
 
- const result1 = await supabaseClient.from('notes').select();
+ const result1 = await supabase.from('notes').select();
 if (result1.error) 
     console.error(result1.error)
 else
     console.log(result1.data)
 
-  const { error: matchError, data: pageSections } = await supabaseClient.rpc(
+  const { error: matchError, data: pageSections } = await supabase.rpc(
     'match_page_sections',
     {
       embedding,
