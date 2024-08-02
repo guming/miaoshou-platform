@@ -40,11 +40,11 @@ else
     console.log(data)
 
 
-const { data1, error1 } = await supabaseClient.from('notes').select();
-if (error1) 
-    console.error(error1)
+ const result1 = await supabaseClient.from('notes').select();
+if (result1.error) 
+    console.error(result1.error)
 else
-    console.log(data1)
+    console.log(result1.data)
 
   const { error: matchError, data: pageSections } = await supabaseClient.rpc(
     'match_page_sections',
