@@ -40,6 +40,11 @@ else
     console.log(data)
 
 
+    const { data1, error1 } = await supabaseClient
+    .from('notes')
+    .select()
+    console.log(data1)
+
   const { error: matchError, data: pageSections } = await supabaseClient.rpc(
     'match_page_sections',
     {
