@@ -33,8 +33,11 @@ let { data, error } = await supabase
   .rpc('get_page_parents', {
     page_id:27,
   })
-if (error) console.error(error)
-else console.log(data)
+
+if (error) 
+    console.error(error)
+else 
+    console.log(data)
 
 
   const { error: matchError, data: pageSections } = await supabase.rpc(
