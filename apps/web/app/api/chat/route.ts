@@ -23,16 +23,13 @@ export async function POST(req: Request) {
 
   console.log("embedding:",embedding);
 
-  const supabase = createClient()
+  const supabaseClient = createClient()
 //   const {
 //     data: [{ embeddings }],
 //   }: CreateEmbeddingResponse = await embedding.json()
 
 
-let { data, error } = await supabase
-  .rpc('get_page_parents', {
-    page_id:27,
-  })
+let { data, error } = await supabaseClient.rpc('get_page_parents').eq('page_id', 27)
 
 if (error) 
     console.error(error)
@@ -40,7 +37,7 @@ else
     console.log(data)
 
 
-  const { error: matchError, data: pageSections } = await supabase.rpc(
+  const { error: matchError, data: pageSections } = await supabaseClient.rpc(
     'match_page_sections',
     {
       embedding,
