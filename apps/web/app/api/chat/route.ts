@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   console.log("embedding:",embedding);
 
   const supabaseUrl = 'https://izhdisdiocplkxvbuzop.supabase.co'
-  const supabaseKey = process.env.SUPABASE_KEY
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabase = createClient(supabaseUrl, supabaseKey)
 //   const {
 //     data: [{ embeddings }],
