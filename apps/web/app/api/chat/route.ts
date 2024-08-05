@@ -1,4 +1,4 @@
-import { convertToCoreMessages, embed, streamText } from 'ai';
+import { CoreMessage, CoreUserMessage, convertToCoreMessages, embed, streamText } from 'ai';
 import { codeBlock, oneLine } from 'common-tags'
 import { openai } from '@ai-sdk/openai';
 import GPT3Tokenizer from 'gpt3-tokenizer'
@@ -26,8 +26,6 @@ export async function POST(req: Request) {
   const { messages  } = await req.json();
   console.log("messages:",messages)
   // Create embedding from query
-
-
   const supabaseUrl = 'https://izhdisdiocplkxvbuzop.supabase.co'
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   const supabase = createClient(supabaseUrl, supabaseKey,options)
@@ -36,28 +34,11 @@ export async function POST(req: Request) {
 //   }: CreateEmbeddingResponse = await embedding.json()
 console.log(supabase.access)
 
-let { data, error } = await supabase
-  .rpc('get_page_parents', {
-    page_id:27
-  })
-
-if (error) 
-    console.error(error)
-else 
-    console.log(data)
-
-
- const result1 = await supabase.from('notes').select();
-if (result1.error) 
-    console.error(result1.error)
-else
-    console.log(result1.data)
-
-    const sanitizedQuery = messages[0].content.trim()
-    const { embedding } = await embed({
-      model: openai.embedding('text-embedding-ada-002'),
-      value: sanitizedQuery.replaceAll('\n', ' '),
-    });
+const sanitizedQuery = messages[0].content.trim()
+const { embedding } = await embed({
+    model: openai.embedding('text-embedding-ada-002'),
+    value: sanitizedQuery.replaceAll('\n', ' '),
+});
   
     console.log("embedding:",embedding);
   const { error: matchError, data: pageSections } = await supabase.rpc(
@@ -113,7 +94,9 @@ else
     model: openai('gpt-3.5-turbo'),
     temperature: 0,
     system: 'You are a helpful assistant.',
-    messages: convertToCoreMessages(prompt),
+    prompt,
+    maxTokens: 512,
+    maxRetries: 5,
   });
 
   return result.toAIStreamResponse();
