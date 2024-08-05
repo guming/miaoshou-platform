@@ -74,10 +74,8 @@ const { embedding } = await embed({
 
     const prompt = codeBlock`
       ${oneLine`
-         Given the following sections from the Supabase
-        documentation, answer the question using only that information,
-        outputted in markdown format. If you are unsure and the answer
-        is not explicitly written in the documentation, say
+         根据下面给出的Context sections内容回答问题,
+        如果内容里没有找到与问题相关的信息，请回答
         "Sorry, I don't know how to help with that."
       `}
 
@@ -87,8 +85,6 @@ const { embedding } = await embed({
       Question: """
       ${sanitizedQuery}
       """
-
-      Answer as markdown (including related code snippets if available):
     `
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),
