@@ -11,27 +11,30 @@ import {
   } from 'openai-edge'
 
 import { createClient } from '@supabase/supabase-js'
-
+const options = {
+    db: {
+      schema: 'public',
+    },
+    auth: {
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true
+    },
+  }
 
 export async function POST(req: Request) {
   const { messages  } = await req.json();
   console.log("messages:",messages)
   // Create embedding from query
-  const sanitizedQuery = messages[0].content.trim()
-  const { embedding } = await embed({
-    model: openai.embedding('text-embedding-ada-002'),
-    value: sanitizedQuery.replaceAll('\n', ' '),
-  });
 
-  console.log("embedding:",embedding);
 
   const supabaseUrl = 'https://izhdisdiocplkxvbuzop.supabase.co'
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  const supabase = createClient(supabaseUrl, supabaseKey)
+  const supabase = createClient(supabaseUrl, supabaseKey,options)
 //   const {
 //     data: [{ embeddings }],
 //   }: CreateEmbeddingResponse = await embedding.json()
-
+console.log(supabase.access)
 
 let { data, error } = await supabase
   .rpc('get_page_parents', {
@@ -50,6 +53,13 @@ if (result1.error)
 else
     console.log(result1.data)
 
+    const sanitizedQuery = messages[0].content.trim()
+    const { embedding } = await embed({
+      model: openai.embedding('text-embedding-ada-002'),
+      value: sanitizedQuery.replaceAll('\n', ' '),
+    });
+  
+    console.log("embedding:",embedding);
   const { error: matchError, data: pageSections } = await supabase.rpc(
     'match_page_sections',
     {
