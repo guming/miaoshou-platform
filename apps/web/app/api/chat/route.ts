@@ -112,7 +112,7 @@ else
   const result = await streamText({
     model: openai('gpt-3.5-turbo'),
     temperature: 0,
-    // system: 'You are a helpful assistant.',
+    system: 'You are a helpful assistant.',
     messages: convertToCoreMessages(prompt),
   });
 
