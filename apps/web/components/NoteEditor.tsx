@@ -151,7 +151,6 @@ const NoteEditor = ({ note }: Props) => {
             <Separator orientation="vertical" />
             <NodeSelector open={openNode} onOpenChange={setOpenNode} />
             <Separator orientation="vertical" />
-
             <LinkSelector open={openLink} onOpenChange={setOpenLink} />
             <Separator orientation="vertical" />
             <TextButtons />
