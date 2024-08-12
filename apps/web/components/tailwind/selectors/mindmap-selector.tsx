@@ -5,6 +5,14 @@ import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
 import { Check, Trash } from "lucide-react";
 import { useEditor } from "novel";
 import { useEffect, useRef } from "react";
+import FirecrawlApp from "@mendable/firecrawl-js";
+import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+
+const api_key_crawler = "fc-52580c7520c244e1a16884109db6b611"
+const app = new FirecrawlApp({ apiKey: api_key_crawler });
+
+
 
 export function isValidUrl(url: string) {
     try {
@@ -29,7 +37,8 @@ export function isValidUrl(url: string) {
     onOpenChange: (open: boolean) => void;
   }
   
-  export const MindMapSelector = ({ open, onOpenChange }: MindMapSelectorProps) => {
+  export const MindMapSelector =  ({ open, onOpenChange }: MindMapSelectorProps) => {
+
     const inputRef = useRef<HTMLInputElement>(null);
     const { editor } = useEditor();
   
@@ -38,6 +47,38 @@ export function isValidUrl(url: string) {
       inputRef.current?.focus();
     });
     if (!editor) return null;
+
+    const fetchContent = useMutation({
+      mutationFn: async (url:string) => {
+        const params = {
+          pageOptions: {
+            onlyMainContent: true
+          }
+        };
+        const content = await app.scrapeUrl(url , params);
+        return content.data;
+      },
+    });
+  
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLFormElement;
+      const input = target[0] as HTMLInputElement;
+      const url = getUrlFromString(input.value);
+      const selection = editor.view.state.selection;
+      fetchContent.mutate(url, {
+        onSuccess: ({ content }) => {
+          console.log(content);
+          editor.chain().focus().insertContentAt(selection.to + 1,content).run();
+        },
+        onError: (error) => {
+          console.error(error);
+          window.alert("Failed to crawl url");
+        },
+      });
+
+      
+    };
   
     return (
       <Popover modal={true} open={open} onOpenChange={onOpenChange}>
@@ -49,19 +90,13 @@ export function isValidUrl(url: string) {
                 "text-blue-500": editor.isActive("link"),
               })}
             >
-              Link
+              Parser
             </p>
           </Button>
         </PopoverTrigger>
         <PopoverContent asChild className="w-60 p-0" sideOffset={10} >
           <form
-            onSubmit={(e) => {
-              const target = e.currentTarget as HTMLFormElement;
-              e.preventDefault();
-              const input = target[0] as HTMLInputElement;
-              const url = getUrlFromString(input.value);
-              url && editor.chain().focus().setLink({ href: url }).run();
-            }}
+            onSubmit={ handleSubmit }
             className="flex  p-1 "
           >
             <input

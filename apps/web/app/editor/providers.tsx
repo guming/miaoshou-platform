@@ -5,6 +5,9 @@ import { ThemeProvider, useTheme } from "next-themes";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import useLocalStorage from "@/hooks/use-local-storage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export const AppContext = createContext<{
   font: string;
@@ -33,7 +36,7 @@ export default function Providers({ children }: { children: ReactNode }) {
         }}
       >
         <ToasterProvider />
-        {children}
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
         <Analytics />
       </AppContext.Provider>
     </ThemeProvider>
