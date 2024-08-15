@@ -1,8 +1,9 @@
 {
   "extends": "tsconfig/react.json",
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "../../apps/web/components/tailwind/excalidraw/ExcalidrawModal.tsx"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
+    "module": "esnext",
     "declarationMap": false,
     "outDir": "dist"
   }

@@ -1,4 +1,5 @@
 import {
+  Brush,
   CheckSquare,
   Code,
   Heading1,
@@ -16,6 +17,8 @@ import {
 import { createSuggestionItems } from "novel/extensions";
 import { Command, renderItems } from "novel/extensions";
 import { uploadFn } from "./image-upload";
+
+import ExcalidrawWrapper from "./excalidraw/ExcalidrawModal2";
 
 export const suggestionItems = createSuggestionItems([
   {
@@ -177,6 +180,22 @@ export const suggestionItems = createSuggestionItems([
           alert("Please enter a correct Twitter Link");
         }
       }
+    },
+  },
+  {
+    title: "Draw",
+    description: "Drawing.",
+    searchTerms: ["Draw", "embed"],
+    icon: <Brush size={18} />,
+    command: ({ editor }) => {
+      const draw = ExcalidrawWrapper();
+      editor
+        .chain()
+        .focus()
+        .setDraw({
+          src: draw,
+        })
+        .run();
     },
   },
 ]);

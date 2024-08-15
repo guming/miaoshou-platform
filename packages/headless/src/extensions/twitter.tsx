@@ -148,6 +148,7 @@ export const Twitter = Node.create<TwitterOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
+    console.log("htmlattrs", HTMLAttributes);
     return ["div", mergeAttributes({ "data-twitter": "" }, HTMLAttributes)];
   },
 });

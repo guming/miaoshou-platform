@@ -16,6 +16,8 @@ import { ImageResizer } from "./image-resizer";
 import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
+import {Draw} from "./excalidraw";
+
 import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Youtube from "@tiptap/extension-youtube";
@@ -84,4 +86,5 @@ export {
   Twitter,
   CharacterCount,
   GlobalDragHandle,
+  Draw,
 };
