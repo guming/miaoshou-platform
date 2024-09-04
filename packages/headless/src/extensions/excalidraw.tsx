@@ -9,7 +9,8 @@ const ExcalidrawWithClientOnly = dynamic(async () => (await import("./mydraw")).
 // import ExcalidrawComponent from "../excalidraw/ExcalidrawComponent";
 export type DrawNode = { src: JSX.Element };
 
-const DrawComponent = ({ editor }: { editor: Editor }) => {
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const DrawComponent = ({ editor, data }: { editor: Editor; data: any | null }) => {
   // const [drawNode, setDrawNode] = useState<DrawNode | null>(null);
   useEffect(() => {
     return () => {
@@ -18,12 +19,12 @@ const DrawComponent = ({ editor }: { editor: Editor }) => {
   }, []);
 
   // const component = node?.attrs.src;
-  // console.log("parameter editor", editor);
+  console.log("parameter editor", data);
   // setDrawNode(component);
   return (
     <>
       {/* <NodeViewWrapper> */}
-      <ExcalidrawWithClientOnly editor={editor} />
+      <ExcalidrawWithClientOnly editor={editor} data={data ? data : "[]"} />
       {/* </NodeViewWrapper> */}
     </>
   );
@@ -66,7 +67,7 @@ declare module "@tiptap/core" {
     };
   }
 }
-const pasteRegex = /(Excalidraw)/g;
+// const pasteRegex = /(Excalidraw)/g;
 export const Draw = Node.create<DrawOptions>({
   name: "Excalidraw",
 
@@ -103,15 +104,15 @@ export const Draw = Node.create<DrawOptions>({
       const container = document.createElement("div");
       dom.appendChild(container);
 
-      const src = node.attrs?.src;
-      console.log("add view", editor);
-      ReactDOM.render(<DrawComponent editor={editor} />, container);
+      const data = node.attrs?.data;
+      console.log("add view", node);
+      ReactDOM.render(<DrawComponent editor={editor} data={node.attrs.data} />, container);
 
       return {
         dom,
         update: (updatedNode) => {
-          if (updatedNode.attrs?.src !== src) {
-            ReactDOM.render(<DrawComponent editor={editor} />, container);
+          if (updatedNode.attrs?.data !== data) {
+            ReactDOM.render(<DrawComponent editor={editor} data={updatedNode.attrs?.data} />, container);
           }
           return true;
         },
@@ -166,8 +167,9 @@ export const Draw = Node.create<DrawOptions>({
 
   renderHTML({ node, HTMLAttributes }) {
     console.log("draw", node, HTMLAttributes, this.editor);
+    const { data } = HTMLAttributes;
     if (!this.editor) return ["div", mergeAttributes({ "data-draw": "" })];
-    const componentHTML = renderToString(<DrawComponent editor={this.editor} />);
+    const componentHTML = renderToString(<DrawComponent editor={this.editor} data={data} />);
     return ["div", mergeAttributes({ "data-draw": "" }), componentHTML];
   },
 });

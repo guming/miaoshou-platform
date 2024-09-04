@@ -264,11 +264,7 @@ const DropdownMenu: React.FC<DropDownMenuProps> = ({ onClose }) => {
             items-center 
             justify-between
             border-b
-          
-         
             py-4
-          
-      
             "
         >
           Request a demo

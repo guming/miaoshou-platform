@@ -141,6 +141,7 @@ export default function ExcalidrawModal({
   }, [elements, files, onDelete]);
 
   const save = () => {
+    console.log("save", elements);
     if (elements && elements.filter((el) => !el.isDeleted).length > 0) {
       const appState = excalidrawAPI?.getAppState();
       // We only need a subset of the state
@@ -165,6 +166,7 @@ export default function ExcalidrawModal({
   };
 
   const discard = () => {
+    console.log("element", elements);
     if (elements && elements.filter((el) => !el.isDeleted).length === 0) {
       // delete node if the scene is clear
       onDelete();

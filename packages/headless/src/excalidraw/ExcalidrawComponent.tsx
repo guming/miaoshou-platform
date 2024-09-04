@@ -23,7 +23,8 @@ export default function ExcalidrawComponent({
   data,
   editor,
 }: {
-  data: string;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  data: any | null;
   nodeKey: string;
   editor: Editor;
 }): JSX.Element {
@@ -36,7 +37,6 @@ export default function ExcalidrawComponent({
   const [isResizing, setIsResizing] = useState<boolean>(false);
 
   const isSelected = isNodeSelection(editor?.state.selection);
-  console.log("isSelected", isSelected);
   const onDelete = useCallback(
     (event: KeyboardEvent) => {
       if (isNodeSelection(editor?.state.selection)) {
@@ -54,7 +54,6 @@ export default function ExcalidrawComponent({
 
   // Set editor to readOnly if excalidraw is open to prevent unwanted changes
   useEffect(() => {
-    console.log("isModalOpen useEffect", isModalOpen);
     if (isModalOpen) {
       editor.setEditable(false);
     } else {
@@ -64,20 +63,26 @@ export default function ExcalidrawComponent({
 
   const deleteNode = useCallback(() => {
     setModalOpen(false);
-    editor.commands.deleteSelection();
+    const { state } = editor.view;
+    const { tr } = state;
+
+    const { selection } = editor.state;
+    const selectedNode = selection.$from.node();
+
+    console.log(`deleteNode Selected node type: ${selectedNode.type.name}`);
+    editor.chain().focus().deleteCurrentNode().run();
   }, [editor, nodeKey]);
 
   const setData = (els: ExcalidrawInitialElements, aps: Partial<AppState>, fls: BinaryFiles) => {
-    console.log("can not edit", editor.isEditable);
     if (!editor.isEditable) {
       return;
     }
-    const { selection } = editor.state;
-    const node = selection.$anchor.node(); // 获取当前选中的节点
+    // const { selection } = editor.state;
+    // const node = selection; // 获取当前选中的节点
 
-    if (node) {
-      console.log("Selected node type:", node?.type.name);
-    }
+    // if (node) {
+    //   console.log("Selected node type:", node?.type.name);
+    // }
     // editor.chain().focus().insertContent("hello world").run();
     if ((els && els.length > 0) || Object.keys(fls).length > 0) {
       console.log(
@@ -88,14 +93,14 @@ export default function ExcalidrawComponent({
         }),
       );
       editor.commands.updateAttributes("Excalidraw", {
-        data: JSON.stringify({
+        data: {
           appState: aps,
           elements: els,
           files: fls,
-        }),
+        },
       });
 
-      console.log("Selected node :", editor.state.selection);
+      // console.log("Selected node :", editor.state.selection);
     } else {
       editor.commands.deleteSelection();
     }
@@ -113,12 +118,12 @@ export default function ExcalidrawComponent({
   };
 
   const openModal = useCallback(() => {
-    console.log("openModal");
+    // console.log("openModal");
     setModalOpen(true);
   }, []);
-  const { elements = [], files = {}, appState = {} } = useMemo(() => JSON.parse(data), [data]);
+  const { elements = [], files = {}, appState = {} } = useMemo(() => (data === "[]" ? JSON.parse(data) : data), [data]);
   // console.log("before return");
-  console.log("isModalOpen", isModalOpen);
+  // console.log("isModalOpen", isModalOpen);
   return (
     <>
       <ExcalidrawModal
@@ -133,6 +138,9 @@ export default function ExcalidrawComponent({
           editor.setEditable(true);
           setData(els, aps, fls);
           setModalOpen(false);
+          const { tr } = editor.state;
+
+          editor.view.dispatch(tr);
         }}
         closeOnClickOutside={false}
       />
