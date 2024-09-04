@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
+import "@/styles/ExcalidrawModal.css";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Providers from "./providers";
 
-const title = '妙手'
-const description =
-  "Miaoshou - Simple and powerful notes & docs for teams";
+const title = "妙手";
+const description = "Miaoshou - Simple and powerful notes & docs for teams";
 
 export const metadata: Metadata = {
   title,

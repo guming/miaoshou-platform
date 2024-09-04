@@ -19,16 +19,16 @@ import { LinkSelector } from "./tailwind/selectors/link-selector";
 import { NodeSelector } from "./tailwind/selectors/node-selector";
 import { Separator } from "./ui/separator";
 
+import type { NoteType } from "@/lib/db/schema";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import GenerativeMenuSwitch from "./tailwind/generative/generative-menu-switch";
 import { uploadFn } from "./tailwind/image-upload";
 import { TextButtons } from "./tailwind/selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./tailwind/slash-command";
-import axios from "axios";
-import { useMutation } from "@tanstack/react-query";
-import { NoteType } from "@/lib/db/schema";
 
-const hljs = require('highlight.js');
+const hljs = require("highlight.js");
 
 const extensions = [...defaultExtensions, slashCommand];
 
@@ -46,17 +46,15 @@ const NoteEditor = ({ note }: Props) => {
 
   //Apply Codeblock Highlighting on the HTML from editor.getHTML()
   const highlightCodeblocks = (content: string) => {
-    const doc = new DOMParser().parseFromString(content, 'text/html');
-    doc.querySelectorAll('pre code').forEach((el) => {
+    const doc = new DOMParser().parseFromString(content, "text/html");
+    doc.querySelectorAll("pre code").forEach((el) => {
       // @ts-ignore
       // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
       hljs.highlightElement(el);
     });
     return new XMLSerializer().serializeToString(doc);
   };
-  const [editorState, setEditorState] = useState(
-    note.editorState || `${note.name}`
-  );
+  const [editorState, setEditorState] = useState(note.editorState || `${note.name}`);
 
   const saveNote = useMutation({
     mutationFn: async () => {

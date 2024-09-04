@@ -1,6 +1,5 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-import { type NextRequest } from 'next/server'
 // import { updateSession } from '@/utils/supabase/middleware'
 
 // export async function middleware(request: NextRequest) {
@@ -11,5 +10,5 @@ import { type NextRequest } from 'next/server'
 export default clerkMiddleware();
 
 export const config = {
-  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };

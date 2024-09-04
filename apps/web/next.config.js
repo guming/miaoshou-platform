@@ -8,13 +8,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/feedback",
-        destination: "https://github.com/guming/ai-editor/issues",
+        source: "/jupyterlite",
+        destination: "https://miaoshou-jupyterlite.vercel.app",
         permanent: true,
       },
       {
-        source: "/deploy",
-        destination: "https://vercel.com/templates/next.js/novel",
+        source: "/free-reader",
+        destination: "https://miaoshou-reader.vercel.app",
         permanent: true,
       },
     ];

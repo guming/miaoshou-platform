@@ -7,8 +7,11 @@
  */
 
 import "./ExcalidrawModal.css";
-
-import { Excalidraw } from "@excalidraw/excalidraw";
+import dynamic from "next/dynamic";
+// import { Excalidraw } from "@excalidraw/excalidraw";
+const Excalidraw = dynamic(async () => (await import("@excalidraw/excalidraw")).Excalidraw, {
+  ssr: false,
+});
 import type {
   AppState,
   BinaryFiles,
@@ -24,7 +27,7 @@ import Modal from "./ui/Modal";
 
 export type ExcalidrawInitialElements = ExcalidrawInitialDataState["elements"];
 
-type Props = {
+export type Props = {
   closeOnClickOutside?: boolean;
   /**
    * The initial set of elements to draw into the scene

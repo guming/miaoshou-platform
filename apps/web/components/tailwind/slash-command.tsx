@@ -16,9 +16,11 @@ import {
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
 import { Command, renderItems } from "novel/extensions";
-import { uploadFn } from "./image-upload";
+import ExcalidrawModal from "./excalidraw/ExcalidrawModal2";
+// import ExcalidrawComponent from "./excalidraw/ExcalidrawComponent";
 
-import ExcalidrawWrapper from "./excalidraw/ExcalidrawModal2";
+import { uploadFn } from "./image-upload";
+// import ExcalidrawModal from "./excalidraw/ExcalidrawModal";
 
 export const suggestionItems = createSuggestionItems([
   {
@@ -188,7 +190,8 @@ export const suggestionItems = createSuggestionItems([
     searchTerms: ["Draw", "embed"],
     icon: <Brush size={18} />,
     command: ({ editor }) => {
-      const draw = ExcalidrawWrapper();
+      const draw = ExcalidrawModal(editor);
+      console.log("put draw", draw);
       editor
         .chain()
         .focus()

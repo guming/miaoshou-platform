@@ -16,7 +16,8 @@ import { ImageResizer } from "./image-resizer";
 import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
-import {Draw} from "./excalidraw";
+import DrawStorage from "./draw-storage";
+import { Draw } from "./excalidraw";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -46,6 +47,7 @@ const simpleExtensions = [
     transformCopiedText: true,
   }),
   CustomKeymap,
+  DrawStorage,
 ] as const;
 
 const Horizontal = HorizontalRule.extend({

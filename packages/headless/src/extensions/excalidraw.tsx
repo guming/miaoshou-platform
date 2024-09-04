@@ -1,20 +1,41 @@
-import { Node, mergeAttributes } from "@tiptap/core";
-import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
-type DrawNode = { attrs: JSX.Element };
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const DrawComponent = ({ node }: any) => {
-  console.log("node", node);
-  const component = node?.attrs?.src;
-  console.log("component:", component);
+import { type Editor, Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import ReactDOM from "react-dom";
+import { renderToString } from "react-dom/server";
+const ExcalidrawWithClientOnly = dynamic(async () => (await import("./mydraw")).default, {
+  ssr: false,
+});
+// import ExcalidrawComponent from "../excalidraw/ExcalidrawComponent";
+export type DrawNode = { src: JSX.Element };
+
+const DrawComponent = ({ editor }: { editor: Editor }) => {
+  // const [drawNode, setDrawNode] = useState<DrawNode | null>(null);
+  useEffect(() => {
+    return () => {
+      console.log("Draw deleted");
+    };
+  }, []);
+
+  // const component = node?.attrs.src;
+  // console.log("parameter editor", editor);
+  // setDrawNode(component);
   return (
-    <NodeViewWrapper>
-      <div data-draw="" style={{ height: "500px" }}>
-        {component ? component : <div>Placeholder</div>}
-      </div>
-    </NodeViewWrapper>
+    <>
+      {/* <NodeViewWrapper> */}
+      <ExcalidrawWithClientOnly editor={editor} />
+      {/* </NodeViewWrapper> */}
+    </>
   );
 };
+
 export interface DrawOptions {
+  /**
+   * Controls if the paste handler for tweets should be added.
+   * @default true
+   * @example false
+   */
+  addPasteHandler: boolean;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   HTMLAttributes: Record<string, any>;
 
@@ -45,12 +66,13 @@ declare module "@tiptap/core" {
     };
   }
 }
-
+const pasteRegex = /(Excalidraw)/g;
 export const Draw = Node.create<DrawOptions>({
   name: "Excalidraw",
 
   addOptions() {
     return {
+      addPasteHandler: true,
       HTMLAttributes: {},
       inline: false,
       origin: "",
@@ -62,12 +84,39 @@ export const Draw = Node.create<DrawOptions>({
       src: {
         default: null,
       },
+      data: {
+        default: null,
+      },
+    };
+  },
+  addStorage() {
+    return {
+      src: { default: null },
     };
   },
 
   addNodeView() {
-    console.log(this.options.HTMLAttributes);
-    return ReactNodeViewRenderer(DrawComponent, this.options.HTMLAttributes);
+    // console.log("view add:", this);
+    // return ReactNodeViewRenderer(DrawComponent);
+    return ({ node, getPos, editor }) => {
+      const dom = document.createElement("div");
+      const container = document.createElement("div");
+      dom.appendChild(container);
+
+      const src = node.attrs?.src;
+      console.log("add view", editor);
+      ReactDOM.render(<DrawComponent editor={editor} />, container);
+
+      return {
+        dom,
+        update: (updatedNode) => {
+          if (updatedNode.attrs?.src !== src) {
+            ReactDOM.render(<DrawComponent editor={editor} />, container);
+          }
+          return true;
+        },
+      };
+    };
   },
 
   inline() {
@@ -91,18 +140,34 @@ export const Draw = Node.create<DrawOptions>({
   addCommands() {
     return {
       setDraw:
-        (src: DrawNode) =>
+        (node: DrawNode) =>
         ({ commands }) => {
+          // console.log("node is:", node);
           return commands.insertContent({
             type: this.name,
-            attrs: src,
+            attrs: node,
           });
         },
     };
   },
 
-  renderHTML({ HTMLAttributes }) {
-    console.log("draw", HTMLAttributes);
-    return ["div", mergeAttributes({ "data-draw": "" }, HTMLAttributes)];
+  addPasteRules() {
+    return [
+      nodePasteRule({
+        find: /.+/g,
+        type: this.type,
+        getAttributes: (match) => {
+          // console.log("match", match);
+          return { src: match.input };
+        },
+      }),
+    ];
+  },
+
+  renderHTML({ node, HTMLAttributes }) {
+    console.log("draw", node, HTMLAttributes, this.editor);
+    if (!this.editor) return ["div", mergeAttributes({ "data-draw": "" })];
+    const componentHTML = renderToString(<DrawComponent editor={this.editor} />);
+    return ["div", mergeAttributes({ "data-draw": "" }), componentHTML];
   },
 });

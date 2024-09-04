@@ -1,13 +1,13 @@
 "use client";
 
-import React, { Children, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-import { X, AlignJustify } from "lucide-react";
+import Menu2 from "@/components/tailwind/ui/menu";
+import { AlignJustify, X } from "lucide-react";
 import Link from "next/link";
 import DropdownMenu from "./drop-down-menu";
-import Menu2 from "@/components/tailwind/ui/menu";
 
 const ActionButtons = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
@@ -23,56 +23,65 @@ const ActionButtons = () => {
   return (
     <div className="pr-2">
       <div className=" items-center justify-center flex ">
-
-      <div className="flex xl:space-x-4">
-        <Link
-          href={"/editor"}
-          className="
+        <div className="flex xl:space-x-4">
+          <Link
+            href={"/editor"}
+            className="
             lg:flex
             items-center
             hidden
             
             "
-        >
-          <Button
-            variant={"outline"}
-            className="
-            lg:flex
-            items-center
-            hidden
-                border-none 
-                text-md
-                "
-          >Demo</Button>
-        </Link>
-
-        <div className="font-thin     
-        lg:flex
-            items-center
-            hidden">|</div>
-      </div>
-
-      <div className="flex lg:space-x-4 items-center pr-4">
-        <Link href={"/free"}>
-          <Button
-            variant={"outline"}
-            className="
-            lg:flex
-            items-center
-            hidden
-                border-none 
-                text-md
-                "
           >
-            Log in
-          </Button>
-        </Link>
-        <div className="font-thin     
+            <Button
+              variant={"outline"}
+              className="
+            lg:flex
+            items-center
+            hidden
+                border-none 
+                text-md
+                "
+            >
+              Demo
+            </Button>
+          </Link>
+
+          <div
+            className="font-thin     
         lg:flex
             items-center
-            hidden">|</div>
-        <Menu2 />
-      </div>
+            hidden"
+          >
+            |
+          </div>
+        </div>
+
+        <div className="flex lg:space-x-4 items-center pr-4">
+          <Link href={"/free"}>
+            <Button
+              variant={"outline"}
+              className="
+            lg:flex
+            items-center
+            hidden
+                border-none 
+                text-md
+                "
+            >
+              Log in
+            </Button>
+          </Link>
+          <div
+            className="font-thin     
+        lg:flex
+            items-center
+            hidden"
+          >
+            |
+          </div>
+          <Menu2 />
+        </div>
       </div>
 
       {isDropdownVisible && (

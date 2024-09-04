@@ -11,11 +11,14 @@ export default defineConfig((options: Options) => ({
     js: "'use client'",
   },
   minify: true,
+  // esbuildPlugins: [
+  //   esbuildCommonjs(), // 处理 CommonJS 模块
+  // ],
 
   format: ["cjs", "esm"],
   dts: true,
   clean: true,
 
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom","@excalidraw/excalidraw"],
   ...options,
 }));

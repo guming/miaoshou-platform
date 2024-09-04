@@ -3,9 +3,8 @@ import { Button } from "@/components/tailwind/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/tailwind/ui/dialog";
 import Menu from "@/components/tailwind/ui/menu";
 import { ScrollArea } from "@/components/tailwind/ui/scroll-area";
-import { BookOpen, GithubIcon, Plus } from "lucide-react";
+import { BookOpen, GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { Markmap, loadCSS, loadJS } from 'markmap-view';
 
 export default function Page() {
   return (
@@ -16,7 +15,7 @@ export default function Page() {
             <GithubIcon />
           </a>
         </Button>
-        
+
         <Dialog>
           <DialogTrigger asChild>
             <Button className="ml gap-2">
@@ -37,7 +36,6 @@ export default function Page() {
       </div>
 
       <TailwindAdvancedEditor />
-      
     </div>
   );
 }

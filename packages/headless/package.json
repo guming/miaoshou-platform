@@ -67,6 +67,7 @@
     "@types/node": "18.15.3",
     "cmdk": "^0.2.1",
     "jotai": "^2.6.4",
+    "next": "^14.2.6",
     "react-markdown": "^8.0.7",
     "react-moveable": "^0.56.0",
     "react-tweet": "^3.2.1",

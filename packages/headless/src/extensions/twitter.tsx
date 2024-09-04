@@ -141,14 +141,15 @@ export const Twitter = Node.create<TwitterOptions>({
         find: TWITTER_REGEX_GLOBAL,
         type: this.type,
         getAttributes: (match) => {
+          console.log("twitter paste", match);
           return { src: match.input };
         },
       }),
     ];
   },
 
-  renderHTML({ HTMLAttributes }) {
-    console.log("htmlattrs", HTMLAttributes);
+  renderHTML({ node, HTMLAttributes }) {
+    console.log("twitter attrs", node, HTMLAttributes);
     return ["div", mergeAttributes({ "data-twitter": "" }, HTMLAttributes)];
   },
 });
