@@ -1,5 +1,6 @@
 import {
   Brush,
+  Calculator,
   CheckSquare,
   Code,
   Heading1,
@@ -199,6 +200,16 @@ export const suggestionItems = createSuggestionItems([
           src: draw,
         })
         .run();
+    },
+  },
+  {
+    title: "Math",
+    description: "Mathematics.",
+    searchTerms: ["Math", "embed"],
+    icon: <Calculator size={18} />,
+    command: ({ editor, range }) => {
+      // console.log("put math", editor);
+      editor.chain().focus().deleteRange(range).addInlineMath().run();
     },
   },
 ]);

@@ -2,8 +2,11 @@ import {
   AIHighlight,
   CharacterCount,
   CodeBlockLowlight,
+  Draw,
   GlobalDragHandle,
   HorizontalRule,
+  InlineMath,
+  Mathematics,
   Placeholder,
   StarterKit,
   TaskItem,
@@ -11,7 +14,6 @@ import {
   TiptapImage,
   TiptapLink,
   Twitter,
-  Draw,
   UpdatedImage,
   Youtube,
 } from "novel/extensions";
@@ -19,7 +21,6 @@ import { UploadImagesPlugin } from "novel/plugins";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
-import { deflateRawSync } from "zlib";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -139,6 +140,20 @@ const draw = Draw.configure({
   inline: false,
 });
 
+const mathematics = Mathematics.configure({
+  HTMLAttributes: {
+    class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
+  },
+  katexOptions: {
+    throwOnError: false,
+  },
+});
+const mathquill = InlineMath.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
+  },
+});
+
 const characterCount = CharacterCount.configure();
 
 export const defaultExtensions = [
@@ -157,4 +172,6 @@ export const defaultExtensions = [
   draw,
   characterCount,
   GlobalDragHandle,
+  mathematics,
+  mathquill,
 ];

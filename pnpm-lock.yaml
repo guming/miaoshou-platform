@@ -74,6 +74,9 @@ importers:
       framer-motion:
         specifier: ^11.2.13
         version: 11.2.13(react-dom@18.3.1)(react@18.3.1)
+      katex:
+        specifier: ^0.16.11
+        version: 0.16.11
       markmap-common:
         specifier: ^0.17.0
         version: 0.17.0
@@ -357,6 +360,9 @@ importers:
       '@tiptap/suggestion':
         specifier: ^2.1.7
         version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
+      '@types/katex':
+        specifier: ^0.16.7
+        version: 0.16.7
       '@types/node':
         specifier: 18.15.3
         version: 18.15.3
@@ -366,6 +372,9 @@ importers:
       jotai:
         specifier: ^2.6.4
         version: 2.6.4(@types/react@18.2.55)(react@18.3.1)
+      katex:
+        specifier: ^0.16.10
+        version: 0.16.11
       next:
         specifier: ^14.2.6
         version: 14.2.6(react-dom@18.3.1)(react@18.3.1)
@@ -378,6 +387,9 @@ importers:
       react-markdown:
         specifier: ^8.0.7
         version: 8.0.7(@types/react@18.2.55)(react@18.3.1)
+      react-mathquill:
+        specifier: ^1.0.3
+        version: 1.0.3(react@18.3.1)
       react-moveable:
         specifier: ^0.56.0
         version: 0.56.0
@@ -8483,6 +8495,14 @@ packages:
       vfile: 5.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /react-mathquill@1.0.3(react@18.3.1):
+    resolution: {integrity: sha512-H0z0FJsrjgKzXA1kR3rxcQyO28bXyeyMUM13VJ9jAn5cA9SJ35eScE5AK46R0O/H5zRyycGlSo2u+Pdxakbpkg==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /react-moveable@0.56.0:

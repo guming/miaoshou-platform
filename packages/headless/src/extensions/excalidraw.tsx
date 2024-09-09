@@ -99,11 +99,17 @@ export const Draw = Node.create<DrawOptions>({
   addNodeView() {
     // console.log("view add:", this);
     // return ReactNodeViewRenderer(DrawComponent);
+
     return ({ node, getPos, editor }) => {
       const dom = document.createElement("div");
       const container = document.createElement("div");
       dom.appendChild(container);
-
+      // const handleClick = (event: { preventDefault: () => void; stopPropagation: () => void }) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      //   console.log("Node clicked!", node);
+      // };
+      // container.addEventListener("click", handleClick);
       const data = node.attrs?.data;
       console.log("add view", node);
       ReactDOM.render(<DrawComponent editor={editor} data={node.attrs.data} />, container);

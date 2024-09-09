@@ -18,6 +18,8 @@ import UpdatedImage from "./updated-image";
 
 import DrawStorage from "./draw-storage";
 import { Draw } from "./excalidraw";
+import InlineMath from "./inlineMath";
+import { Mathematics } from "./mathematics";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -29,6 +31,10 @@ const PlaceholderExtension = Placeholder.configure({
     if (node.type.name === "heading") {
       return `Heading ${node.attrs.level}`;
     }
+    if (node.type.name === "inlineMath") {
+      return "Math";
+    }
+
     return "Press '/' for commands";
   },
   includeChildren: true,
@@ -89,4 +95,6 @@ export {
   CharacterCount,
   GlobalDragHandle,
   Draw,
+  Mathematics,
+  InlineMath,
 };

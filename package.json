@@ -36,6 +36,7 @@
     "drizzle-orm": "^0.32.0",
     "emoji-picker-react": "^4.11.1",
     "framer-motion": "^11.2.13",
+    "katex": "^0.16.11",
     "markmap-common": "^0.17.0",
     "markmap-lib": "^0.17.0",
     "markmap-view": "^0.17.0",

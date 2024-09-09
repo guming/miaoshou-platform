@@ -19,6 +19,6 @@ export default defineConfig((options: Options) => ({
   dts: true,
   clean: true,
 
-  external: ["react", "react-dom","@excalidraw/excalidraw"],
+  external: ["react", "react-dom","@excalidraw/excalidraw","react-mathquill"],
   ...options,
 }));

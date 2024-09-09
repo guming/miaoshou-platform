@@ -154,3 +154,74 @@
   display: inline-block;
   cursor: pointer;
 }
+
+.action-button:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
+.action-button-mic.active {
+  animation: mic-pulsate-color 3s infinite;
+}
+
+.excalidraw-button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.excalidraw-button.selected {
+  outline: 2px solid rgb(60, 132, 244);
+  user-select: none;
+}
+
+button.action-button:disabled {
+  opacity: 0.6;
+  background: #eee;
+  cursor: not-allowed;
+}
+span.editor-image {
+  cursor: default;
+  display: inline-block;
+  position: relative;
+  user-select: none;
+}
+.editor-image img {
+  max-width: 100%;
+  cursor: default;
+}
+
+.editor-image img.focused {
+  outline: 2px solid rgb(60, 132, 244);
+  user-select: none;
+}
+
+.editor-image img.focused.draggable {
+  cursor: grab;
+}
+
+.editor-image img.focused.draggable:active {
+  cursor: grabbing;
+}
+
+.editor-image .image-edit-button {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-image: url(/images/pencil-fill.svg);
+  background-size: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  vertical-align: -0.25em;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.editor-image .image-edit-button:hover {
+  background-color: rgba(60, 132, 244, 0.1);
+}

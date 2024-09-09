@@ -74,7 +74,10 @@
     "tippy.js": "^6.3.7",
     "tiptap-extension-global-drag-handle": "^0.1.7",
     "tiptap-markdown": "^0.8.9",
-    "tunnel-rat": "^0.1.2"
+    "tunnel-rat": "^0.1.2",
+    "react-mathquill": "^1.0.3",
+    "@types/katex": "^0.16.7",
+    "katex": "^0.16.10"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.2",

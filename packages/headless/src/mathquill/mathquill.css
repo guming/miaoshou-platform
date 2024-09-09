@@ -1,0 +1,17 @@
+.mathquill {
+  border:none;
+}
+.mathquill .mq-math-mode {
+    font-variant: normal;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 115%;
+    line-height: 1;
+    display: -moz-inline-box;
+    display: inline-block;
+}
+.mq-math-mode .mq-editable-field {
+    cursor: text;
+    font-family: "Times New Roman", serif;
+    border:none !important;
+}

@@ -12,7 +12,7 @@ import type { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { type Editor, isNodeSelection } from "@tiptap/core";
+import type { Editor } from "@tiptap/core";
 import * as React from "react";
 import ExcalidrawImage from "./ExcalidrawImage";
 import ExcalidrawModal from "./ExcalidrawModal";
@@ -36,21 +36,21 @@ export default function ExcalidrawComponent({
   const captionButtonRef = useRef<HTMLButtonElement | null>(null);
   const [isResizing, setIsResizing] = useState<boolean>(false);
 
-  const isSelected = isNodeSelection(editor?.state.selection);
-  const onDelete = useCallback(
-    (event: KeyboardEvent) => {
-      if (isNodeSelection(editor?.state.selection)) {
-        event.preventDefault();
-        const isExcalidraw = editor?.isActive("Excalidraw");
-        if (isExcalidraw) {
-          editor?.commands.deleteSelection();
-        }
-        return true;
-      }
-      return false;
-    },
-    [editor, isSelected, nodeKey],
-  );
+  const [isSelected, setSelected] = useState<boolean>();
+  // const onDelete = useCallback(
+  //   (event: KeyboardEvent) => {
+  //     if (isNodeSelection(editor?.state.selection)) {
+  //       event.preventDefault();
+  //       const isExcalidraw = editor?.isActive("Excalidraw");
+  //       if (isExcalidraw) {
+  //         editor?.commands.deleteSelection();
+  //       }
+  //       return true;
+  //     }
+  //     return false;
+  //   },
+  //   [editor, isSelected, nodeKey],
+  // );
 
   // Set editor to readOnly if excalidraw is open to prevent unwanted changes
   useEffect(() => {
@@ -106,6 +106,9 @@ export default function ExcalidrawComponent({
     }
   };
 
+  const handleButtonClick = () => {
+    setSelected(true); // 切换状态
+  };
   const onResizeStart = () => {
     setIsResizing(true);
   };
@@ -134,37 +137,42 @@ export default function ExcalidrawComponent({
         onDelete={deleteNode}
         onClose={() => setModalOpen(false)}
         onSave={(els, aps, fls) => {
-          console.log("onSave");
           editor.setEditable(true);
           setData(els, aps, fls);
           setModalOpen(false);
           const { tr } = editor.state;
-
+          console.log("position onSave", tr.selection);
           editor.view.dispatch(tr);
         }}
         closeOnClickOutside={false}
       />
       {elements.length > 0 && (
-        // biome-ignore lint/a11y/useButtonType: <explanation>
-        <button ref={buttonRef} className={`excalidraw-button ${isSelected ? "selected" : ""}`}>
-          <ExcalidrawImage
-            imageContainerRef={imageContainerRef}
-            className="image"
-            elements={elements}
-            files={files}
-            appState={appState}
-          />
-          {isSelected && (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div
-              className="image-edit-button"
-              role="button"
-              tabIndex={0}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={openModal}
+        <span className="editor-image">
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+          <button
+            ref={buttonRef}
+            className={`excalidraw-button ${isSelected ? "selected" : ""}`}
+            onClick={handleButtonClick}
+          >
+            <ExcalidrawImage
+              imageContainerRef={imageContainerRef}
+              className="image"
+              elements={elements}
+              files={files}
+              appState={appState}
             />
-          )}
-        </button>
+            {isSelected && (
+              // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+              <div
+                className="image-edit-button"
+                role="button"
+                tabIndex={0}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={openModal}
+              />
+            )}
+          </button>
+        </span>
       )}
     </>
   );
