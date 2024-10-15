@@ -1,10 +1,14 @@
 import { NodeViewWrapper } from "@tiptap/react";
 
 import katex from "katex";
-import { EditableMathField, addStyles } from "react-mathquill";
-addStyles();
+// import { addStyles } from "react-mathquill";
+// addStyles();
 import "./mathquill.css";
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+
+
+
 const inlineMath = {
   cursor: "pointer",
   border: "none !important",
@@ -38,7 +42,15 @@ export default (props) => {
   const isInPreviewMode = props.extension.options.preview;
 
   const wrapperRef = useRef(null);
-
+  const EditableMathField = dynamic(
+    () => import("react-mathquill").then((mod) => mod.EditableMathField),
+    { ssr: false }
+  );
+  useEffect(() => {
+    import("react-mathquill").then((mq) => {
+      mq.addStyles();
+    });
+  }, []);
   useEffect(() => {
     if (wrapperRef.current) {
       // 这里可以访问 wrapperRef.current 并修改其内部元素的 CSS 类

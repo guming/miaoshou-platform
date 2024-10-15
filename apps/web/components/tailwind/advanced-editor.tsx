@@ -130,8 +130,6 @@ const TailwindAdvancedEditor = () => {
               <Separator orientation="vertical" />
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
               <Separator orientation="vertical" />
-              <MindMapSelector open={mindmap} onOpenChange={setMindMap} />
-              <Separator orientation="vertical" />
               <CrawlerSelector open={crawler} onOpenChange={setCrawler} />
               <Separator orientation="vertical" />
               <LinkSelector open={openLink} onOpenChange={setOpenLink} />
