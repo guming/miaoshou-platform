@@ -77,6 +77,7 @@
     "tunnel-rat": "^0.1.2",
     "react-mathquill": "^1.0.3",
     "@types/katex": "^0.16.7",
+    "@gumingcn/jsme-react": "1.0.1",
     "katex": "^0.16.10"
   },
   "devDependencies": {

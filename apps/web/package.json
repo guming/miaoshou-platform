@@ -61,6 +61,13 @@
     "gpt3-tokenizer": "^1.1.5",
     "openai-edge": "^1.2.2",
     "common-tags": "1.8.2",
+    "markmap-common": "^0.17.0",
+    "markmap-lib": "^0.17.0",
+    "markmap-view": "^0.17.0",
+    "markmap-toolbar": "^0.17.0",
+    "prosemirror-markdown": "1.13.0",
+    "@gumingcn/jsme-react": "1.0.1",
+    "@tiptap/core": "^2.1.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {

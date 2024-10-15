@@ -8,13 +8,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/jupyterlite",
-        destination: "https://miaoshou-jupyterlite.vercel.app",
-        permanent: true,
-      },
-      {
-        source: "/free-reader",
-        destination: "https://miaoshou-reader.vercel.app",
+        source: "/voiceToNotes",
+        destination: "https://miaoshou-notes-gpt.vercel.app",
         permanent: true,
       },
     ];

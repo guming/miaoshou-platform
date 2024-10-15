@@ -139,15 +139,11 @@ export function Menu() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/free-reader" legacyBehavior passHref>
+          <Link href="/voiceToNotes" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>Free Reader</NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/jupyterlite" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Jupyter Lite</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+       
       </NavigationMenuList>
     </NavigationMenu>
   );

@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import Providers from "./providers";
 
 const title = "妙手";
-const description = "Miaoshou - Simple and powerful notes & docs for teams";
+const description = "Miaoshou - Simple and powerful notes for STEM";
 
 export const metadata: Metadata = {
   title,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title,
     description,
     card: "summary_large_image",
-    creator: "@steventey",
+    creator: "@gumingcn",
   },
   metadataBase: new URL("https://novel.sh"),
 };
@@ -33,6 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+    
         <Providers>{children}</Providers>
       </body>
     </html>

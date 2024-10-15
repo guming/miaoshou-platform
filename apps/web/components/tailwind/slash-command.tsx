@@ -14,25 +14,15 @@ import {
   TextQuote,
   Twitter,
   Youtube,
+  FlaskConical,
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
 import { Command, renderItems } from "novel/extensions";
-import ExcalidrawModal from "./excalidraw/ExcalidrawModal2";
-// import ExcalidrawComponent from "./excalidraw/ExcalidrawComponent";
 
 import { uploadFn } from "./image-upload";
-// import ExcalidrawModal from "./excalidraw/ExcalidrawModal";
 
 export const suggestionItems = createSuggestionItems([
-  {
-    title: "Send Feedback",
-    description: "Let us know how we can improve.",
-    icon: <MessageSquarePlus size={18} />,
-    command: ({ editor, range }) => {
-      editor.chain().focus().deleteRange(range).run();
-      window.open("/feedback", "_blank");
-    },
-  },
+  
   {
     title: "Text",
     description: "Just start typing with plain text.",
@@ -190,22 +180,37 @@ export const suggestionItems = createSuggestionItems([
     description: "Drawing.",
     searchTerms: ["Draw", "embed"],
     icon: <Brush size={18} />,
-    command: ({ editor }) => {
-      const draw = ExcalidrawModal(editor);
-      console.log("put draw", draw);
+    command: ({ editor,range }) => {
+      editor.chain().focus().deleteRange(range).run();
       editor
         .chain()
         .focus()
         .setDraw({
-          src: draw,
+          src: <div></div>,
         })
         .run();
     },
   },
   {
-    title: "Math",
-    description: "Mathematics.",
-    searchTerms: ["Math", "embed"],
+    title: "JSME",
+    description: "Chemistry.",
+    searchTerms: ["JSME", "embed"],
+    icon: <FlaskConical size={18} />,
+    command: ({ editor,range }) => {
+      editor.chain().focus().deleteRange(range).run();
+      editor
+        .chain()
+        .focus()
+        .setJSME({
+          src: <div />,
+        })
+        .run();
+    },
+  },
+  {
+    title: "InlineMath",
+    description: "InlineMath.",
+    searchTerms: ["InlineMath", "embed"],
     icon: <Calculator size={18} />,
     command: ({ editor, range }) => {
       // console.log("put math", editor);

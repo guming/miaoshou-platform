@@ -16,8 +16,9 @@ import { ImageResizer } from "./image-resizer";
 import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
-import DrawStorage from "./draw-storage";
+// import DrawStorage from "./draw-storage";
 import { Draw } from "./excalidraw";
+import { JSME } from "./jsme-graph";
 import InlineMath from "./inlineMath";
 import { Mathematics } from "./mathematics";
 
@@ -53,7 +54,7 @@ const simpleExtensions = [
     transformCopiedText: true,
   }),
   CustomKeymap,
-  DrawStorage,
+  // DrawStorage,
 ] as const;
 
 const Horizontal = HorizontalRule.extend({
@@ -96,5 +97,6 @@ export {
   GlobalDragHandle,
   Draw,
   Mathematics,
+  JSME,
   InlineMath,
 };

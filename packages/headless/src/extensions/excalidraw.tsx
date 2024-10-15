@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { renderToString } from "react-dom/server";
-const ExcalidrawWithClientOnly = dynamic(async () => (await import("./mydraw")).default, {
+const ExcalidrawWithClientOnly = dynamic(async () => (await import("./draw")).default, {
   ssr: false,
 });
 // import ExcalidrawComponent from "../excalidraw/ExcalidrawComponent";
@@ -97,19 +97,11 @@ export const Draw = Node.create<DrawOptions>({
   },
 
   addNodeView() {
-    // console.log("view add:", this);
-    // return ReactNodeViewRenderer(DrawComponent);
 
     return ({ node, getPos, editor }) => {
       const dom = document.createElement("div");
       const container = document.createElement("div");
       dom.appendChild(container);
-      // const handleClick = (event: { preventDefault: () => void; stopPropagation: () => void }) => {
-      //   event.preventDefault();
-      //   event.stopPropagation();
-      //   console.log("Node clicked!", node);
-      // };
-      // container.addEventListener("click", handleClick);
       const data = node.attrs?.data;
       console.log("add view", node);
       ReactDOM.render(<DrawComponent editor={editor} data={node.attrs.data} />, container);
@@ -172,7 +164,6 @@ export const Draw = Node.create<DrawOptions>({
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    console.log("draw", node, HTMLAttributes, this.editor);
     const { data } = HTMLAttributes;
     if (!this.editor) return ["div", mergeAttributes({ "data-draw": "" })];
     const componentHTML = renderToString(<DrawComponent editor={this.editor} data={data} />);

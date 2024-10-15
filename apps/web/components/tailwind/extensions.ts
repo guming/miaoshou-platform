@@ -3,6 +3,7 @@ import {
   CharacterCount,
   CodeBlockLowlight,
   Draw,
+  JSME,
   GlobalDragHandle,
   HorizontalRule,
   InlineMath,
@@ -154,6 +155,13 @@ const mathquill = InlineMath.configure({
   },
 });
 
+const jsme = JSME.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
+  },
+  inline: false,
+});
+
 const characterCount = CharacterCount.configure();
 
 export const defaultExtensions = [
@@ -170,6 +178,7 @@ export const defaultExtensions = [
   youtube,
   twitter,
   draw,
+  jsme,
   characterCount,
   GlobalDragHandle,
   mathematics,

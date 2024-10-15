@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { defaultExtensions } from "./extensions";
 import { ColorSelector } from "./selectors/color-selector";
+import { CrawlerSelector } from "./selectors/crawler-selector";
 import { LinkSelector } from "./selectors/link-selector";
 import { MindMapSelector } from "./selectors/mindmap-selector";
 import { NodeSelector } from "./selectors/node-selector";
@@ -40,6 +41,7 @@ const TailwindAdvancedEditor = () => {
   const [openLink, setOpenLink] = useState(false);
   const [openAI, setOpenAI] = useState(false);
   const [mindmap, setMindMap] = useState(false);
+  const [crawler, setCrawler] = useState(false);
 
   //Apply Codeblock Highlighting on the HTML from editor.getHTML()
   const highlightCodeblocks = (content: string) => {
@@ -129,6 +131,8 @@ const TailwindAdvancedEditor = () => {
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
               <Separator orientation="vertical" />
               <MindMapSelector open={mindmap} onOpenChange={setMindMap} />
+              <Separator orientation="vertical" />
+              <CrawlerSelector open={crawler} onOpenChange={setCrawler} />
               <Separator orientation="vertical" />
               <LinkSelector open={openLink} onOpenChange={setOpenLink} />
               <Separator orientation="vertical" />

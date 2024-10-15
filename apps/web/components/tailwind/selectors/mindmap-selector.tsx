@@ -1,132 +1,107 @@
+"use client";
 import { Button } from "@/components/tailwind/ui/button";
 import { PopoverContent } from "@/components/tailwind/ui/popover";
 import { cn } from "@/lib/utils";
 import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
-import { Check, Trash } from "lucide-react";
+import { Toolbar } from "markmap-toolbar";
+import { Markmap } from "markmap-view";
 import { useEditor } from "novel";
-import { useEffect, useRef } from "react";
-import FirecrawlApp from "@mendable/firecrawl-js";
-import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import MarkmapHooks from "./markmapHooks";
+import { MarkdownSerializer, defaultMarkdownSerializer } from '@tiptap/pm/markdown';
+// import customMarkdownSerializer from "../markdownS"
 
-const api_key_crawler = "fc-52580c7520c244e1a16884109db6b611"
-const app = new FirecrawlApp({ apiKey: api_key_crawler });
+function App(value) {
+  return (
+    <div>
+      <MarkmapHooks value={value}/>
+    </div>
+  );
+}
 
 
-
-export function isValidUrl(url: string) {
-    try {
-      new URL(url);
-      return true;
-    } catch (_e) {
-      return false;
-    }
-  }
-  export function getUrlFromString(str: string) {
-    if (isValidUrl(str)) return str;
-    try {
-      if (str.includes(".") && !str.includes(" ")) {
-        return new URL(`https://${str}`).toString();
-      }
-    } catch (_e) {
-      return null;
-    }
-  }
-  interface MindMapSelectorProps {
-    open: boolean;
-    onOpenChange: (open: boolean) => void;
-  }
-  
-  export const MindMapSelector =  ({ open, onOpenChange }: MindMapSelectorProps) => {
-
-    const inputRef = useRef<HTMLInputElement>(null);
-    const { editor } = useEditor();
-  
-    // Autofocus on input by default
-    useEffect(() => {
-      inputRef.current?.focus();
-    });
-    if (!editor) return null;
-
-    const fetchContent = useMutation({
-      mutationFn: async (url:string) => {
-        const params = {
-          pageOptions: {
-            onlyMainContent: true
-          }
-        };
-        const content = await app.scrapeUrl(url , params);
-        return content.data;
+const customMarkdownSerializer = new MarkdownSerializer(
+    {
+      // Extend node serializers from default serializer
+      ...defaultMarkdownSerializer.nodes,
+      bulletList(state, node) {
+        // Serialize bullet lists as Markdown using * or -
+        console.log(node)
+        state.renderList(node, "   ", () => (node.attrs.bullet || "- ") + " ")
       },
-    });
-  
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const target = e.currentTarget as HTMLFormElement;
-      const input = target[0] as HTMLInputElement;
-      const url = getUrlFromString(input.value);
-      const selection = editor.view.state.selection;
-      fetchContent.mutate(url, {
-        onSuccess: ({ content }) => {
-          console.log(content);
-          editor.chain().focus().insertContentAt(selection.to + 1,content).run();
-        },
-        onError: (error) => {
-          console.error(error);
-          window.alert("Failed to crawl url");
-        },
-      });
+      listItem(state, node) {
+        // state.write("")
+        state.renderContent(node);
+        state.ensureNewLine()
+        // state.ensureNewLine();
+      },
+    },
+    {
+      // Use default mark serializers or add your own if needed
+      ...defaultMarkdownSerializer.marks,
+    }
+  );
 
-      
-    };
+
+interface MindMapSelectorProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+export const MindMapSelector = ({ open, onOpenChange }: MindMapSelectorProps) => {
+  const { editor } = useEditor();
+  // const [content, setContent] = useState(null);
+  // const popoverContentRef = useRef(null);
   
-    return (
-      <Popover modal={true} open={open} onOpenChange={onOpenChange}>
-        <PopoverTrigger asChild>
-          <Button size="sm" variant="ghost" className="gap-2 rounded-none border-none">
-            <p className="text-base">↗</p>
-            <p
-              className={cn("underline decoration-stone-400 underline-offset-4", {
-                "text-blue-500": editor.isActive("link"),
-              })}
-            >
-              Parser
-            </p>
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent asChild className="w-60 p-0" sideOffset={10} >
-          <form
-            onSubmit={ handleSubmit }
-            className="flex  p-1 "
-          >
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Paste a link"
-              className="flex-1 bg-background p-1 text-sm outline-none"
-              defaultValue={editor.getAttributes("link").href || ""}
-            />
-            {editor.getAttributes("link").href ? (
-              <Button
-                size="icon"
-                variant="outline"
-                type="button"
-                className="flex h-8 items-center rounded-sm p-1 text-red-600 transition-all hover:bg-red-100 dark:hover:bg-red-800"
-                onClick={() => {
-                  editor.chain().focus().unsetLink().run();
-                  inputRef.current.value = "";
-                }}
-              >
-                <Trash className="h-4 w-4" />
-              </Button>
-            ) : (
-              <Button size="icon" className="h-8">
-                <Check className="h-4 w-4" />
-              </Button>
-            )}
-          </form>
-        </PopoverContent>
-      </Popover>
-    );
+  const handleSubmit = (e) => {
+    const { from, to } = editor.view.state.selection;
+
+    const selectedText = editor.view.state.doc.textBetween(from, to, ' \r\n  - '); 
+    console.log("selectedText", selectedText)
+    // 序列化文档为 Markdown
+    const doc=editor.view.state.doc.cut(from, to)
+    const markdown = customMarkdownSerializer.serialize(doc);
+    // console.log("markdown",  markdown );// 提取选中文本
+    const markdownValue= '# '+selectedText
+    e.preventDefault();
+    const target = e.currentTarget as HTMLFormElement;
+    const input = target[0] as HTMLInputElement;
+    const selection = editor.view.state.selection;
+    const rootElement = document.createElement('div');
+    rootElement.id = 'root';
+    document.body.appendChild(rootElement);
+    const root = createRoot(document.getElementById("root"));
+    root.render(
+      <App value={markdown}/>
+  );
+  // if (popoverContentRef.current){
+  //   popoverContentRef.current=root;
+  // }
+    // editor
+    //   .chain()
+    //   .focus()
+    //   .insertContentAt(selection.to + 1, root)
+    //   .run();
   };
-  
+
+  return (
+    <Popover modal={true} open={open} onOpenChange={onOpenChange}>
+      <PopoverTrigger asChild>
+        <Button size="sm" variant="ghost" className="gap-2 rounded-none border-none" onClick={handleSubmit}>
+          <p className="text-base">↗</p>
+          <p
+            className={cn("underline decoration-stone-400 underline-offset-4", {
+              "text-blue-500": editor.isActive("link"),
+            })}
+          >
+            MindMap
+          </p>
+        </Button>
+      </PopoverTrigger>
+      
+    </Popover>
+    // <div id="root">
+    //   </div>
+  );
+};

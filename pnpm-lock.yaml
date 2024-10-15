@@ -77,15 +77,6 @@ importers:
       katex:
         specifier: ^0.16.11
         version: 0.16.11
-      markmap-common:
-        specifier: ^0.17.0
-        version: 0.17.0
-      markmap-lib:
-        specifier: ^0.17.0
-        version: 0.17.0(markmap-common@0.17.0)
-      markmap-view:
-        specifier: ^0.17.0
-        version: 0.17.0(markmap-common@0.17.0)
       pg:
         specifier: 8.10.0
         version: 8.10.0
@@ -125,6 +116,9 @@ importers:
       '@ai-sdk/openai':
         specifier: latest
         version: 0.0.40(zod@3.23.8)
+      '@gumingcn/jsme-react':
+        specifier: 1.0.1
+        version: 1.0.1(@types/react@18.2.55)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.2.19)(@types/react@18.2.55)(react-dom@18.3.1)(react@18.3.1)
@@ -164,6 +158,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.4.1)
+      '@tiptap/core':
+        specifier: ^2.1.7
+        version: 2.1.7(@tiptap/pm@2.1.7)
       '@upstash/ratelimit':
         specifier: ^0.4.3
         version: 0.4.3
@@ -209,6 +206,18 @@ importers:
       lucide-react:
         specifier: ^0.244.0
         version: 0.244.0(react@18.3.1)
+      markmap-common:
+        specifier: ^0.17.0
+        version: 0.17.0
+      markmap-lib:
+        specifier: ^0.17.0
+        version: 0.17.0(markmap-common@0.17.0)
+      markmap-toolbar:
+        specifier: ^0.17.0
+        version: 0.17.0(markmap-common@0.17.0)
+      markmap-view:
+        specifier: ^0.17.0
+        version: 0.17.0(markmap-common@0.17.0)
       nanoid:
         specifier: ^5.0.7
         version: 5.0.7
@@ -227,6 +236,9 @@ importers:
       openai-edge:
         specifier: ^1.2.2
         version: 1.2.2
+      prosemirror-markdown:
+        specifier: 1.13.0
+        version: 1.13.0
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -303,6 +315,9 @@ importers:
 
   packages/headless:
     dependencies:
+      '@gumingcn/jsme-react':
+        specifier: 1.0.1
+        version: 1.0.1(@types/react@18.2.55)
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.2.55)(react@18.3.1)
@@ -1519,6 +1534,15 @@ packages:
     resolution: {integrity: sha512-EOqf31IATRE6zS1W1EoWmXZhGfLAoO9FIlwTtHduSrBdud4npYBxYAkv8dZ5hudDPwJeeSjn40kbCL4wAzr8dA==}
     dependencies:
       '@babel/runtime': 7.24.7
+    dev: false
+
+  /@gumingcn/jsme-react@1.0.1(@types/react@18.2.55):
+    resolution: {integrity: sha512-c0y9pY8kfi244xYetJXbR7jVK3QtknwpE+vlvFTPtG1hIFZhfpL/H+/hiyS1oQGVaGbMqHi7Wz5UEydKknC/3Q==}
+    engines: {node: '>=18', npm: '>=10'}
+    peerDependencies:
+      '@types/react': '18'
+    dependencies:
+      '@types/react': 18.2.55
     dev: false
 
   /@iktakahiro/markdown-it-katex@4.0.1:
@@ -7062,6 +7086,16 @@ packages:
       markmap-html-parser: 0.17.0(markmap-common@0.17.0)
       markmap-view: 0.17.0(markmap-common@0.17.0)
       prismjs: 1.29.0
+    dev: false
+
+  /markmap-toolbar@0.17.0(markmap-common@0.17.0):
+    resolution: {integrity: sha512-zRkg+pYtjDefJ4lSG0KownAN3eqkJcrTei+HbobBWsWTsc7qdUMn2Ewd97SFHCkGoo1nrG0aW7dzDP6lHWuDkw==}
+    peerDependencies:
+      markmap-common: '*'
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@gera2ld/jsx-dom': 2.2.2
+      markmap-common: 0.17.0
     dev: false
 
   /markmap-view@0.17.0(markmap-common@0.17.0):
