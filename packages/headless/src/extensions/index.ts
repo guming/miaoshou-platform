@@ -18,9 +18,8 @@ import UpdatedImage from "./updated-image";
 
 // import DrawStorage from "./draw-storage";
 import { Draw } from "./excalidraw";
-import { JSME } from "./jsme-graph";
 import InlineMath from "./inlineMath";
-import { Mathematics } from "./mathematics";
+import { JSME } from "./jsme-graph";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -54,7 +53,6 @@ const simpleExtensions = [
     transformCopiedText: true,
   }),
   CustomKeymap,
-  // DrawStorage,
 ] as const;
 
 const Horizontal = HorizontalRule.extend({
@@ -96,7 +94,6 @@ export {
   CharacterCount,
   GlobalDragHandle,
   Draw,
-  Mathematics,
   JSME,
   InlineMath,
 };

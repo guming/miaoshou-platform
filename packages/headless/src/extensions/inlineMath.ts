@@ -9,7 +9,7 @@ declare module "@tiptap/core" {
       /**
        * Comments will be added to the autocomplete.
        */
-      addInlineMath: (attributes?: { language: string }) => ReturnType;
+      addInlineMath: (attributes?: { content: string }) => ReturnType;
     };
   }
 }
@@ -24,8 +24,6 @@ export default Node.create({
   selectable: false,
 
   atom: true,
-
-  // content: "inline*",
 
   addAttributes() {
     return {

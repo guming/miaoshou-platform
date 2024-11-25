@@ -3,18 +3,17 @@ import {
   Calculator,
   CheckSquare,
   Code,
+  FlaskConical,
   Heading1,
   Heading2,
   Heading3,
   ImageIcon,
   List,
   ListOrdered,
-  MessageSquarePlus,
   Text,
   TextQuote,
   Twitter,
   Youtube,
-  FlaskConical,
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
 import { Command, renderItems } from "novel/extensions";
@@ -22,7 +21,6 @@ import { Command, renderItems } from "novel/extensions";
 import { uploadFn } from "./image-upload";
 
 export const suggestionItems = createSuggestionItems([
-  
   {
     title: "Text",
     description: "Just start typing with plain text.",
@@ -180,7 +178,7 @@ export const suggestionItems = createSuggestionItems([
     description: "Drawing.",
     searchTerms: ["Draw", "embed"],
     icon: <Brush size={18} />,
-    command: ({ editor,range }) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).run();
       editor
         .chain()
@@ -196,7 +194,7 @@ export const suggestionItems = createSuggestionItems([
     description: "Chemistry.",
     searchTerms: ["JSME", "embed"],
     icon: <FlaskConical size={18} />,
-    command: ({ editor,range }) => {
+    command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).run();
       editor
         .chain()
@@ -213,7 +211,6 @@ export const suggestionItems = createSuggestionItems([
     searchTerms: ["InlineMath", "embed"],
     icon: <Calculator size={18} />,
     command: ({ editor, range }) => {
-      // console.log("put math", editor);
       editor.chain().focus().deleteRange(range).addInlineMath().run();
     },
   },

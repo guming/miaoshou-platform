@@ -3,11 +3,9 @@ import {
   CharacterCount,
   CodeBlockLowlight,
   Draw,
-  JSME,
   GlobalDragHandle,
   HorizontalRule,
-  InlineMath,
-  Mathematics,
+  JSME,
   Placeholder,
   StarterKit,
   TaskItem,
@@ -17,6 +15,7 @@ import {
   Twitter,
   UpdatedImage,
   Youtube,
+  InlineMath,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
 
@@ -141,18 +140,16 @@ const draw = Draw.configure({
   inline: false,
 });
 
-const mathematics = Mathematics.configure({
-  HTMLAttributes: {
-    class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
-  },
-  katexOptions: {
-    throwOnError: false,
-  },
-});
+// const mathematics = Mathematics.configure({
+//   HTMLAttributes: {
+//     class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
+//   },
+//   katexOptions: {
+//     throwOnError: false,
+//   },
+// });
 const mathquill = InlineMath.configure({
-  HTMLAttributes: {
-    class: cx("not-prose"),
-  },
+  preview:false,
 });
 
 const jsme = JSME.configure({
@@ -181,6 +178,6 @@ export const defaultExtensions = [
   jsme,
   characterCount,
   GlobalDragHandle,
-  mathematics,
+  // mathematics,
   mathquill,
 ];
