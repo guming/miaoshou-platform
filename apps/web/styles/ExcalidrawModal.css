@@ -225,3 +225,21 @@ span.editor-image {
 .editor-image .image-edit-button:hover {
   background-color: rgba(60, 132, 244, 0.1);
 }
+
+/* .mathquill {
+  border:none;
+}
+.mq-math-mode {
+    font-variant: normal;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 115%;
+    line-height: 1;
+    display: -moz-inline-box;
+    display: inline-block;
+}
+.mq-editable-field {
+    cursor: text;
+    font-family: "Times New Roman", serif;
+    border:none !important;
+} */

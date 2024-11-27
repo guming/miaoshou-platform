@@ -30,18 +30,14 @@ const EditableMathField = dynamic(
 
 export default (props) => {
   const content = props.node.attrs.content;
-
   const wrapperRef = useRef(null);
 
   useEffect(() => {
     if (wrapperRef.current) {
-      const elements = document.querySelectorAll(".mq-editable-field");
-      console.log(elements);
       document.addEventListener("click", (event) => {
         if (event.target.closest(".mq-editable-field")) {
           const editableField = event.target.closest(".mq-editable-field");
           editableField.setAttribute("style", "border: none !important;");
-          console.log("onClick:", editableField);
         }
       });
     }

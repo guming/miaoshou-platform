@@ -140,14 +140,6 @@ const draw = Draw.configure({
   inline: false,
 });
 
-// const mathematics = Mathematics.configure({
-//   HTMLAttributes: {
-//     class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
-//   },
-//   katexOptions: {
-//     throwOnError: false,
-//   },
-// });
 const mathquill = InlineMath.configure({
   preview:false,
 });

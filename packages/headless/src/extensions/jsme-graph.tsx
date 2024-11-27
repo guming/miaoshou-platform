@@ -1,25 +1,31 @@
-import { type Editor, Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
-import dynamic from "next/dynamic";
+import { Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
 import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
+import dynamic from "next/dynamic";
 const JsmeReact = dynamic(async () => (await import("@gumingcn/jsme-react")).Jsme, {
-    ssr: false,
-    });
+  ssr: false,
+});
 export type JSMENode = { src: JSX.Element };
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const JSMEComponent = (props:any) => {
-    const data = props.node.attrs.data;
-    const logSmiles = (smiles: any) => {
-        props.updateAttributes({
-            data:smiles,
-        });
-        console.log(props.node)
-    }
-    return (
-        <NodeViewWrapper>
-            <JsmeReact height={300} width={400} smiles={data} options="noquery,polarnitro,nocanonize,star" guicolor="#FFFFFF"  onChange={logSmiles} />
-        </NodeViewWrapper>
-    )
-    
+const JSMEComponent = (props: any) => {
+  const data = props.node.attrs.data;
+  const logSmiles = (smiles: any) => {
+    props.updateAttributes({
+      data: smiles,
+    });
+    console.log(props.node);
+  };
+  return (
+    <NodeViewWrapper>
+      <JsmeReact
+        height={300}
+        width={400}
+        smiles={data}
+        options="noquery,polarnitro,nocanonize,star"
+        guicolor="#FFFFFF"
+        onChange={logSmiles}
+      />
+    </NodeViewWrapper>
+  );
 };
 
 export interface JSMEOptions {
@@ -130,7 +136,6 @@ export const JSME = Node.create<JSMEOptions>({
         find: /.+/g,
         type: this.type,
         getAttributes: (match) => {
-          // console.log("match", match);
           return { src: match.input };
         },
       }),

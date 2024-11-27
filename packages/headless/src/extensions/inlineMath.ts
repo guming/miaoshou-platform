@@ -41,13 +41,13 @@ export default Node.create({
   parseHTML() {
     return [
       {
-        tag: `span[data-type="${this.name}"]`,
+        tag: `div[data-type="${this.name}"]`,
       },
     ];
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    return ["span", mergeAttributes({ "data-type": this.name }, this.options.HTMLAttributes, HTMLAttributes)];
+    return ["div", mergeAttributes({ "data-type": this.name }, this.options.HTMLAttributes, HTMLAttributes)];
   },
 
   addNodeView() {
@@ -59,10 +59,12 @@ export default Node.create({
       addInlineMath:
         (attrs) =>
         ({ tr, commands }) => {
-          return commands.insertContent({
+          const { from, to } = tr.selection;
+          commands.insertContent({
             type: this.name,
             attrs,
           });
+          return commands.setTextSelection(from);
         },
     };
   },

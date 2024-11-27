@@ -17,7 +17,6 @@ import { defaultExtensions } from "./extensions";
 import { ColorSelector } from "./selectors/color-selector";
 import { CrawlerSelector } from "./selectors/crawler-selector";
 import { LinkSelector } from "./selectors/link-selector";
-import { MindMapSelector } from "./selectors/mindmap-selector";
 import { NodeSelector } from "./selectors/node-selector";
 import { Separator } from "./ui/separator";
 
@@ -57,10 +56,30 @@ const TailwindAdvancedEditor = () => {
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
     setCharsCount(editor.storage.characterCount.words());
-    // console.log("json content", json);
-    window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
+
+    try {
+      // 检查 localStorage 是否可用
+      if (typeof window.localStorage === "undefined") {
+        throw new Error("localStorage is not supported in this environment.");
+      }
+
+      // 尝试写入数据
+      window.localStorage.setItem("testKey", "testValue");
+
+      // 检查是否成功写入
+      const value = window.localStorage.getItem("testKey");
+      if (value === "testValue") {
+        console.log("localStorage 写入成功:", value);
+      } else {
+        throw new Error("localStorage 写入失败，无法获取值。");
+      }
+    } catch (error) {
+      console.error("localStorage 调试错误:", error.message);
+    }
+    console.log("json content", json);
     window.localStorage.setItem("novel-content", JSON.stringify(json));
-    window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
+    window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
+    // window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
     setSaveStatus("Saved");
   }, 500);
 
@@ -98,7 +117,7 @@ const TailwindAdvancedEditor = () => {
               },
             }}
             onUpdate={({ editor }) => {
-              // console.log("update data");
+              console.log("update data");
               debouncedUpdates(editor);
               setSaveStatus("Unsaved");
             }}

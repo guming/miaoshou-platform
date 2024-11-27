@@ -68,7 +68,7 @@ const NoteEditor = ({ note }: Props) => {
 
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
-    console.log(editorState);
+    console.log("editorState", editorState);
     setCharsCount(editor.storage.characterCount.words());
     window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
     window.localStorage.setItem("note-content", JSON.stringify(json));
@@ -117,6 +117,7 @@ const NoteEditor = ({ note }: Props) => {
             },
           }}
           onUpdate={({ editor }) => {
+            console.log("starting save");
             setEditorState(JSON.stringify(editor.getJSON()));
             debouncedUpdates(editor);
             setSaveStatus("Unsaved");
