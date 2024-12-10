@@ -52,7 +52,6 @@ const DesmosReactNode = Node.create({
       dom.style.width = "100%";
       dom.style.height = "400px";
 
-      // 使用 React 渲染 DesmosReact
       const DesmosComponent = () => {
         const calcRef = useRef(null);
 

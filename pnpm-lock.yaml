@@ -384,6 +384,9 @@ importers:
       cmdk:
         specifier: ^0.2.1
         version: 0.2.1(@types/react@18.2.55)(react-dom@18.3.1)(react@18.3.1)
+      desmos-react:
+        specifier: 1.2.0
+        version: 1.2.0(@types/react@18.2.55)(react@18.3.1)(typescript@5.3.3)
       jotai:
         specifier: ^2.6.4
         version: 2.6.4(@types/react@18.2.55)(react@18.3.1)
@@ -4086,6 +4089,10 @@ packages:
       '@types/ms': 0.7.34
     dev: false
 
+  /@types/desmos@1.6.3:
+    resolution: {integrity: sha512-OloA2cVc2dKAJhA1m8/pTWG3ZpM5Ks2rrRx146qNwFg4feQ6u+kBUOWuEcDC+gicxcZLjb4Gm1bUofcNG9C+vg==}
+    dev: false
+
   /@types/diff-match-patch@1.0.36:
     resolution: {integrity: sha512-xFdR6tkm0MWvBfO8xXCSsinYxHcqkQUlcHeSpMC2ukzOb6lwQAfDmW+Qt0AvlGd8HpsS28qKsB+oPeJn9I39jg==}
     dev: false
@@ -5441,6 +5448,24 @@ packages:
   /dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
+    dev: false
+
+  /desmos-react@1.2.0(@types/react@18.2.55)(react@18.3.1)(typescript@5.3.3):
+    resolution: {integrity: sha512-EoLW2/kfBnGTY1l1ZTgnDUwJQCqgrYupwa56hrwYYBNn0m/7cSXzxB7ljBhg6NIwFR9QFGzAlYy7T/LsyVupuA==}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+      typescript: '>=4.1.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@types/desmos': 1.6.3
+      '@types/react': 18.2.55
+      react: 18.3.1
+      typescript: 5.3.3
     dev: false
 
   /detect-indent@6.1.0:
