@@ -2,7 +2,6 @@ import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 
 import InlineMathView from "../mathquill/inlineMathView";
-console.log("view 0");
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     inlineMath: {

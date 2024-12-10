@@ -78,6 +78,7 @@
     "react-mathquill": "^1.0.3",
     "@types/katex": "^0.16.7",
     "@gumingcn/jsme-react": "1.0.1",
+    "desmos-react": "1.2.0",
     "katex": "^0.16.10"
   },
   "devDependencies": {
