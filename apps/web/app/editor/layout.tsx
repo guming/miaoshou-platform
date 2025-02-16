@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     creator: "@gumingcn",
   },
-  metadataBase: new URL("https://novel.sh"),
+  metadataBase: new URL("https://miaoshou.dev"),
 };
 
 export const viewport: Viewport = {
@@ -33,7 +33,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-    
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -375,6 +375,9 @@ importers:
       '@tiptap/suggestion':
         specifier: ^2.1.7
         version: 2.1.7(@tiptap/core@2.1.7)(@tiptap/pm@2.1.7)
+      '@types/desmos':
+        specifier: ^1.6.3
+        version: 1.6.3
       '@types/katex':
         specifier: ^0.16.7
         version: 0.16.7

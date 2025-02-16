@@ -5,10 +5,15 @@ import Menu from "@/components/tailwind/ui/menu";
 import { ScrollArea } from "@/components/tailwind/ui/scroll-area";
 import { BookOpen, GithubIcon } from "lucide-react";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function Page() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
+      <Script
+        src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
+        strategy="beforeInteractive"
+      />
       <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
         <Button size="icon" variant="outline">
           <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">

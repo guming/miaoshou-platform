@@ -97,7 +97,7 @@ export const Draw = Node.create<DrawOptions>({
   },
 
   addNodeView() {
-    return ({ node, getPos, editor }) => {
+    return ({ node, editor }) => {
       const dom = document.createElement("div");
       const container = document.createElement("div");
       dom.appendChild(container);

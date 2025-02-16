@@ -12,14 +12,13 @@ import TiptapUnderline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import CustomKeymap from "./custom-keymap";
-import { ImageResizer } from "./image-resizer";
-import { Twitter } from "./twitter";
-import UpdatedImage from "./updated-image";
-
-// import DrawStorage from "./draw-storage";
+import { DesmosNode } from "./desmos-graph";
 import { Draw } from "./excalidraw";
+import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
 import { JSME } from "./jsme-graph";
+import { Twitter } from "./twitter";
+import UpdatedImage from "./updated-image";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -95,5 +94,6 @@ export {
   GlobalDragHandle,
   Draw,
   JSME,
+  DesmosNode,
   InlineMath,
 };

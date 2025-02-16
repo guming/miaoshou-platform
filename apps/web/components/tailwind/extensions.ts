@@ -5,7 +5,9 @@ import {
   Draw,
   GlobalDragHandle,
   HorizontalRule,
+  InlineMath,
   JSME,
+  DesmosNode,
   Placeholder,
   StarterKit,
   TaskItem,
@@ -15,7 +17,6 @@ import {
   Twitter,
   UpdatedImage,
   Youtube,
-  InlineMath,
 } from "novel/extensions";
 import { UploadImagesPlugin } from "novel/plugins";
 
@@ -141,10 +142,17 @@ const draw = Draw.configure({
 });
 
 const mathquill = InlineMath.configure({
-  preview:false,
+  preview: false,
 });
 
 const jsme = JSME.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
+  },
+  inline: false,
+});
+
+const desmosNode = DesmosNode.configure({
   HTMLAttributes: {
     class: cx("not-prose"),
   },
@@ -172,4 +180,5 @@ export const defaultExtensions = [
   GlobalDragHandle,
   // mathematics,
   mathquill,
+  desmosNode,
 ];

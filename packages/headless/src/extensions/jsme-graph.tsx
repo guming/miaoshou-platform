@@ -143,7 +143,7 @@ export const JSME = Node.create<JSMEOptions>({
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    const { data } = HTMLAttributes;
+    // const { data } = HTMLAttributes;
     // const componentHTML = renderToString(<JSMEComponent editor={this.editor} data={data}/>);
     // console.log("jsme componentHTML",componentHTML)
     return ["div", mergeAttributes({ "data-jsme": "" }, HTMLAttributes)];

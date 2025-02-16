@@ -1,5 +1,6 @@
 import {
   Brush,
+  Cake,
   Calculator,
   CheckSquare,
   Code,
@@ -212,6 +213,16 @@ export const suggestionItems = createSuggestionItems([
     icon: <Calculator size={18} />,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).addInlineMath().run();
+    },
+  },
+  {
+    title: "DesmosNode",
+    description: "DesmosNode.",
+    searchTerms: ["DesmosNode", "embed"],
+    icon: <Cake size={18} />,
+    command: ({ editor, range }) => {
+      console.log("starting  insert Desmos Nodes");
+      editor.chain().focus().deleteRange(range).insertNode({ latex: "y=x^2" }).run();
     },
   },
 ]);

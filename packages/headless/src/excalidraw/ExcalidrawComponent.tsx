@@ -77,13 +77,6 @@ export default function ExcalidrawComponent({
     if (!editor.isEditable) {
       return;
     }
-    // const { selection } = editor.state;
-    // const node = selection; // 获取当前选中的节点
-
-    // if (node) {
-    //   console.log("Selected node type:", node?.type.name);
-    // }
-    // editor.chain().focus().insertContent("hello world").run();
     if ((els && els.length > 0) || Object.keys(fls).length > 0) {
       console.log(
         JSON.stringify({
@@ -107,7 +100,7 @@ export default function ExcalidrawComponent({
   };
 
   const handleButtonClick = () => {
-    setSelected(true); // 切换状态
+    setSelected(true);
   };
   const onResizeStart = () => {
     setIsResizing(true);

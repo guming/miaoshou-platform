@@ -31,7 +31,7 @@ const EditableMathField = dynamic(
 export default (props) => {
   const content = props.node.attrs.content;
   const wrapperRef = useRef(null);
-
+  console.log("mathview");
   useEffect(() => {
     if (wrapperRef.current) {
       document.addEventListener("click", (event) => {
