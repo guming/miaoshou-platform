@@ -2,12 +2,13 @@ import {
   AIHighlight,
   CharacterCount,
   CodeBlockLowlight,
+  DesmosNode,
   Draw,
   GlobalDragHandle,
   HorizontalRule,
   InlineMath,
   JSME,
-  DesmosNode,
+  Mermaid,
   Placeholder,
   StarterKit,
   TaskItem,
@@ -159,6 +160,14 @@ const desmosNode = DesmosNode.configure({
   inline: false,
 });
 
+const mermaid = Mermaid.configure({
+  dictionary: {
+    name: "Mermaid",
+    inputHelp: "Help",
+    inputGraph: "Enter or paste the mermaid code",
+  },
+});
+
 const characterCount = CharacterCount.configure();
 
 export const defaultExtensions = [
@@ -176,6 +185,7 @@ export const defaultExtensions = [
   twitter,
   draw,
   jsme,
+  mermaid,
   characterCount,
   GlobalDragHandle,
   // mathematics,

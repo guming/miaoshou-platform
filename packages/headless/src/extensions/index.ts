@@ -17,6 +17,7 @@ import { Draw } from "./excalidraw";
 import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
 import { JSME } from "./jsme-graph";
+import { Mermaid } from "./mermaid";
 import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
@@ -95,5 +96,6 @@ export {
   Draw,
   JSME,
   DesmosNode,
+  Mermaid,
   InlineMath,
 };
