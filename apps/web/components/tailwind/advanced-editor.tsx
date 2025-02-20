@@ -97,7 +97,6 @@ const TailwindAdvancedEditor = () => {
               },
             }}
             onUpdate={({ editor }) => {
-              console.log("update data");
               debouncedUpdates(editor);
               setSaveStatus("Unsaved");
             }}

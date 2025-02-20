@@ -11,8 +11,10 @@ import TextStyle from "@tiptap/extension-text-style";
 import TiptapUnderline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
+import { CodeBlock } from "./code-block";
 import CustomKeymap from "./custom-keymap";
 import { DesmosNode } from "./desmos-graph";
+import { Emoji } from "./emoji";
 import { Draw } from "./excalidraw";
 import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
@@ -97,5 +99,7 @@ export {
   JSME,
   DesmosNode,
   Mermaid,
+  Emoji,
+  CodeBlock,
   InlineMath,
 };

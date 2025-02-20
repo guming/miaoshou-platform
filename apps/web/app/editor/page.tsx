@@ -14,6 +14,9 @@ export default function Page() {
         src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
         strategy="beforeInteractive"
       />
+      <Script src="https://unpkg.com/@antonz/runno@0.6.1/dist/runno.js" strategy="beforeInteractive" />
+      <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/engine/wasi.js" strategy="beforeInteractive" />
+      <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/snippet.js" strategy="beforeInteractive" />
       <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
         <Button size="icon" variant="outline">
           <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">

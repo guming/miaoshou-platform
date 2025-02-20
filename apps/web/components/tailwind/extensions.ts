@@ -1,9 +1,11 @@
 import {
   AIHighlight,
   CharacterCount,
-  CodeBlockLowlight,
+  CodeBlock,
+  // CodeBlockLowlight,
   DesmosNode,
   Draw,
+  Emoji,
   GlobalDragHandle,
   HorizontalRule,
   InlineMath,
@@ -22,7 +24,6 @@ import {
 import { UploadImagesPlugin } from "novel/plugins";
 
 import { cx } from "class-variance-authority";
-import { common, createLowlight } from "lowlight";
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -115,11 +116,11 @@ const starterKit = StarterKit.configure({
   gapcursor: false,
 });
 
-const codeBlockLowlight = CodeBlockLowlight.configure({
-  // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
-  // common: covers 37 language grammars which should be good enough in most cases
-  lowlight: createLowlight(common),
-});
+// const codeBlockLowlight = CodeBlockLowlight.configure({
+//   // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
+//   // common: covers 37 language grammars which should be good enough in most cases
+//   lowlight: createLowlight(common),
+// });
 
 const youtube = Youtube.configure({
   HTMLAttributes: {
@@ -168,6 +169,18 @@ const mermaid = Mermaid.configure({
   },
 });
 
+const emoji = Emoji.configure({
+  HTMLAttributes: {
+    class: "my-custom-class",
+  },
+});
+
+const codeBlock = CodeBlock.configure({
+  HTMLAttributes: {
+    class: "my-custom-class",
+  },
+});
+
 const characterCount = CharacterCount.configure();
 
 export const defaultExtensions = [
@@ -180,7 +193,7 @@ export const defaultExtensions = [
   taskItem,
   horizontalRule,
   aiHighlight,
-  codeBlockLowlight,
+  // codeBlockLowlight,
   youtube,
   twitter,
   draw,
@@ -190,5 +203,7 @@ export const defaultExtensions = [
   GlobalDragHandle,
   // mathematics,
   mathquill,
+  emoji,
+  codeBlock,
   desmosNode,
 ];

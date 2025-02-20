@@ -81,7 +81,11 @@
     "@types/desmos": "^1.6.3",
     "desmos-react": "1.2.0",
     "mermaid": "^11.4.1",
-    "katex": "^0.16.10"
+    "gemoji": "^8.1.0",
+    "lowlight": "^3.3.0",
+    "katex": "^0.16.10",
+    "remark-gemoji": "^8.0.0",
+    "smooth-scroll-into-view-if-needed": "^2.0.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.2",
