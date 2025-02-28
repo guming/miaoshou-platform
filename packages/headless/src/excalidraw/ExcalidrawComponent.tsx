@@ -37,20 +37,6 @@ export default function ExcalidrawComponent({
   const [isResizing, setIsResizing] = useState<boolean>(false);
 
   const [isSelected, setSelected] = useState<boolean>();
-  // const onDelete = useCallback(
-  //   (event: KeyboardEvent) => {
-  //     if (isNodeSelection(editor?.state.selection)) {
-  //       event.preventDefault();
-  //       const isExcalidraw = editor?.isActive("Excalidraw");
-  //       if (isExcalidraw) {
-  //         editor?.commands.deleteSelection();
-  //       }
-  //       return true;
-  //     }
-  //     return false;
-  //   },
-  //   [editor, isSelected, nodeKey],
-  // );
 
   // Set editor to readOnly if excalidraw is open to prevent unwanted changes
   useEffect(() => {
@@ -134,7 +120,6 @@ export default function ExcalidrawComponent({
           setData(els, aps, fls);
           setModalOpen(false);
           const { tr } = editor.state;
-          console.log("position onSave", tr.selection);
           editor.view.dispatch(tr);
         }}
         closeOnClickOutside={false}

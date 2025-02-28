@@ -41,7 +41,6 @@ export const DesmosNode = Node.create({
   },
 
   addNodeView() {
-    console.log("load view");
     return ReactNodeViewRenderer(desmosView);
   },
 

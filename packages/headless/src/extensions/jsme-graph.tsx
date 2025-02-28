@@ -121,7 +121,6 @@ export const JSME = Node.create<JSMEOptions>({
       setJSME:
         (node: JSMENode) =>
         ({ commands }) => {
-          // console.log("node is:", node);
           return commands.insertContent({
             type: this.name,
             attrs: node,

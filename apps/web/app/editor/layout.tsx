@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
 import "@/styles/ExcalidrawModal.css";
+import "@/styles/snippet.css";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";

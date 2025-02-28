@@ -2,7 +2,6 @@ import { mergeAttributes } from "@tiptap/core";
 import { CodeBlockLowlight, type CodeBlockLowlightOptions } from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
 import { setAttributes } from "../utils/editor";
-
 export interface CodeBlockOptions extends CodeBlockLowlightOptions {
   dictionary: Record<string, string>;
 }
@@ -14,24 +13,20 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       ...this.parent?.(),
       lowlight: createLowlight(common),
       dictionary: {
-        name: "Code Block",
-        copy: "Copy",
-        copied: "Copied!",
-        arduino: "Arduino",
+        // name: "codeblock",
         bash: "Bash",
         c: "C",
         cpp: "C++",
-        csharp: "C#",
         css: "CSS",
         diff: "Diff",
         go: "Go",
         graphql: "GraphQL",
         ini: "INI",
+        fetch: "Fetch",
         java: "Java",
         javascript: "JavaScript",
         json: "JSON",
         kotlin: "Kotlin",
-        less: "Less",
         lua: "Lua",
         makefile: "Makefile",
         markdown: "Markdown",
@@ -41,16 +36,13 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         "php-template": "PHP Template",
         plaintext: "Text",
         python: "Python",
-        "python-repl": "Python Repl",
         r: "R",
         ruby: "Ruby",
         rust: "Rust",
-        scss: "Scss",
         shell: "Shell",
         sql: "SQL",
         swift: "Swift",
         typescript: "TypeScript",
-        vbnet: "Visual Basic .NET",
         wasm: "WebAssembly",
         xml: "XML",
         yaml: "YAML",
@@ -61,10 +53,43 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
   addAttributes() {
     return {
       language: {
-        default: "plaintext",
+        default: "javascript",
       },
+      // codapiToolbar: {
+      //   default: "codapi-toolbar",
+      //   parseHTML: (element) => {
+      //     return element.tagName.toLowerCase();
+      //   },
+      //   renderHTML: (attributes) => {
+      //     return attributes.element;
+      //   },
+      // },
     };
   },
+
+  parseHTML() {
+    return [
+      {
+        tag: "pre",
+        preserveWhitespace: "full",
+      },
+    ];
+  },
+
+  renderHTML({ node, HTMLAttributes }) {
+    return [
+      "pre",
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+      [
+        "code",
+        {
+          class: node.attrs.language ? this.options.languageClassPrefix + node.attrs.language : null,
+        },
+        0,
+      ],
+    ];
+  },
+
   addNodeView() {
     return ({ node, editor, getPos }) => {
       const parent = document.createElement("pre");
@@ -77,22 +102,26 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
           content.setAttribute(key, value);
         }
       }
-
+      parent.setAttribute("id", "test");
       parent.setAttribute("data-type", this.name);
       toolbar.setAttribute("data-type", `${this.name}Toolbar`);
       content.setAttribute("data-type", `${this.name}Content`);
 
       // language list
       const language = document.createElement("select");
-      for (const name of this.options.lowlight.listLanguages() as string[]) {
+      for (const name of Object.keys(this.options.dictionary)) {
+        //+
         const option = document.createElement("option");
         option.value = name;
         option.textContent = this.options.dictionary[name] ?? name;
         language.append(option);
       }
-      //   language.classList.add("");
+      language.setAttribute("name", "language-select");
       language.value = node.attrs.language;
+      const codapi = document.createElement("codapi-snippet");
       language.addEventListener("change", () => {
+        // const snippet = document.querySelector("codapi-snippet");
+        // codapi.setAttribute("sandbox", language.value);
         if (!editor.isEditable) {
           language.value = node.attrs.language;
         } else if (typeof getPos === "function") {
@@ -100,34 +129,25 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         }
       });
 
-      // copy button
-      //   const copy = document.createElement("button");
-      //   copy.textContent = this.options.dictionary.copy ?? ""; //+
-      //   const copied = document.createElement("span");
-      //   copied.textContent = this.options.dictionary.copied ?? "";
-      //   copied.classList.add("ProseMirror-fm-button-popover");
-      //   const instance = tippy(copy, {
-      //     appendTo: () => document.body,
-      //     content: copied,
-      //     arrow: false,
-      //     theme: "ProseMirror-dark",
-      //     animation: "shift-away",
-      //     duration: [200, 150],
-      //     trigger: "manual",
-      //   });
-      //   copy.addEventListener("click", (e) => {
-      //     e.stopPropagation();
-      //     navigator.clipboard.writeText(node.content.firstChild?.text || "").then(() => {
-      //       instance.show();
-      //       setTimeout(() => instance.hide(), 1000);
-      //     });
-      //   });
-
+      // codapi.setAttribute("engine", "browser");
+      // codapi.setAttribute("sandbox", language.value);
+      // codapi.setAttribute("editor", "external");
       toolbar.contentEditable = "false";
       toolbar.append(language);
-      //   toolbar.append(copy);
       parent.append(toolbar);
       parent.append(content);
+      // parent.append(codapi);
+      // const _toolbar = document.querySelector("codapi-toolbar");
+      // const _result = document.querySelector("codapi-output");
+      // const _status = document.querySelector("codapi-status");
+      // if (_toolbar) {
+      //   _toolbar.addEventListener("click", (e) => {
+      //     e.stopPropagation();
+      //     console.log(document.querySelector("codapi-output"));
+      //     console.log(document.querySelector("codapi-status"));
+      //   });
+      // }
+
       return {
         dom: parent,
         contentDOM: content,
@@ -138,30 +158,22 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
           if (language.value !== updatedNode.attrs.language) {
             language.value = updatedNode.attrs.language;
           }
+          const target = parent.querySelector("codapi-toolbar");
+          const result = parent.querySelector("codapi-output");
+          const status = parent.querySelector("codapi-status");
+
+          // if (_toolbar && target) {
+          //   // console.log(codapi, parent);
+          //   codapi?.replaceChild(_toolbar, target);
+          // }
+          // console.log(codapi);
+          // if (_result && result) {
+          //   codapi?.replaceChild(_result, result);
+          // }
+          // console.log(node);
           return true;
         },
       };
-    };
-  },
-  addKeyboardShortcuts() {
-    return {
-      Tab: ({ editor }) => {
-        if (editor.isActive(this.name)) {
-          return editor.chain().insertContent("  ").focus().run();
-        }
-        return false;
-      },
-      Backspace: ({ editor }) => {
-        const state = editor.state;
-        const selection = state.selection;
-        if (selection.$anchor.parent.type.name !== this.name) {
-          return false;
-        }
-        if (selection.$anchor.parentOffset !== 0) {
-          return false;
-        }
-        return editor.chain().toggleNode(this.name, "paragraph").focus().run();
-      },
     };
   },
 });

@@ -101,6 +101,17 @@ export const suggestionItems = createSuggestionItems([
     command: ({ editor, range }) =>
       editor.chain().focus().deleteRange(range).toggleNode("codeblock", "codeblock").run(),
   },
+
+  {
+    title: "CodeEditor",
+    description: "Edit a code snippet.",
+    searchTerms: ["codeSnippet"],
+    icon: <Code size={18} />,
+    command: ({ editor, range }) => {
+      editor.chain().focus().deleteRange(range).insertReactCode().run();
+    },
+  },
+
   {
     title: "Image",
     description: "Upload an image from your computer.",
@@ -222,7 +233,7 @@ export const suggestionItems = createSuggestionItems([
     searchTerms: ["DesmosNode", "embed"],
     icon: <Cake size={18} />,
     command: ({ editor, range }) => {
-      console.log("starting  insert Desmos Nodes");
+      console.log("starting insert Desmos Nodes");
       editor.chain().focus().deleteRange(range).insertNode({ latex: "y=x^2" }).run();
     },
   },

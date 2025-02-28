@@ -45,7 +45,7 @@ const renderItems = (elementRef?: RefObject<Element> | null) => {
       const parentNode = selection.$from.node(selection.$from.depth);
       const blockType = parentNode.type.name;
 
-      if (blockType === "codeBlock") {
+      if (blockType === "codeblock") {
         return false;
       }
 

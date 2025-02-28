@@ -201,3 +201,99 @@ div[data-youtube-video] > iframe {
     max-height: 100px;
   }
 }
+
+.ProseMirror-bm {
+  white-space: nowrap;
+  pointer-events: all;
+  width: 20rem;
+  max-height: 15rem;
+  padding: 0.25rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-width: 1px;
+  border-radius: var(--tiptap-radius);
+}
+.ProseMirror-bm-empty {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.875rem;
+  height: 2.25rem;
+  padding: 0 0.75rem;
+}
+.ProseMirror-bm-divider {
+  display: block;
+  height: 1px;
+  margin: 0.25rem -0.25rem;
+  background-color: var(--tiptap-muted-background);
+}
+.ProseMirror-bm-button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 2.25rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: var(--tiptap-radius);
+  background-color: transparent;
+  transition-duration: 0.15s;
+  transition-property: color, background-color, box-shadow;
+}
+.ProseMirror-bm-button:hover,
+.ProseMirror-bm-button:focus,
+.ProseMirror-bm-button[data-active] {
+  color: var(--tiptap-accent-foreground);
+  background-color: var(--tiptap-accent-background);
+}
+.ProseMirror-bm-button-icon {
+  margin-left: 0.25rem;
+  margin-right: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+}
+.ProseMirror-bm-button-icon .ProseMirror-icon {
+  width: 1rem;
+  height: 1rem;
+}
+.ProseMirror-bm-button-name {
+  flex-grow: 1;
+  text-align: start;
+}
+.ProseMirror-bm-button-shortcut {
+  color: var(--tiptap-muted-foreground);
+  font-family: var(--tiptap-font-family-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.ProseMirror-bm-placeholder::before {
+  content: attr(data-empty);
+  display: block;
+  pointer-events: none;
+  padding-left: 0.125rem;
+  height: 0;
+  opacity: 0;
+  color: var(--tiptap-muted-foreground);
+  font-size: calc(var(--tiptap-font-size) - 0.1em);
+  transition-duration: 0.15s;
+  transition-property: opacity;
+}
+.ProseMirror-focused .ProseMirror-bm-placeholder::before {
+  opacity: 1;
+}
+.ProseMirror[contenteditable="false"] .ProseMirror-bm-placeholder::before {
+  opacity: 0;
+}

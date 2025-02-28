@@ -1,0 +1,86 @@
+codapi-snippet {
+    display: block;
+    font-size: 1rem;
+}
+
+codapi-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.8em;
+}
+
+codapi-toolbar button {
+    /* border: 1px solid var(--color-blue); */
+    /* background: var(--color-blue); */
+    color: var(--color-blue);
+}
+codapi-toolbar button::after {
+    content: " ▶";
+}
+
+codapi-toolbar button:hover {
+    border: 1px solid var(--color-blue);
+    background: var(--color-blue);
+    color: #fff;
+}
+codapi-toolbar a {
+    border-bottom: none !important;
+}
+codapi-toolbar a[href="#share"]::before {
+    content: "☆ ";
+}
+codapi-toolbar a[href="#fullscreen"]::before {
+    content: "⛶ ";
+}
+codapi-toolbar [hidden] {
+    display: none;
+}
+
+codapi-status {
+    display: block;
+    white-space: nowrap;
+}
+codapi-status svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+}
+codapi-ref {
+    display: none;
+}
+
+codapi-output {
+    /* border: 1px solid var(--color-blue); */
+    position: relative;
+    display: block;
+    background-color: #1F2937;
+}
+codapi-output[hidden] {
+    display: none;
+}
+codapi-output a[href="#close"] {
+    position: absolute;
+    top: 0.25em;
+    right: 0.25em;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    border: none;
+    text-align: center;
+}
+codapi-output pre > code {
+    font-size: 1rem;
+    margin-bottom: 0.8em;
+    padding: 1em;
+}
+
+codapi-output table {
+    border: 1px solid var(--color-text);
+}
+codapi-output th,
+codapi-output td {
+    padding: 0.1em 1em;
+}

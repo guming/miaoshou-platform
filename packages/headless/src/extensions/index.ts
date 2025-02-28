@@ -12,6 +12,7 @@ import TiptapUnderline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
 import { CodeBlock } from "./code-block";
+import { CodeSnippet } from "./code-execute";
 import CustomKeymap from "./custom-keymap";
 import { DesmosNode } from "./desmos-graph";
 import { Emoji } from "./emoji";
@@ -24,7 +25,6 @@ import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
 import CharacterCount from "@tiptap/extension-character-count";
-import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Youtube from "@tiptap/extension-youtube";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 
@@ -35,6 +35,10 @@ const PlaceholderExtension = Placeholder.configure({
     }
     if (node.type.name === "inlineMath") {
       return "Math";
+    }
+
+    if (node.type.name === "codeblock") {
+      return "";
     }
 
     return "Press '/' for commands";
@@ -79,7 +83,7 @@ const Horizontal = HorizontalRule.extend({
 export * from "./ai-highlight";
 export * from "./slash-command";
 export {
-  CodeBlockLowlight,
+  // CodeBlockLowlight,
   Horizontal as HorizontalRule,
   ImageResizer,
   InputRule,
@@ -101,5 +105,6 @@ export {
   Mermaid,
   Emoji,
   CodeBlock,
+  CodeSnippet,
   InlineMath,
 };

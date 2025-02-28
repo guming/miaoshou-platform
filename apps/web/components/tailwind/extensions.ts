@@ -2,6 +2,7 @@ import {
   AIHighlight,
   CharacterCount,
   CodeBlock,
+  CodeSnippet,
   // CodeBlockLowlight,
   DesmosNode,
   Draw,
@@ -97,11 +98,11 @@ const starterKit = StarterKit.configure({
       class: cx("border-l-4 border-primary"),
     },
   },
-  codeBlock: {
-    HTMLAttributes: {
-      class: cx("rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium"),
-    },
-  },
+  // codeBlock: {
+  //   HTMLAttributes: {
+  //     class: cx("rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium"),
+  //   },
+  // },
   code: {
     HTMLAttributes: {
       class: cx("rounded-md bg-muted  px-1.5 py-1 font-mono font-medium"),
@@ -171,13 +172,19 @@ const mermaid = Mermaid.configure({
 
 const emoji = Emoji.configure({
   HTMLAttributes: {
-    class: "my-custom-class",
+    class: cx("not-prose"),
   },
 });
 
 const codeBlock = CodeBlock.configure({
   HTMLAttributes: {
-    class: "my-custom-class",
+    class: cx("code"),
+  },
+});
+
+const codeSnippet = CodeSnippet.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
   },
 });
 
@@ -205,5 +212,6 @@ export const defaultExtensions = [
   mathquill,
   emoji,
   codeBlock,
+  codeSnippet,
   desmosNode,
 ];
