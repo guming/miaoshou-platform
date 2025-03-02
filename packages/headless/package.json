@@ -85,6 +85,8 @@
     "lowlight": "^3.3.0",
     "katex": "^0.16.10",
     "remark-gemoji": "^8.0.0",
+    "react-mathlive": "3.0.5-preview.1",
+    "mathlive": "0.104.0",
     "smooth-scroll-into-view-if-needed": "^2.0.2"
   },
   "devDependencies": {

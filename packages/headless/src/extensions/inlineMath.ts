@@ -1,8 +1,6 @@
 import { Node, mergeAttributes } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-
-import InlineMathView from "../mathquill/inlineMathView";
-// import mathliveView from "../mathquill/mathliveView";
+import mathliveView from "../mathquill/mathliveView";
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     inlineMath: {
@@ -51,7 +49,8 @@ export default Node.create({
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(InlineMathView);
+    console.log("loaded view with mathlive");
+    return ReactNodeViewRenderer(mathliveView);
   },
 
   addCommands() {

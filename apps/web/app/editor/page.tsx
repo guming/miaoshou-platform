@@ -17,6 +17,7 @@ export default function Page() {
       <Script src="https://unpkg.com/@antonz/runno@0.6.1/dist/runno.js" strategy="beforeInteractive" />
       <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/engine/wasi.js" strategy="beforeInteractive" />
       <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/snippet.js" strategy="lazyOnload" />
+      <Script src="https:////unpkg.com/mathlive" strategy="lazyOnload" />
       <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
         <Button size="icon" variant="outline">
           <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">

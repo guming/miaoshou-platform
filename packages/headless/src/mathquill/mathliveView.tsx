@@ -1,8 +1,24 @@
 import { NodeViewWrapper } from "@tiptap/react";
 import { useState } from "react";
-// import { MathfieldComponent } from "react-mathlive";
+export default (props) => {
+  const content = props.node.attrs.content;
+  const [value, setValue] = useState(content);
+  console.log(props.editor);
 
-export default () => {
-  const [latex, setLatex] = useState("f(x)=\\log _10 x");
-  return <NodeViewWrapper>{/* <MathfieldComponent latex={latex} onChange={setLatex} /> */}</NodeViewWrapper>;
+  return (
+    <NodeViewWrapper>
+      <div>
+        <math-field
+          onInput={(evt) => {
+            setValue(evt.target.value);
+            props.updateAttributes({
+              content: value,
+            });
+          }}
+        >
+          {value}
+        </math-field>
+      </div>
+    </NodeViewWrapper>
+  );
 };
