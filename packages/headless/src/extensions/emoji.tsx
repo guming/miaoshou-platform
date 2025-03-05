@@ -2,7 +2,7 @@ import { InputRule, Node, mergeAttributes } from "@tiptap/core";
 import { PluginKey } from "@tiptap/pm/state";
 import { Suggestion } from "@tiptap/suggestion";
 import { nameToEmoji } from "gemoji";
-import { BlockMenuView, type BlockMenuViewItem } from "../block-memu/view";
+import { BlockMenuView, type BlockMenuViewItem } from "../block-menu/view";
 import { InnerRenderView } from "../mermaid/innerRender";
 
 declare module "@tiptap/core" {

@@ -3,7 +3,7 @@
 import type { Editor } from "@tiptap/core";
 import type * as React from "react";
 import { Suspense } from "react";
-import ExcalidrawComponent from "../excalidraw/ExcalidrawComponent";
+import ExcalidrawComponent from "./ExcalidrawComponent";
 
 // 定义组件的 Props 类型
 interface MyComponentProps {

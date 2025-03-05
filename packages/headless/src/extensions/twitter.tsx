@@ -9,7 +9,7 @@ export const isValidTwitterUrl = (url: string) => {
 };
 
 const TweetComponent = ({ node }: { node: Partial<ReactNodeViewRendererOptions> }) => {
-  const url = node?.attrs?.src;
+  const url = (node?.attrs as Record<string, string>)?.src;
   const tweetId = url?.split("/").pop();
 
   if (!tweetId) {
@@ -141,15 +141,13 @@ export const Twitter = Node.create<TwitterOptions>({
         find: TWITTER_REGEX_GLOBAL,
         type: this.type,
         getAttributes: (match) => {
-          console.log("twitter paste", match);
           return { src: match.input };
         },
       }),
     ];
   },
 
-  renderHTML({ node, HTMLAttributes }) {
-    console.log("twitter attrs", node, HTMLAttributes);
+  renderHTML({ HTMLAttributes }) {
     return ["div", mergeAttributes({ "data-twitter": "" }, HTMLAttributes)];
   },
 });

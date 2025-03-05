@@ -247,6 +247,16 @@ export const suggestionItems = createSuggestionItems([
       editor.chain().focus().deleteRange(range).setMermaid("graph TD;\n  A-->B;  A-->C;\n  B-->D;\n  C-->D;").run();
     },
   },
+  {
+    title: "Table",
+    description: "Table.",
+    searchTerms: ["Table", "embed"],
+    icon: <Cake size={18} />,
+    command: ({ editor, range }) => {
+      console.log("starting  insert table Nodes");
+      editor.chain().focus().deleteRange(range).insertTable({ rows: 3, cols: 3 }).run();
+    },
+  },
 ]);
 
 export const slashCommand = Command.configure({

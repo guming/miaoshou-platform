@@ -120,6 +120,171 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
 .tippy-box {
   max-width: 400px !important;
 }
+.ProseMirror-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  -webkit-mask-image: var(--svg);
+          mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  background-color: currentColor;
+}
+
+.ProseMirror-icon-check {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-empty {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-error {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4m0 4h.01'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-loading {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-open {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h10v10M7 17L17 7'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-upload {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M12 13v8m-8-6.101A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242'/%3E%3Cpath d='m8 17l4-4l4 4'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-remove {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm2 4l6 6m0-6l-6 6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-bold {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-italic {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 4h-9m4 16H5M15 4L9 20'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-code {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m18 16l4-4l-4-4M6 8l-4 4l4 4m8.5-12l-5 16'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-strike {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 4H9a3 3 0 0 0-2.83 4M14 12a4 4 0 0 1 0 8H6m-2-8h16'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-highlight {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m9 11l-6 6v3h9l3-3'/%3E%3Cpath d='m22 12l-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-link {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-underline {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 4v6a6 6 0 0 0 12 0V4M4 20h16'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-sup {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m4 19l8-8m0 8l-8-8m16 1h-4c0-1.5.442-2 1.5-2.5S20 8.334 20 7.002c0-.472-.17-.93-.484-1.29a2.105 2.105 0 0 0-2.617-.436c-.42.239-.738.614-.899 1.06'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-sub {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m4 5l8 8m0-8l-8 8m16 6h-4c0-1.5.44-2 1.5-2.5S20 15.33 20 14c0-.47-.17-.93-.48-1.29a2.11 2.11 0 0 0-2.62-.44c-.42.24-.74.62-.9 1.07'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-blockquote {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1a6 6 0 0 0 6-6V5a2 2 0 0 0-2-2zM5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1a6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-ul {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12h.01M3 18h.01M3 6h.01M8 12h13M8 18h13M8 6h13'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-ol {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 12h11m-11 6h11M10 6h11M4 10h2M4 6h1v4m1 8H4c0-1 2-2 2-3s-1-1.5-2-1'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-tl {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m3 17l2 2l4-4M3 7l2 2l4-4m4 1h8m-8 6h8m-8 6h8'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h1 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 12h8m-8 6V6m8 12V6m5 6l3-2v8'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h2 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 12h8m-8 6V6m8 12V6m9 12h-4c0-4 4-3 4-6c0-1.5-2-2.5-4-1'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h3 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 12h8m-8 6V6m8 12V6m5.5 4.5c1.7-1 3.5 0 3.5 1.5a2 2 0 0 1-2 2m-2 3.5c2 1.5 4 .3 4-1.5a2 2 0 0 0-2-2'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h4 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 18V6m5 4v3a1 1 0 0 0 1 1h3m0-4v8M4 12h8m-8 6V6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h5 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 12h8m-8 6V6m8 12V6m5 7v-3h4m-4 7.7c.4.2.8.3 1.3.3c1.5 0 2.7-1.1 2.7-2.5S19.8 13 18.3 13H17'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-h6 {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M4 12h8m-8 6V6m8 12V6'/%3E%3Ccircle cx='19' cy='16' r='2'/%3E%3Cpath d='M20 10c-2 2-3 3.5-3 6'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-hr {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12h18M8 8l4-4l4 4m0 8l-4 4l-4-4'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-image {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Crect width='18' height='18' x='3' y='3' rx='2' ry='2'/%3E%3Ccircle cx='9' cy='9' r='2'/%3E%3Cpath d='m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-plus {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 12h14m-7-7v14'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-drag {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M8.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m0 6.5a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m1.5 5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0M15.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3m1.5 5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0m-1.5 8a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-left {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m15 18l-6-6l6-6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-right {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m9 18l6-6l-6-6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-up {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m18 15l-6-6l-6 6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-down {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-table {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M12 3v18'/%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M3 9h18M3 15h18'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-align-left {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12H3m14 6H3M21 6H3'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-align-center {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M17 12H7m12 6H5M21 6H3'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-align-right {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 12H9m12 6H7M21 6H3'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-merge-cells {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M12 21v-6m0-6V3M3 15h18M3 9h18'/%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-split-cells {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M12 15V9m-9 6h18M3 9h18'/%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-header-row {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19 12H5v7h14zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-header-col {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M12 5v14h7V5zM4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-help {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-math {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M10 2a4 4 0 0 0-4 4v3H3v2h3v7a2 2 0 0 1-2 2H3v2h1a4 4 0 0 0 4-4v-7h3V9H8V6a2 2 0 0 1 2-2h1V2zm5.202 14.997L11.891 21h2.595l2.014-2.434L18.514 21h2.595l-3.311-4.003L21.105 13h-2.596L16.5 15.428L14.491 13h-2.595z'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-audio {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-video {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='m16 13l5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5'/%3E%3Crect width='14' height='12' x='2' y='6' rx='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-embed {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='M10 4v4M2 8h20M6 4v4'/%3E%3C/g%3E%3C/svg%3E");
+}
+.ProseMirror-icon-details {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 14l1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-mermaid {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M11.5 12.5A1.5 1.5 0 0 1 10 14H6a1.5 1.5 0 0 1-1.5-1.5v-.823a3.114 3.114 0 0 0-1.35-2.566A6.114 6.114 0 0 1 .5 4.073V3A1.5 1.5 0 0 1 2 1.5h.666A6.425 6.425 0 0 1 8 4.343A6.425 6.425 0 0 1 13.334 1.5H14A1.5 1.5 0 0 1 15.5 3v1.073a6.114 6.114 0 0 1-2.65 5.038a3.114 3.114 0 0 0-1.35 2.566zm-8-9.43a4.924 4.924 0 0 1 3.738 3.025c.275.688 1.249.688 1.524 0A4.924 4.924 0 0 1 13.334 3H14v1.073a4.614 4.614 0 0 1-2 3.802c-1.252.86-2 2.283-2 3.802v.823H6v-.823c0-1.52-.748-2.941-2-3.802a4.614 4.614 0 0 1-2-3.802V3h.666c.283 0 .562.024.834.07' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
+.ProseMirror-icon-plantuml {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M5.75 2.5h4.5a1.5 1.5 0 0 1 1.269.7a2.5 2.5 0 0 0 .231 4.686V12a1.5 1.5 0 0 1-1.5 1.5h-4.5c-.534 0-1.003-.28-1.269-.7a2.5 2.5 0 0 0-.231-4.686v-.228A2.501 2.501 0 0 0 4.481 3.2c.266-.42.735-.7 1.269-.7m-3 5.614v-.228a2.501 2.501 0 0 1 .146-4.813A3.001 3.001 0 0 1 5.75 1h4.5a3 3 0 0 1 2.854 2.074a2.501 2.501 0 0 1 .146 4.812V12a3 3 0 0 1-3 3h-4.5a3.001 3.001 0 0 1-2.854-2.073a2.501 2.501 0 0 1-.146-4.813M3.5 11.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-1-6a1 1 0 1 1 2 0a1 1 0 0 1-2 0m10-1a1 1 0 1 0 0 2a1 1 0 0 0 0-2' clip-rule='evenodd'/%3E%3C/svg%3E");
+}
 
 .ProseMirror:not(.dragging) .ProseMirror-selectednode {
   outline: none !important;
@@ -202,6 +367,196 @@ div[data-youtube-video] > iframe {
   }
 }
 
+.ProseMirror-fm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.375rem 0.5rem;
+  backdrop-filter: blur(4px);
+}
+.ProseMirror-fm-divider {
+  display: block;
+  width: 1px;
+  height: 1.3rem;
+  background-color: var(--tiptap-muted-background);
+}
+.ProseMirror-fm-button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.1rem;
+  border-radius: var(--tiptap-radius);
+  background-color: transparent;
+  transition-duration: 0.15s;
+  transition-property: color, 
+  background-color, 
+  box-shadow;
+}
+.ProseMirror-fm-button:first-child {
+  margin-left: 0;
+}
+.ProseMirror-fm-button:last-child {
+  margin-right: 0;
+}
+.ProseMirror-fm-button:hover,
+.ProseMirror-fm-button:focus {
+  color: var(--tiptap-accent-foreground);
+  background-color: var(--tiptap-accent-background);
+}
+.ProseMirror-fm-button[data-active] {
+  color: var(--tiptap-primary-background);
+  background-color: var(--tiptap-accent-background);
+}
+.ProseMirror-fm-button-popover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: var(--tiptap-radius);
+}
+.ProseMirror-fm-button-shortcut {
+  color: var(--tiptap-muted-background);
+  font-family: var(--tiptap-font-family-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.ProseMirror-fm-button .ProseMirror-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.ProseMirror-fm-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ProseMirror-fm-input label {
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--tiptap-popover-foreground);
+}
+.ProseMirror-fm-input input {
+  display: flex;
+  outline: none;
+  border-radius: var(--tiptap-radius);
+  border: 1px solid var(--tiptap-border);
+  background-color: transparent;
+  padding: 0.25rem 0.75rem;
+  width: 100%;
+  height: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-duration: 0.15s;
+  transition-property: color, border, box-shadow;
+  box-sizing: border-box;
+}
+.ProseMirror-fm-input input:focus {
+  border: 1px solid var(--tiptap-input);
+  box-shadow: 0 0 0 1px var(--tiptap-ring);
+}
+.ProseMirror-fm-input input::-webkit-input-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-input input::-moz-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-input input::-ms-input-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-input input::placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-textarea {
+  display: flex;
+  resize: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-duration: 0.15s;
+  transition-property: color, border, box-shadow;
+  box-sizing: border-box;
+}
+.ProseMirror-fm-textarea::-webkit-input-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-textarea::-moz-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-textarea::-ms-input-placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-textarea::placeholder {
+  color: var(--tiptap-muted-foreground);
+}
+.ProseMirror-fm-form {
+  padding: 0.375rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 18rem;
+}
+.ProseMirror-fm-action {
+  margin-bottom: -0.25rem;
+  gap: 0.375rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.ProseMirror-fm-color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+.ProseMirror-fm-color-picker div {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 0.5rem;
+}
+.ProseMirror-fm-color-picker button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.5rem;
+  border-radius: var(--tiptap-radius);
+  border: 1px solid var(--tiptap-border);
+  transition-duration: 0.15s;
+  transition-property: color, border, box-shadow;
+}
+.ProseMirror-fm-color-picker button:hover {
+  border: 1px solid var(--tiptap-input);
+  box-shadow: 0 0 0 1px var(--tiptap-ring);
+}
+.ProseMirror-fm-color-picker button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em !important;
+  height: 1em !important;
+}
+.ProseMirror-fm-input + .ProseMirror-fm-button,
+.ProseMirror-fm-group + .ProseMirror-fm-button {
+  margin-left: 0.4rem;
+}
+.ProseMirror-fm-button + .ProseMirror-fm-input,
+.ProseMirror-fm-button + .ProseMirror-fm-group {
+  margin-right: 0.4rem;
+}
+
 .ProseMirror-bm {
   white-space: nowrap;
   pointer-events: all;
@@ -212,6 +567,7 @@ div[data-youtube-video] > iframe {
   overflow-y: auto;
   border-width: 1px;
   border-radius: var(--tiptap-radius);
+  backdrop-filter: blur(4px);
 }
 .ProseMirror-bm-empty {
   display: flex;
@@ -296,4 +652,137 @@ div[data-youtube-video] > iframe {
 }
 .ProseMirror[contenteditable="false"] .ProseMirror-bm-placeholder::before {
   opacity: 0;
+}
+
+.ProseMirror table {
+  border-collapse: collapse;
+  box-sizing: border-box;
+  border-radius: var(--tiptap-radius);
+  width: 100%;
+}
+.ProseMirror table tr {
+  position: relative;
+  border: 1px solid var(--tiptap-border);
+}
+.ProseMirror table th,
+.ProseMirror table td {
+  position: relative;
+  min-width: 50px;
+  padding: 0.25em 0.5em;
+  border: 1px solid var(--tiptap-border);
+}
+.ProseMirror table [align="left"],
+.ProseMirror table [align="start"] {
+  text-align: start;
+}
+.ProseMirror table [align="center"] {
+  text-align: center;
+}
+.ProseMirror table [align="right"],
+.ProseMirror table [align="end"] {
+  text-align: end;
+}
+.ProseMirror table .selectedCell {
+  background-color: var(--tiptap-selected);
+  background-clip: padding-box;
+}
+.ProseMirror table .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: -2px;
+  width: 4px;
+  background-color: var(--tiptap-primary-background);
+  pointer-events: none;
+}
+.ProseMirror table .ProseMirror-table-grip-drag {
+  cursor: grab;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  width: 0.375rem;
+  height: 1.75rem;
+  border-radius: var(--tiptap-radius);
+  transition-duration: 0.15s;
+  transition-property: width, height, border-radius;
+  border: 1px solid var(--tiptap-border);
+  background-color: var(--tiptap-accent-background);
+}
+.ProseMirror table .ProseMirror-table-grip-drag .ProseMirror-icon {
+  opacity: 0;
+  transition-duration: 0.15s;
+  transition-property: opacity;
+}
+.ProseMirror table .ProseMirror-table-grip-col,
+.ProseMirror table .ProseMirror-table-grip-row {
+  position: absolute;
+  width: 1rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ProseMirror table .ProseMirror-table-grip-col:hover .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-row:hover .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-col:focus .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-row:focus .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-col:active .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-row:active .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-col.active .ProseMirror-table-grip-drag,
+.ProseMirror table .ProseMirror-table-grip-row.active .ProseMirror-table-grip-drag {
+  width: 1rem;
+  border-radius: var(--tiptap-radius);
+  color: var(--tiptap-primary-foreground);
+  border: 1px solid var(--tiptap-primary-background);
+  background-color: var(--tiptap-primary-background);
+}
+.ProseMirror table .ProseMirror-table-grip-col:hover .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-row:hover .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-col:focus .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-row:focus .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-col:active .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-row:active .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-col.active .ProseMirror-table-grip-drag .ProseMirror-icon,
+.ProseMirror table .ProseMirror-table-grip-row.active .ProseMirror-table-grip-drag .ProseMirror-icon {
+  opacity: 1;
+}
+.ProseMirror table .ProseMirror-table-grip-col {
+  top: 0;
+  left: 50%;
+  -webkit-transform: rotate(90deg) translateX(-0.85rem) translateY(50%);
+          transform: rotate(90deg) translateX(-0.85rem) translateY(50%);
+}
+.ProseMirror table .ProseMirror-table-grip-row {
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.ProseMirror table .ProseMirror-table-grip-cell {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.ProseMirror table .ProseMirror-table-grip-table {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ProseMirror-bm::-webkit-scrollbar {
+  width: 5px;
+}
+.ProseMirror-bm::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ProseMirror-bm::-webkit-scrollbar-thumb {
+  background: var(--tiptap-border);
+  border-radius: 5px;
+}
+.ProseMirror-bm * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tiptap-border) transparent;
 }

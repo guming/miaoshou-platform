@@ -1,6 +1,6 @@
 import { BubbleMenu, isNodeSelection, useCurrentEditor } from "@tiptap/react";
-import { useMemo, useRef, useEffect, forwardRef } from "react";
 import type { BubbleMenuProps } from "@tiptap/react";
+import { forwardRef, useEffect, useMemo, useRef } from "react";
 import type { ReactNode } from "react";
 import type { Instance, Props } from "tippy.js";
 
@@ -27,10 +27,16 @@ export const EditorBubble = forwardRef<HTMLDivElement, EditorBubbleProps>(
 
         // don't show bubble menu if:
         // - the editor is not editable
-        // - the selected node is an image
+        // - the selected node is an image or table
         // - the selection is empty
         // - the selection is a node selection (for drag handles)
-        if (!editor.isEditable || editor.isActive("image") || empty || isNodeSelection(selection)) {
+        if (
+          !editor.isEditable ||
+          editor.isActive("image") ||
+          empty ||
+          isNodeSelection(selection) ||
+          editor.isActive("table")
+        ) {
           return false;
         }
         return true;
@@ -41,10 +47,16 @@ export const EditorBubble = forwardRef<HTMLDivElement, EditorBubbleProps>(
         tippyOptions: {
           onCreate: (val) => {
             instanceRef.current = val;
+
+            instanceRef.current.popper.firstChild?.addEventListener("blur", (event) => {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+            });
           },
           moveTransition: "transform 0.15s ease-out",
           ...tippyOptions,
         },
+        editor: currentEditor,
         ...rest,
       };
     }, [rest, tippyOptions]);
@@ -54,9 +66,7 @@ export const EditorBubble = forwardRef<HTMLDivElement, EditorBubbleProps>(
     return (
       // We need to add this because of https://github.com/ueberdosis/tiptap/issues/2658
       <div ref={ref}>
-        <BubbleMenu editor={currentEditor} {...bubbleMenuProps}>
-          {children}
-        </BubbleMenu>
+        <BubbleMenu {...bubbleMenuProps}>{children}</BubbleMenu>
       </div>
     );
   },

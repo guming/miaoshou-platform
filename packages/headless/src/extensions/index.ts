@@ -1,4 +1,5 @@
 import { InputRule } from "@tiptap/core";
+import { findParentNode } from "@tiptap/core";
 import { Color } from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
@@ -11,6 +12,10 @@ import TextStyle from "@tiptap/extension-text-style";
 import TiptapUnderline from "@tiptap/extension-underline";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "tiptap-markdown";
+import { Table } from "../table/table";
+import { TableCell } from "../table/table-cell";
+import { TableHeader } from "../table/table-header";
+import { TableRow } from "../table/table-row";
 import { CodeBlock } from "./code-block";
 import { CodeSnippet } from "./code-execute";
 import CustomKeymap from "./custom-keymap";
@@ -26,10 +31,15 @@ import UpdatedImage from "./updated-image";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import Youtube from "@tiptap/extension-youtube";
+// @ts-ignore//+
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 
 const PlaceholderExtension = Placeholder.configure({
-  placeholder: ({ node }) => {
+  placeholder: ({ node, editor }) => {
+    const parent = findParentNode((node) => node.type.name === "table")(editor.state.selection);
+    if (parent?.node?.type.name === "table") {
+      return "";
+    }
     if (node.type.name === "heading") {
       return `Heading ${node.attrs.level}`;
     }
@@ -38,6 +48,18 @@ const PlaceholderExtension = Placeholder.configure({
     }
 
     if (node.type.name === "codeblock") {
+      return "";
+    }
+    if (node.type.name === "table") {
+      return "";
+    }
+    if (node.type.name === "tableHeader") {
+      return "";
+    }
+    if (node.type.name === "tableCell") {
+      return "";
+    }
+    if (node.type.name === "tableRow") {
       return "";
     }
 
@@ -107,4 +129,8 @@ export {
   CodeBlock,
   CodeSnippet,
   InlineMath,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
 };

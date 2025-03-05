@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { renderToString } from "react-dom/server";
-const ExcalidrawWithClientOnly = dynamic(async () => (await import("./draw")).default, {
+const ExcalidrawWithClientOnly = dynamic(async () => (await import("../excalidraw/draw")).default, {
   ssr: false,
 });
 // import ExcalidrawComponent from "../excalidraw/ExcalidrawComponent";

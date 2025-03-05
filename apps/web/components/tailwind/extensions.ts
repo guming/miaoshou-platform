@@ -14,6 +14,10 @@ import {
   Mermaid,
   Placeholder,
   StarterKit,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
   TaskItem,
   TaskList,
   TiptapImage,
@@ -109,7 +113,7 @@ const starterKit = StarterKit.configure({
       spellcheck: "false",
     },
   },
-  horizontalRule: false,
+  horizontalRule: true,
   dropcursor: {
     color: "#DBEAFE",
     width: 4,
@@ -190,6 +194,11 @@ const codeSnippet = CodeSnippet.configure({
 
 const characterCount = CharacterCount.configure();
 
+const table = Table.configure();
+const tableCell = TableCell.configure();
+const tableHeader = TableHeader.configure();
+const tableRow = TableRow.configure();
+
 export const defaultExtensions = [
   starterKit,
   placeholder,
@@ -214,4 +223,8 @@ export const defaultExtensions = [
   codeBlock,
   codeSnippet,
   desmosNode,
+  table,
+  tableCell,
+  tableRow,
+  tableHeader,
 ];
