@@ -16,6 +16,7 @@ const ColdBlockView = (props: NodeViewProps) => {
         sandbox="javascript"
         editor="external"
         selector="#test .code"
+        output-mode="dom"
       />
     </NodeViewWrapper>
   );

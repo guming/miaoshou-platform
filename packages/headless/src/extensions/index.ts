@@ -25,13 +25,14 @@ import { Draw } from "./excalidraw";
 import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
 import { JSME } from "./jsme-graph";
+import { Mathematics } from "./mathematics";
 import { Mermaid } from "./mermaid";
+import { SpeadsheetNode } from "./speadsheet";
 import { Twitter } from "./twitter";
 import UpdatedImage from "./updated-image";
 
 import CharacterCount from "@tiptap/extension-character-count";
 import Youtube from "@tiptap/extension-youtube";
-// @ts-ignore//+
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 
 const PlaceholderExtension = Placeholder.configure({
@@ -133,4 +134,6 @@ export {
   TableCell,
   TableHeader,
   TableRow,
+  Mathematics,
+  SpeadsheetNode,
 };

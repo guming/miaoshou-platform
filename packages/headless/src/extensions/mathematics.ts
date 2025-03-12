@@ -1,5 +1,3 @@
-import "katex/dist/katex.min.css";
-
 import { Node, mergeAttributes } from "@tiptap/core";
 import type { EditorState } from "@tiptap/pm/state";
 import katex, { type KatexOptions } from "katex";
@@ -39,6 +37,8 @@ declare module "@tiptap/core" {
 
 /**
  * This extension adds support for mathematical symbols with LaTex expression.
+ *
+ * NOTE: Don't forget to import `katex/dist/katex.min.css` CSS for KaTex styling.
  *
  * @see https://katex.org/
  */
@@ -87,7 +87,6 @@ export const Mathematics = Node.create<MathematicsOptions>({
           if (!this.options.shouldRender(state, $anchor.pos)) {
             return false;
           }
-
           return chain()
             .insertContentAt(
               { from: from, to: to },

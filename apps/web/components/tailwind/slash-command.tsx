@@ -1,9 +1,9 @@
 import {
   Brush,
-  Cake,
   Calculator,
   CheckSquare,
   Code,
+  FileSpreadsheet,
   FlaskConical,
   Heading1,
   Heading2,
@@ -11,9 +11,13 @@ import {
   ImageIcon,
   List,
   ListOrdered,
+  Play,
+  Pyramid,
+  Table,
   Text,
   TextQuote,
   Twitter,
+  Workflow,
   Youtube,
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
@@ -103,10 +107,10 @@ export const suggestionItems = createSuggestionItems([
   },
 
   {
-    title: "CodeEditor",
-    description: "Edit a code snippet.",
+    title: "CodeRunner",
+    description: "Running a code snippet.",
     searchTerms: ["codeSnippet"],
-    icon: <Code size={18} />,
+    icon: <Play size={18} />,
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).insertReactCode().run();
     },
@@ -228,10 +232,10 @@ export const suggestionItems = createSuggestionItems([
     },
   },
   {
-    title: "DesmosNode",
+    title: "MathGraph",
     description: "DesmosNode.",
     searchTerms: ["DesmosNode", "embed"],
-    icon: <Cake size={18} />,
+    icon: <Pyramid size={18} />,
     command: ({ editor, range }) => {
       console.log("starting insert Desmos Nodes");
       editor.chain().focus().deleteRange(range).insertNode({ latex: "y=x^2" }).run();
@@ -241,7 +245,7 @@ export const suggestionItems = createSuggestionItems([
     title: "Mermaid",
     description: "Mermaid.",
     searchTerms: ["Mermaid", "embed"],
-    icon: <Cake size={18} />,
+    icon: <Workflow size={18} />,
     command: ({ editor, range }) => {
       console.log("starting  insert Mermaid Nodes");
       editor.chain().focus().deleteRange(range).setMermaid("graph TD;\n  A-->B;  A-->C;\n  B-->D;\n  C-->D;").run();
@@ -251,10 +255,30 @@ export const suggestionItems = createSuggestionItems([
     title: "Table",
     description: "Table.",
     searchTerms: ["Table", "embed"],
-    icon: <Cake size={18} />,
+    icon: <Table size={18} />,
     command: ({ editor, range }) => {
       console.log("starting  insert table Nodes");
       editor.chain().focus().deleteRange(range).insertTable({ rows: 3, cols: 3 }).run();
+    },
+  },
+  {
+    title: "Speadsheet",
+    description: "Speadsheet",
+    searchTerms: ["Speadsheet", "embed"],
+    icon: <FileSpreadsheet size={18} />,
+    command: ({ editor, range }) => {
+      console.log("starting  insert table Nodes");
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .insertSpeadsheet({
+          data: [
+            [{ value: "Vanilla" }, { value: "Chocolate" }, { value: "" }],
+            [{ value: "Strawberry" }, { value: "Cookies" }, { value: "" }],
+          ],
+        })
+        .run();
     },
   },
 ]);

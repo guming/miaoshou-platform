@@ -20,6 +20,7 @@ import { uploadFn } from "./image-upload";
 import { ColorSelector } from "./selectors/color-selector";
 import { CrawlerSelector } from "./selectors/crawler-selector";
 import { LinkSelector } from "./selectors/link-selector";
+import { MathSelector } from "./selectors/math-selector";
 import { NodeSelector } from "./selectors/node-selector";
 import { TextButtons } from "./selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./slash-command";
@@ -127,6 +128,8 @@ const TailwindAdvancedEditor = () => {
             <GenerativeMenuSwitch open={openAI} onOpenChange={setOpenAI}>
               <Separator orientation="vertical" />
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
+              <Separator orientation="vertical" />
+              <MathSelector />
               <Separator orientation="vertical" />
               <CrawlerSelector open={crawler} onOpenChange={setCrawler} />
               <Separator orientation="vertical" />

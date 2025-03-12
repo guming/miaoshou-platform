@@ -91,6 +91,8 @@
     "remark-gemoji": "^8.0.0",
     "react-mathlive": "3.0.5-preview.1",
     "mathlive": "0.104.0",
+    "react-spreadsheet": "^0.9.5",
+    "scheduler": "^0.25.0",
     "smooth-scroll-into-view-if-needed": "^2.0.2"
   },
   "devDependencies": {

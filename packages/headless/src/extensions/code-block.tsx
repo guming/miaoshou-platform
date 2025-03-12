@@ -33,7 +33,6 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         objectivec: "Objective-C",
         perl: "Perl",
         php: "PHP",
-        "php-template": "PHP Template",
         plaintext: "Text",
         python: "Python",
         r: "R",

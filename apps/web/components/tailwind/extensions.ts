@@ -11,8 +11,10 @@ import {
   HorizontalRule,
   InlineMath,
   JSME,
+  Mathematics,
   Mermaid,
   Placeholder,
+  SpeadsheetNode,
   StarterKit,
   Table,
   TableCell,
@@ -113,7 +115,7 @@ const starterKit = StarterKit.configure({
       spellcheck: "false",
     },
   },
-  horizontalRule: true,
+  horizontalRule: false,
   dropcursor: {
     color: "#DBEAFE",
     width: 4,
@@ -192,12 +194,33 @@ const codeSnippet = CodeSnippet.configure({
   },
 });
 
+const mathematics = Mathematics.configure({
+  HTMLAttributes: {
+    class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
+  },
+  katexOptions: {
+    throwOnError: false,
+  },
+});
+
+const speadsheet = SpeadsheetNode.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
+  },
+});
+
 const characterCount = CharacterCount.configure();
 
 const table = Table.configure();
 const tableCell = TableCell.configure();
 const tableHeader = TableHeader.configure();
 const tableRow = TableRow.configure();
+
+const globalDragHandle = GlobalDragHandle.configure({
+  dragHandleWidth: 20, // default
+  scrollTreshold: 100, // default
+  excludedTags: ["td", "tr"], // default
+});
 
 export const defaultExtensions = [
   starterKit,
@@ -216,8 +239,8 @@ export const defaultExtensions = [
   jsme,
   mermaid,
   characterCount,
-  GlobalDragHandle,
-  // mathematics,
+  globalDragHandle,
+  mathematics,
   mathquill,
   emoji,
   codeBlock,
@@ -227,4 +250,5 @@ export const defaultExtensions = [
   tableCell,
   tableRow,
   tableHeader,
+  speadsheet,
 ];

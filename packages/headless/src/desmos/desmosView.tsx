@@ -33,12 +33,7 @@ const desmosView = (props: any) => {
   }, []);
 
   return (
-    <NodeViewWrapper
-      style={{
-        border: props.node.attrs.selected ? "2px solid blue" : "none",
-        padding: "5px",
-      }}
-    >
+    <NodeViewWrapper>
       <div id="graph" style={{ width: "600px", height: "400px" }} ref={myRef} />
     </NodeViewWrapper>
   );

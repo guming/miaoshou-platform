@@ -18,6 +18,9 @@ export default function Page() {
       <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/engine/wasi.js" strategy="beforeInteractive" />
       <Script src="https://unpkg.com/@antonz/codapi@0.19.10/dist/snippet.js" strategy="lazyOnload" />
       <Script src="https:////unpkg.com/mathlive" strategy="lazyOnload" />
+      <Script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" strategy="beforeInteractive" />
+      <Script src="https://cdn.jsdelivr.net/npm/d3@7" strategy="beforeInteractive" />
+      <Script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6" strategy="beforeInteractive" />
       <div className="flex w-full max-w-screen-lg items-center gap-2 px-1 sm:mb-[calc(8vh)]">
         <Button size="icon" variant="outline">
           <a href="https://github.com/guming/ai-editor" target="_blank" rel="noreferrer">

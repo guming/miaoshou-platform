@@ -102,7 +102,6 @@ export const Draw = Node.create<DrawOptions>({
       const container = document.createElement("div");
       dom.appendChild(container);
       const data = node.attrs?.data;
-      console.log("add view", node);
       ReactDOM.render(<DrawComponent editor={editor} data={node.attrs.data} />, container);
 
       return {

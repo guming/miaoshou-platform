@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
 import "@/styles/ExcalidrawModal.css";
+import "katex/dist/katex.min.css";
 import "@/styles/snippet.css";
 
 import type { Metadata, Viewport } from "next";
