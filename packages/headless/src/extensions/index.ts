@@ -22,6 +22,7 @@ import CustomKeymap from "./custom-keymap";
 import { DesmosNode } from "./desmos-graph";
 import { Emoji } from "./emoji";
 import { Draw } from "./excalidraw";
+import Iframe from "./iframe";
 import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
 import { JSME } from "./jsme-graph";
@@ -136,4 +137,5 @@ export {
   TableRow,
   Mathematics,
   SpeadsheetNode,
+  Iframe,
 };

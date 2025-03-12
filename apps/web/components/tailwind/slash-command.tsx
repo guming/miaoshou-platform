@@ -2,6 +2,7 @@ import {
   Brush,
   Calculator,
   CheckSquare,
+  CircuitBoard,
   Code,
   FileSpreadsheet,
   FlaskConical,
@@ -278,6 +279,21 @@ export const suggestionItems = createSuggestionItems([
             [{ value: "Strawberry" }, { value: "Cookies" }, { value: "" }],
           ],
         })
+        .run();
+    },
+  },
+  {
+    title: "Circuit",
+    description: "Circuit Graph.",
+    searchTerms: ["Circuit", "embed"],
+    icon: <CircuitBoard size={18} />,
+    command: ({ editor, range }) => {
+      console.log("starting  insert Circuit Nodes");
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setIframe({ src: "https://www.falstad.com/circuit/circuitjs.html?whiteBackground=true" })
         .run();
     },
   },

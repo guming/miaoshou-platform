@@ -200,3 +200,24 @@ pre {
     font-weight: 700;
   }
 }
+
+.iframe-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+
+.iframe-wrapper.ProseMirror-selectednode {
+  outline: 3px solid #68CEF8;
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -9,6 +9,7 @@ import {
   Emoji,
   GlobalDragHandle,
   HorizontalRule,
+  Iframe,
   InlineMath,
   JSME,
   Mathematics,
@@ -194,6 +195,12 @@ const codeSnippet = CodeSnippet.configure({
   },
 });
 
+const circuit = Iframe.configure({
+  HTMLAttributes: {
+    class: cx("iframe-wrapper"),
+  },
+});
+
 const mathematics = Mathematics.configure({
   HTMLAttributes: {
     class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
@@ -251,4 +258,5 @@ export const defaultExtensions = [
   tableRow,
   tableHeader,
   speadsheet,
+  circuit,
 ];
