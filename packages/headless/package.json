@@ -82,8 +82,7 @@
     "react-mathquill": "^1.0.3",
     "@types/katex": "^0.16.7",
     "@gumingcn/jsme-react": "1.0.1",
-    "@types/desmos": "^1.6.3",
-    "desmos-react": "1.2.0",
+    "@types/desmos": "^1.11.0",
     "mermaid": "^11.4.1",
     "gemoji": "^8.1.0",
     "lowlight": "^3.3.0",
@@ -93,6 +92,7 @@
     "mathlive": "0.104.0",
     "react-spreadsheet": "^0.9.5",
     "scheduler": "^0.25.0",
+    "prosemirror-state": "^1.4.3",
     "smooth-scroll-into-view-if-needed": "^2.0.2"
   },
   "devDependencies": {

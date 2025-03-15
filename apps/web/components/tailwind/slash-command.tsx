@@ -4,6 +4,7 @@ import {
   CheckSquare,
   CircuitBoard,
   Code,
+  DraftingCompass,
   FileSpreadsheet,
   FlaskConical,
   Heading1,
@@ -224,7 +225,7 @@ export const suggestionItems = createSuggestionItems([
     },
   },
   {
-    title: "InlineMath",
+    title: "Inline Math",
     description: "InlineMath.",
     searchTerms: ["InlineMath", "embed"],
     icon: <Calculator size={18} />,
@@ -233,13 +234,22 @@ export const suggestionItems = createSuggestionItems([
     },
   },
   {
-    title: "MathGraph",
-    description: "DesmosNode.",
+    title: "Math Graph",
+    description: "MathGraph.",
     searchTerms: ["DesmosNode", "embed"],
     icon: <Pyramid size={18} />,
     command: ({ editor, range }) => {
-      console.log("starting insert Desmos Nodes");
       editor.chain().focus().deleteRange(range).insertNode({ latex: "y=x^2" }).run();
+    },
+  },
+  {
+    title: "Geometry Graph",
+    description: "GeometryGraph.",
+    searchTerms: ["GeometryGraph", "embed"],
+    icon: <DraftingCompass size={18} />,
+    command: ({ editor, range }) => {
+      console.log("starting insert geometry Nodes");
+      editor.chain().focus().deleteRange(range).insertGeometryNode({}).run();
     },
   },
   {
@@ -275,8 +285,16 @@ export const suggestionItems = createSuggestionItems([
         .deleteRange(range)
         .insertSpeadsheet({
           data: [
-            [{ value: "Vanilla" }, { value: "Chocolate" }, { value: "" }],
-            [{ value: "Strawberry" }, { value: "Cookies" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
+            [{ value: "" }, { value: "" }, { value: "" }],
           ],
         })
         .run();
@@ -293,7 +311,7 @@ export const suggestionItems = createSuggestionItems([
         .chain()
         .focus()
         .deleteRange(range)
-        .setIframe({ src: "https://www.falstad.com/circuit/circuitjs.html?whiteBackground=true" })
+        .setIframe({ src: "https://www.falstad.com/circuit/circuitjs.html" })
         .run();
     },
   },

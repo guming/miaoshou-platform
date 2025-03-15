@@ -11,6 +11,7 @@ import {
   type JSONContent,
 } from "novel";
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
+import { MenuBar } from "novel/extensions";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -39,7 +40,6 @@ const TailwindAdvancedEditor = () => {
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
   const [openAI, setOpenAI] = useState(false);
-  const [mindmap, setMindMap] = useState(false);
   const [crawler, setCrawler] = useState(false);
 
   //Apply Codeblock Highlighting on the HTML from editor.getHTML()
@@ -56,8 +56,7 @@ const TailwindAdvancedEditor = () => {
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
     setCharsCount(editor.storage.characterCount.words());
-
-    console.log("json content", json);
+    // console.log("json content", json);
     window.localStorage.setItem("novel-content", JSON.stringify(json));
     window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
     // window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
@@ -83,6 +82,7 @@ const TailwindAdvancedEditor = () => {
         </div>
         <EditorRoot>
           <EditorContent
+            slotBefore={<MenuBar />}
             initialContent={initialContent}
             extensions={extensions}
             className="relative min-h-[500px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg"

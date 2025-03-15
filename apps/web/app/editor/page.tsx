@@ -1,9 +1,9 @@
 import TailwindAdvancedEditor from "@/components/tailwind/advanced-editor";
 import { Button } from "@/components/tailwind/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/tailwind/ui/dialog";
+import { Dialog, DialogContent } from "@/components/tailwind/ui/dialog";
 import Menu from "@/components/tailwind/ui/menu";
 import { ScrollArea } from "@/components/tailwind/ui/scroll-area";
-import { BookOpen, GithubIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-4 py-4 sm:px-5">
       <Script
-        src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
+        src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
         strategy="beforeInteractive"
       />
       <Script src="https://unpkg.com/@antonz/runno@0.6.1/dist/runno.js" strategy="beforeInteractive" />
@@ -29,12 +29,6 @@ export default function Page() {
         </Button>
 
         <Dialog>
-          <DialogTrigger asChild>
-            <Button className="ml gap-2">
-              <BookOpen className="h-4 w-4" />
-              Usage in dialog
-            </Button>
-          </DialogTrigger>
           <DialogContent className="flex max-w-3xl h-[calc(100vh-24px)]">
             <ScrollArea className="max-h-screen">
               <TailwindAdvancedEditor />

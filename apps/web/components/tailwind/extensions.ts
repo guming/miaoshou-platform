@@ -7,6 +7,7 @@ import {
   DesmosNode,
   Draw,
   Emoji,
+  GeometryNode,
   GlobalDragHandle,
   HorizontalRule,
   Iframe,
@@ -169,6 +170,13 @@ const desmosNode = DesmosNode.configure({
   inline: false,
 });
 
+const geometryNode = GeometryNode.configure({
+  HTMLAttributes: {
+    class: cx("not-prose"),
+  },
+  inline: false,
+});
+
 const mermaid = Mermaid.configure({
   dictionary: {
     name: "Mermaid",
@@ -258,5 +266,6 @@ export const defaultExtensions = [
   tableRow,
   tableHeader,
   speadsheet,
+  geometryNode,
   circuit,
 ];

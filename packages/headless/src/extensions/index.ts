@@ -22,11 +22,13 @@ import CustomKeymap from "./custom-keymap";
 import { DesmosNode } from "./desmos-graph";
 import { Emoji } from "./emoji";
 import { Draw } from "./excalidraw";
+import { GeometryNode } from "./geometry-graph";
 import Iframe from "./iframe";
 import { ImageResizer } from "./image-resizer";
 import InlineMath from "./inlineMath";
 import { JSME } from "./jsme-graph";
 import { Mathematics } from "./mathematics";
+import MenuBar from "./menubar";
 import { Mermaid } from "./mermaid";
 import { SpeadsheetNode } from "./speadsheet";
 import { Twitter } from "./twitter";
@@ -137,5 +139,7 @@ export {
   TableRow,
   Mathematics,
   SpeadsheetNode,
+  GeometryNode,
   Iframe,
+  MenuBar,
 };
