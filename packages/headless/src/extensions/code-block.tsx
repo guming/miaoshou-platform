@@ -114,10 +114,10 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         }
       }
       result.setAttribute("id", "result");
-      parent.setAttribute("id", "test");
       parent.setAttribute("data-type", this.name);
       toolbar.setAttribute("data-type", `${this.name}Toolbar`);
       content.setAttribute("data-type", `${this.name}Content`);
+      content.textContent = "//hi";
       const codapi = document.createElement("codapi-snippet");
       // language list
       const language = document.createElement("select");
@@ -179,12 +179,12 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       parent.append(codapi);
       parent.append(result);
       // const _toolbar = document.querySelector("codapi-toolbar");
-      const _result = document.querySelector("codapi-output pre code");
-      console.log("_result", _result);
-
+      // const _result = document.querySelector("codapi-output pre code");
+      // console.log("_result", _result);
+      // ReactDOM.render(content, parent);
       return {
         dom: parent,
-        contentDOM: content,
+        // contentDOM: content,
         update: (updatedNode) => {
           console.log("step into update");
           if (updatedNode.type !== this.type) {
@@ -196,12 +196,13 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
           if (outputModeSelect.value !== updatedNode.attrs.outputmode) {
             outputModeSelect.value = updatedNode.attrs.outputmode;
           }
-
-          if (result && _result) {
-            // if (!_result.innerHTML && !_result.textContent) {
-            // }
-            result.innerHTML = _result.innerHTML ?? _result.textContent;
-          }
+          // if (result && _result && editor.isEditable) {
+          //   // if (!_result.innerHTML && !_result.textContent) {
+          //   // }
+          //   console.log(document.querySelector("codapi-output pre code"));
+          //   result.innerHTML = _result.innerHTML ?? _result.textContent;
+          // }
+          // ReactDOM.render(content, parent);
           return true;
         },
       };
