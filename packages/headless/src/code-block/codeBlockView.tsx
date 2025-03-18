@@ -15,10 +15,10 @@ const getPreviousNode = (editor) => {
   return prevNode || null; // 如果不存在上一个节点，返回 null
 };
 const ColdBlockView = (props: NodeViewProps) => {
-  const previousNode = getPreviousNode(props.editor);
-  console.log("Previous Node:", previousNode);
+  // const previousNode = getPreviousNode(props.editor);
+  // console.log("Previous Node:", previousNode);
   return (
-    <NodeViewWrapper className="react-component">
+    <NodeViewWrapper className="code-snippet">
       <NodeViewContent
         as="codapi-snippet"
         engine="browser"

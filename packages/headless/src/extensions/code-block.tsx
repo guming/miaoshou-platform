@@ -2,6 +2,23 @@ import { mergeAttributes } from "@tiptap/core";
 import { CodeBlockLowlight, type CodeBlockLowlightOptions } from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
 import { setAttributes } from "../utils/editor";
+
+interface OutputModes {
+  [key: string]: string;
+}
+const outputModes: OutputModes = {
+  text: "TEXT",
+  json: "JSON",
+  dom: "DOM",
+  svg: "SVG",
+  iframe: "HTML",
+};
+
+type BrowserSupportedLanguage = "javascript" | "fetch" | "typescript" | "html";
+
+function isBrowserSupportLanguage(language: string): language is BrowserSupportedLanguage {
+  return language === "javascript" || language === "fetch";
+}
 export interface CodeBlockOptions extends CodeBlockLowlightOptions {
   dictionary: Record<string, string>;
 }
@@ -39,7 +56,7 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         ruby: "Ruby",
         rust: "Rust",
         shell: "Shell",
-        sql: "SQL",
+        sqlite: "SQL",
         swift: "Swift",
         typescript: "TypeScript",
         wasm: "WebAssembly",
@@ -54,15 +71,9 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       language: {
         default: "javascript",
       },
-      // codapiToolbar: {
-      //   default: "codapi-toolbar",
-      //   parseHTML: (element) => {
-      //     return element.tagName.toLowerCase();
-      //   },
-      //   renderHTML: (attributes) => {
-      //     return attributes.element;
-      //   },
-      // },
+      outputmode: {
+        default: "text",
+      },
     };
   },
 
@@ -94,6 +105,7 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       const parent = document.createElement("pre");
       const toolbar = document.createElement("div");
       const content = document.createElement("code");
+      const result = document.createElement("p");
 
       for (const [key, value] of Object.entries(mergeAttributes(this.options.HTMLAttributes))) {
         if (value !== undefined && value !== null) {
@@ -101,11 +113,12 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
           content.setAttribute(key, value);
         }
       }
+      result.setAttribute("id", "result");
       parent.setAttribute("id", "test");
       parent.setAttribute("data-type", this.name);
       toolbar.setAttribute("data-type", `${this.name}Toolbar`);
       content.setAttribute("data-type", `${this.name}Content`);
-
+      const codapi = document.createElement("codapi-snippet");
       // language list
       const language = document.createElement("select");
       for (const name of Object.keys(this.options.dictionary)) {
@@ -117,10 +130,11 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       }
       language.setAttribute("name", "language-select");
       language.value = node.attrs.language;
-      const codapi = document.createElement("codapi-snippet");
+
       language.addEventListener("change", () => {
         // const snippet = document.querySelector("codapi-snippet");
-        // codapi.setAttribute("sandbox", language.value);
+        codapi.setAttribute("sandbox", language.value);
+        codapi.setAttribute("engine", isBrowserSupportLanguage(language.value) ? "browser" : "wasi");
         if (!editor.isEditable) {
           language.value = node.attrs.language;
         } else if (typeof getPos === "function") {
@@ -128,48 +142,66 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
         }
       });
 
-      // codapi.setAttribute("engine", "browser");
-      // codapi.setAttribute("sandbox", language.value);
-      // codapi.setAttribute("editor", "external");
+      // output mode
+      // 创建 <select> 元素
+      const outputModeSelect = document.createElement("select");
+
+      // 根据 outputModes 对象动态创建 <option> 元素
+      for (const mode in outputModes) {
+        const option = document.createElement("option");
+        option.value = mode; // 设置 option 的值
+        option.textContent = outputModes[mode] ?? mode; // 设置显示文本//+
+        outputModeSelect.append(option);
+      }
+      outputModeSelect.setAttribute("name", "outputmode-select");
+      outputModeSelect.value = node.attrs.outputmode;
+
+      outputModeSelect.addEventListener("change", () => {
+        // const snippet = document.querySelector("codapi-snippet");
+        console.log("change mode for output", outputModeSelect.value);
+        codapi.setAttribute("output-mode", outputModeSelect.value);
+        if (!editor.isEditable) {
+          outputModeSelect.value = node.attrs.outputmode;
+        } else if (typeof getPos === "function") {
+          setAttributes(editor, getPos, { ...node.attrs, outputmode: outputModeSelect.value });
+        }
+      });
+
+      codapi.setAttribute("engine", isBrowserSupportLanguage(language.value) ? "browser" : "wasi");
+      codapi.setAttribute("sandbox", language.value);
+      codapi.setAttribute("output-mode", outputModeSelect.value);
+      codapi.setAttribute("editor", "external");
       toolbar.contentEditable = "false";
       toolbar.append(language);
+      toolbar.append(outputModeSelect);
       parent.append(toolbar);
       parent.append(content);
-      // parent.append(codapi);
+      parent.append(codapi);
+      parent.append(result);
       // const _toolbar = document.querySelector("codapi-toolbar");
-      // const _result = document.querySelector("codapi-output");
-      // const _status = document.querySelector("codapi-status");
-      // if (_toolbar) {
-      //   _toolbar.addEventListener("click", (e) => {
-      //     e.stopPropagation();
-      //     console.log(document.querySelector("codapi-output"));
-      //     console.log(document.querySelector("codapi-status"));
-      //   });
-      // }
+      const _result = document.querySelector("codapi-output pre code");
+      console.log("_result", _result);
 
       return {
         dom: parent,
         contentDOM: content,
         update: (updatedNode) => {
+          console.log("step into update");
           if (updatedNode.type !== this.type) {
             return false;
           }
           if (language.value !== updatedNode.attrs.language) {
             language.value = updatedNode.attrs.language;
           }
-          const target = parent.querySelector("codapi-toolbar");
-          const result = parent.querySelector("codapi-output");
-          const status = parent.querySelector("codapi-status");
+          if (outputModeSelect.value !== updatedNode.attrs.outputmode) {
+            outputModeSelect.value = updatedNode.attrs.outputmode;
+          }
 
-          // if (_toolbar && target) {
-          //   // console.log(codapi, parent);
-          //   codapi?.replaceChild(_toolbar, target);
-          // }
-          // console.log(codapi);
-          // if (_result && result) {
-          //   codapi?.replaceChild(_result, result);
-          // }
-          // console.log(node);
+          if (result && _result) {
+            // if (!_result.innerHTML && !_result.textContent) {
+            // }
+            result.innerHTML = _result.innerHTML ?? _result.textContent;
+          }
           return true;
         },
       };
