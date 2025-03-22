@@ -1,6 +1,7 @@
 import { mergeAttributes } from "@tiptap/core";
 import { CodeBlockLowlight, type CodeBlockLowlightOptions } from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
+import { v4 as uuidv4 } from "uuid";
 import { setAttributes } from "../utils/editor";
 
 interface OutputModes {
@@ -74,6 +75,12 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       outputmode: {
         default: "text",
       },
+      timestamp: {
+        default: Date.now(),
+      },
+      uuid: {
+        default: "",
+      },
     };
   },
 
@@ -105,8 +112,10 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       const parent = document.createElement("pre");
       const toolbar = document.createElement("div");
       const content = document.createElement("code");
-      const result = document.createElement("p");
-
+      const result = document.createElement("div");
+      if (node.attrs.uuid === "") {
+        setAttributes(editor, getPos, { ...node.attrs, uuid: uuidv4() });
+      }
       for (const [key, value] of Object.entries(mergeAttributes(this.options.HTMLAttributes))) {
         if (value !== undefined && value !== null) {
           parent.setAttribute(key, value);
@@ -117,8 +126,8 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       parent.setAttribute("data-type", this.name);
       toolbar.setAttribute("data-type", `${this.name}Toolbar`);
       content.setAttribute("data-type", `${this.name}Content`);
-      content.textContent = "//hi";
       const codapi = document.createElement("codapi-snippet");
+      codapi.setAttribute("id", node.attrs.uuid);
       // language list
       const language = document.createElement("select");
       for (const name of Object.keys(this.options.dictionary)) {
@@ -178,13 +187,37 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
       parent.append(content);
       parent.append(codapi);
       parent.append(result);
-      // const _toolbar = document.querySelector("codapi-toolbar");
-      // const _result = document.querySelector("codapi-output pre code");
-      // console.log("_result", _result);
+
+      const _result = document.getElementById(node.attrs.uuid);
+
+      // Options for the observer (which mutations to observe)
+      const config = { attributes: true, childList: true, subtree: true };
+
+      // Callback function to execute when mutations are observed
+      // biome-ignore lint/correctness/noUnusedVariables: <explanation>
+      const callback = (mutationList: any, observer: any) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === "childList") {
+            console.log("A child node has been added or removed.");
+            console.log(mutation, getPos());
+            setAttributes(editor, getPos, { ...node.attrs, timestamp: Date.now() });
+          } else if (mutation.type === "attributes") {
+            console.log(`The ${mutation.attributeName} attribute was modified.`);
+          }
+        }
+      };
+
+      const observer = new MutationObserver(callback);
+
+      _result && observer.observe(_result, config);
+
+      // Later, you can stop observing
+      // observer.disconnect();
+
       // ReactDOM.render(content, parent);
       return {
         dom: parent,
-        // contentDOM: content,
+        contentDOM: content,
         update: (updatedNode) => {
           console.log("step into update");
           if (updatedNode.type !== this.type) {
@@ -196,12 +229,13 @@ export const CodeBlock = CodeBlockLowlight.extend<CodeBlockOptions>({
           if (outputModeSelect.value !== updatedNode.attrs.outputmode) {
             outputModeSelect.value = updatedNode.attrs.outputmode;
           }
-          // if (result && _result && editor.isEditable) {
-          //   // if (!_result.innerHTML && !_result.textContent) {
-          //   // }
-          //   console.log(document.querySelector("codapi-output pre code"));
-          //   result.innerHTML = _result.innerHTML ?? _result.textContent;
-          // }
+          if (result && _result && editor.isEditable) {
+            // if (!_result.innerHTML && !_result.textContent) {
+            // }
+            const target = _result.querySelector("codapi-output");
+            console.log("target", target);
+            if (target) result.innerHTML = target.innerHTML ?? target.textContent;
+          }
           // ReactDOM.render(content, parent);
           return true;
         },

@@ -3,9 +3,13 @@ import "@/styles/prosemirror.css";
 import "@/styles/ExcalidrawModal.css";
 import "katex/dist/katex.min.css";
 import "@/styles/snippet.css";
+import "@liveblocks/react-ui/styles.css";
+import "@liveblocks/react-ui/styles/dark/attributes.css";
+import "@liveblocks/react-tiptap/styles.css";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import Providers from "./providers";
 
 const title = "妙手";
@@ -33,9 +37,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Suspense>{children}</Suspense>
+        </Providers>
       </body>
     </html>
   );
