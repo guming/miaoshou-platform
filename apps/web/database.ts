@@ -1,38 +1,38 @@
 const USER_INFO: Liveblocks["UserMeta"][] = [
   {
-    id: "charlie.layne@example.com",
+    id: "pony.ma@miaoshou.com",
     info: {
-      name: "Charlie Layne",
+      name: "Pony ma",
       color: "#D583F0",
       avatar: "https://liveblocks.io/avatars/avatar-1.png",
     },
   },
   {
-    id: "mislav.abha@example.com",
+    id: "jack.ma@miaoshou.com",
     info: {
-      name: "Mislav Abha",
+      name: "Jack Ma",
       color: "#F08385",
       avatar: "https://liveblocks.io/avatars/avatar-2.png",
     },
   },
   {
-    id: "tatum-paolo@example.com",
+    id: "tony.chen@miaoshou.com",
     info: {
-      name: "Tatum Paolo",
+      name: "Tony chen",
       color: "#F0D885",
       avatar: "https://liveblocks.io/avatars/avatar-3.png",
     },
   },
   {
-    id: "anjali-wanda@example.com",
+    id: "David-zhang@miaoshou.com",
     info: {
-      name: "Anjali Wanda",
+      name: "David zhang",
       color: "#85EED6",
       avatar: "https://liveblocks.io/avatars/avatar-4.png",
     },
   },
   {
-    id: "jody-hekla@example.com",
+    id: "jody-hekla@miaoshou.com",
     info: {
       name: "Jody Hekla",
       color: "#85BBF0",
@@ -40,7 +40,7 @@ const USER_INFO: Liveblocks["UserMeta"][] = [
     },
   },
   {
-    id: "emil-joyce@example.com",
+    id: "emil-joyce@miaoshou.com",
     info: {
       name: "Emil Joyce",
       color: "#8594F0",
@@ -48,7 +48,7 @@ const USER_INFO: Liveblocks["UserMeta"][] = [
     },
   },
   {
-    id: "jory-quispe@example.com",
+    id: "jory-quispe@miaoshou.com",
     info: {
       name: "Jory Quispe",
       color: "#85DBF0",
@@ -56,7 +56,7 @@ const USER_INFO: Liveblocks["UserMeta"][] = [
     },
   },
   {
-    id: "quinn-elton@example.com",
+    id: "quinn-elton@miaoshou.com",
     info: {
       name: "Quinn Elton",
       color: "#87EE85",

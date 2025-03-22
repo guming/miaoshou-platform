@@ -7,7 +7,6 @@ import type { NextRequest } from "next/server";
  * https://liveblocks.io/docs/authentication
  */
 
-console.log(process.env.LIVEBLOCKS_SECRET_KEY);
 const liveblocks = new Liveblocks({
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
   secret: process.env.LIVEBLOCKS_SECRET_KEY!,
