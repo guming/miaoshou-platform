@@ -1,13 +1,19 @@
-import { openai } from "@ai-sdk/openai";
 import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
-import { streamText } from "ai";
+import { OpenAIStream, StreamingTextResponse } from "ai";
+import OpenAI from "openai";
+import type { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { match } from "ts-pattern";
 
+// Create an OpenAI API client (that's edge friendly!)
+
 // IMPORTANT! Set the runtime to edge: https://vercel.com/docs/functions/edge-functions/edge-runtime
-export const runtime = "edge";
 
 export async function POST(req: Request): Promise<Response> {
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    baseURL: process.env.OPENAI_BASE_URL || "https://api.openai.com/v1",
+  });
   // Check if the OPENAI_API_KEY is set, if not return 400
   if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === "") {
     return new Response("Missing OPENAI_API_KEY - make sure to add it to your .env file.", {
@@ -36,7 +42,6 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   const { prompt, option, command } = await req.json();
-  console.log("prompt and command", prompt, command, option);
   const messages = match(option)
     .with("continue", () => [
       {
@@ -114,18 +119,22 @@ export async function POST(req: Request): Promise<Response> {
         content: `For this text: ${prompt}. You have to respect the command: ${command}`,
       },
     ])
-    .run();
-  console.log(messages);
-  const result = await streamText({
-    messages,
-    maxTokens: 200,
-    temperature: 0.7,
-    topP: 1,
-    frequencyPenalty: 0,
-    presencePenalty: 0,
-    model: openai("gpt-3.5-turbo"),
-  });
-  // console.log(await result.toDataStreamResponse().json());
+    .run() as ChatCompletionMessageParam[];
 
-  return result.toDataStreamResponse();
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    stream: true,
+    messages,
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    n: 1,
+  });
+
+  // Convert the response into a friendly text-stream
+  const stream = OpenAIStream(response);
+
+  // Respond with the stream
+  return new StreamingTextResponse(stream);
 }

@@ -2,7 +2,7 @@
 
 import { Command, CommandInput } from "@/components/tailwind/ui/command";
 
-import { useCompletion } from "ai/react";
+import { useCompletion } from "@ai-sdk/react";
 import { ArrowUp } from "lucide-react";
 import { useEditor } from "novel";
 import { addAIHighlight } from "novel/extensions";
@@ -41,7 +41,7 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
   });
 
   const hasCompletion = completion.length > 0;
-
+  console.log("hasCompletion", hasCompletion);
   return (
     <Command className="w-[350px]">
       {hasCompletion && (
