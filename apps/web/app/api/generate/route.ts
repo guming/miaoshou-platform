@@ -36,6 +36,7 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   const { prompt, option, command } = await req.json();
+  console.log("prompt and command", prompt, command, option);
   const messages = match(option)
     .with("continue", () => [
       {
@@ -114,16 +115,17 @@ export async function POST(req: Request): Promise<Response> {
       },
     ])
     .run();
-
+  console.log(messages);
   const result = await streamText({
     prompt: messages[messages.length - 1].content,
-    maxTokens: 4096,
+    maxTokens: 200,
     temperature: 0.7,
     topP: 1,
     frequencyPenalty: 0,
     presencePenalty: 0,
-    model: openai("gpt-4o-mini"),
+    model: openai("gpt-3.5-turbo"),
   });
+  // console.log(await result.toDataStreamResponse().json());
 
   return result.toDataStreamResponse();
 }

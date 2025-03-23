@@ -9,7 +9,6 @@ const options = [
     label: "Improve writing",
     icon: RefreshCcwDot,
   },
-
   {
     value: "fix",
     label: "Fix grammar",
@@ -58,7 +57,6 @@ const AISelectorCommands = ({ onSelect }: AISelectorCommandsProps) => {
         <CommandItem
           onSelect={() => {
             const pos = editor.state.selection.from;
-
             const text = getPrevText(editor, pos);
             onSelect(text, "continue");
           }}
