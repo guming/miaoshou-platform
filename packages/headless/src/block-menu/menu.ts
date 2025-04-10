@@ -1,6 +1,5 @@
-import { type Editor, Extension, findParentNode } from "@tiptap/core";
-import { Plugin, PluginKey } from "@tiptap/pm/state";
-import { Decoration, DecorationSet } from "@tiptap/pm/view";
+import { type Editor, Extension } from "@tiptap/core";
+import { PluginKey } from "@tiptap/pm/state";
 import { Suggestion } from "@tiptap/suggestion";
 import { BlockMenuView, type BlockMenuViewItem } from "./view";
 
@@ -147,44 +146,44 @@ export const BlockMenu = Extension.create<BlockMenuOptions>({
           },
         }),
       }),
-      new Plugin({
-        key: new PluginKey(`${this.name}-placeholder`),
-        props: {
-          decorations: (state) => {
-            const parent = findParentNode((node) => node.type.name === "paragraph")(state.selection);
-            if (!parent) {
-              return;
-            }
+      // new Plugin({
+      //   key: new PluginKey(`${this.name}-placeholder`),
+      //   props: {
+      //     decorations: (state) => {
+      //       const parent = findParentNode((node) => node.type.name === "paragraph")(state.selection);
+      //       if (!parent) {
+      //         return;
+      //       }
 
-            const decorations: Array<Decoration> = [];
-            const isEmpty = parent && parent.node.content.size === 0;
-            const isSlash = parent && parent.node.textContent === "/";
-            const isTopLevel = state.selection.$from.depth === 1;
+      //       const decorations: Array<Decoration> = [];
+      //       const isEmpty = parent && parent.node.content.size === 0;
+      //       const isSlash = parent && parent.node.textContent === "/";
+      //       const isTopLevel = state.selection.$from.depth === 1;
 
-            if (isTopLevel) {
-              if (isEmpty) {
-                decorations.push(
-                  Decoration.node(parent.pos, parent.pos + parent.node.nodeSize, {
-                    class: "ProseMirror-bm-placeholder",
-                    "data-empty": this.options.dictionary.lineEmpty,
-                  }),
-                );
-              }
-              if (isSlash) {
-                decorations.push(
-                  Decoration.node(parent.pos, parent.pos + parent.node.nodeSize, {
-                    class: "ProseMirror-bm-placeholder",
-                    "data-empty": ` ${this.options.dictionary.lineSlash}`,
-                  }),
-                );
-              }
-              return DecorationSet.create(state.doc, decorations);
-            }
+      //       if (isTopLevel) {
+      //         if (isEmpty) {
+      //           decorations.push(
+      //             Decoration.node(parent.pos, parent.pos + parent.node.nodeSize, {
+      //               class: "ProseMirror-bm-placeholder",
+      //               "data-empty": this.options.dictionary.lineEmpty,
+      //             }),
+      //           );
+      //         }
+      //         if (isSlash) {
+      //           decorations.push(
+      //             Decoration.node(parent.pos, parent.pos + parent.node.nodeSize, {
+      //               class: "ProseMirror-bm-placeholder",
+      //               "data-empty": ` ${this.options.dictionary.lineSlash}`,
+      //             }),
+      //           );
+      //         }
+      //         return DecorationSet.create(state.doc, decorations);
+      //       }
 
-            return null;
-          },
-        },
-      }),
+      //       return null;
+      //     },
+      //   },
+      // }),
     ];
   },
 });

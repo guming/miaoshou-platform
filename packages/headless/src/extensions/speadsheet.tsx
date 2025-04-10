@@ -17,7 +17,6 @@ declare module "@tiptap/core" {
 }
 
 const SheetView = (props: any) => {
-  console.log("logData", props.node.attrs.data);
   useEffect(() => {
     console.log("logData", props.node.attrs.data);
   }, []);

@@ -18,9 +18,6 @@ const DrawComponent = ({ editor, data }: { editor: Editor; data: any | null }) =
     };
   }, []);
 
-  // const component = node?.attrs.src;
-  console.log("parameter editor", data);
-  // setDrawNode(component);
   return (
     <>
       {/* <NodeViewWrapper> */}

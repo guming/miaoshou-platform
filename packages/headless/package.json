@@ -69,7 +69,7 @@
     "@tiptap/react": "^2.11.2",
     "@tiptap/starter-kit": "^2.11.2",
     "@tiptap/suggestion": "^2.11.2",
-    "@types/node": "18.15.3",
+    "@types/node": "^22.10.6",
     "cmdk": "^0.2.1",
     "jotai": "^2.6.4",
     "next": "^14.2.6",

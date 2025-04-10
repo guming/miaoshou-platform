@@ -13,7 +13,7 @@ declare module "@tiptap/core" {
       /**
        * Add an iframe
        */
-      setIframe: (options: { src: string }) => ReturnType;
+      setIframe: (options: { src: string; width: number; height: number }) => ReturnType;
     };
   }
 }
@@ -42,6 +42,20 @@ export default Node.create<IframeOptions>({
       frameborder: {
         default: 0,
       },
+      width: {
+        default: "100%",
+        parseHTML: (element) => element.getAttribute("width"),
+        renderHTML: (attributes) => ({
+          width: attributes.width,
+        }),
+      },
+      height: {
+        default: "360px",
+        parseHTML: (element) => element.getAttribute("height"),
+        renderHTML: (attributes) => ({
+          height: attributes.height,
+        }),
+      },
       allowfullscreen: {
         default: this.options.allowFullscreen,
         parseHTML: () => this.options.allowFullscreen,
@@ -64,7 +78,7 @@ export default Node.create<IframeOptions>({
   addCommands() {
     return {
       setIframe:
-        (options: { src: string }) =>
+        (options: { src: string; width: number; height: number }) =>
         ({ tr, dispatch }) => {
           const { selection } = tr;
           const node = this.type.create(options);

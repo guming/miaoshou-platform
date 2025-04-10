@@ -119,11 +119,48 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html,
+body {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
+}
+
+html,
+body,
+#__next {
+  max-width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+html.grabbing {
+  cursor: grabbing;
+}
+
+html.grabbing * {
+  user-select: none;
+}
+
+.lb-root {
+  --lb-foreground: hsl(var(--foreground));
+  --lb-background: hsl(var(--background));
+
+  &.lb-elevation,
+  &.lb-tooltip {
+    --lb-background: hsl(var(--background));
+  }
+}
+
+.dark .lb-root {
+  --lb-inset-shadow: inset 0 0 0 1px hsl(var(--border));
 }
 
 

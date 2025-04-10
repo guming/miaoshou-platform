@@ -4,6 +4,7 @@ import { InnerEditorView } from "../mermaid/mermaidView";
 import { debounce } from "../utils/functions";
 mermaid.initialize({
   startOnLoad: false,
+  theme: "neutral",
 });
 
 declare module "@tiptap/core" {

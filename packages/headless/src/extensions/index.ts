@@ -40,6 +40,7 @@ import GlobalDragHandle from "tiptap-extension-global-drag-handle";
 
 const PlaceholderExtension = Placeholder.configure({
   placeholder: ({ node, editor }) => {
+    if (node.type.name === "taskList") console.log("into task node");
     const parent = findParentNode((node) => node.type.name === "table")(editor.state.selection);
     if (parent?.node?.type.name === "table") {
       return "";
@@ -48,22 +49,9 @@ const PlaceholderExtension = Placeholder.configure({
       return `Heading ${node.attrs.level}`;
     }
     if (node.type.name === "inlineMath") {
-      return "Math";
+      return "";
     }
-
     if (node.type.name === "codeblock") {
-      return "";
-    }
-    if (node.type.name === "table") {
-      return "";
-    }
-    if (node.type.name === "tableHeader") {
-      return "";
-    }
-    if (node.type.name === "tableCell") {
-      return "";
-    }
-    if (node.type.name === "tableRow") {
       return "";
     }
 
@@ -109,7 +97,6 @@ const Horizontal = HorizontalRule.extend({
 export * from "./ai-highlight";
 export * from "./slash-command";
 export {
-  // CodeBlockLowlight,
   Horizontal as HorizontalRule,
   ImageResizer,
   InputRule,
