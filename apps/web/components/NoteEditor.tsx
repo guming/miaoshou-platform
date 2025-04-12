@@ -1,5 +1,4 @@
 "use client";
-import { defaultEditorContent } from "@/lib/content";
 import {
   EditorCommand,
   EditorCommandEmpty,
@@ -8,10 +7,9 @@ import {
   EditorContent,
   type EditorInstance,
   EditorRoot,
-  type JSONContent,
 } from "novel";
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { defaultExtensions } from "./tailwind/extensions";
 import { ColorSelector } from "./tailwind/selectors/color-selector";
@@ -19,9 +17,6 @@ import { LinkSelector } from "./tailwind/selectors/link-selector";
 import { NodeSelector } from "./tailwind/selectors/node-selector";
 import { Separator } from "./ui/separator";
 
-import type { NoteType } from "@/lib/db/schema";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import GenerativeMenuSwitch from "./tailwind/generative/generative-menu-switch";
 import { uploadFn } from "./tailwind/image-upload";
@@ -32,10 +27,8 @@ const hljs = require("highlight.js");
 
 const extensions = [...defaultExtensions, slashCommand];
 
-type Props = { note: NoteType };
-
-const NoteEditor = ({ note }: Props) => {
-  const [initialContent, setInitialContent] = useState<null | JSONContent>(null);
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const NoteEditor = ({ note, onChange }) => {
   const [saveStatus, setSaveStatus] = useState("Saved");
   const [charsCount, setCharsCount] = useState();
 
@@ -54,43 +47,18 @@ const NoteEditor = ({ note }: Props) => {
     });
     return new XMLSerializer().serializeToString(doc);
   };
-  const [editorState, setEditorState] = useState(note.editorState || `${note.name}`);
-
-  const saveNote = useMutation({
-    mutationFn: async () => {
-      const response = await axios.post("/api/saveNote", {
-        noteId: note.id,
-        editorState,
-      });
-      return response.data;
-    },
-  });
+  // const [editorState, setEditorState] = useState(`${note.id}`);
 
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
-    console.log("editorState", editorState);
+    // console.log("editorState", editorState);
     setCharsCount(editor.storage.characterCount.words());
-    window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
-    window.localStorage.setItem("note-content", JSON.stringify(json));
-    window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
+    window.localStorage.setItem(`html-content-${note._id}`, highlightCodeblocks(editor.getHTML()));
+    window.localStorage.setItem(`note-content-${note._id}`, JSON.stringify(json));
+    window.localStorage.setItem(`markdown-${note._id}`, editor.storage.markdown.getMarkdown());
     setSaveStatus("Saved");
-    saveNote.mutate(undefined, {
-      onSuccess: (data) => {
-        console.log("success update!", data);
-      },
-      onError: (err) => {
-        console.error(err);
-      },
-    });
+    onChange(JSON.stringify(json));
   }, 500);
-
-  useEffect(() => {
-    const content = window.localStorage.getItem("note-content");
-    if (content) setInitialContent(JSON.parse(content));
-    else setInitialContent(defaultEditorContent);
-  }, []);
-
-  if (!initialContent) return null;
 
   return (
     <div className="relative w-full max-w-screen-lg">
@@ -102,9 +70,9 @@ const NoteEditor = ({ note }: Props) => {
       </div>
       <EditorRoot>
         <EditorContent
-          initialContent={initialContent}
+          initialContent={note.nodeContent ? JSON.parse(note.nodeContent) : ""}
           extensions={extensions}
-          className="relative min-h-[500px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg"
+          className="relative min-h-[1000px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg"
           editorProps={{
             handleDOMEvents: {
               keydown: (_view, event) => handleCommandNavigation(event),
@@ -117,8 +85,6 @@ const NoteEditor = ({ note }: Props) => {
             },
           }}
           onUpdate={({ editor }) => {
-            console.log("starting save");
-            setEditorState(JSON.stringify(editor.getJSON()));
             debouncedUpdates(editor);
             setSaveStatus("Unsaved");
           }}
