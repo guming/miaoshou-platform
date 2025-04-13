@@ -1,9 +1,8 @@
 "use client";
-import { ArrowRight, Github, Twitter, WandSparkles } from "lucide-react";
+import { Github, Twitter, WandSparkles } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 
 export default function Footer() {
   const {
@@ -23,7 +22,7 @@ export default function Footer() {
     product: [
       { name: "Features", href: "/features" },
       { name: "Documentation", href: "/docs" },
-      { name: "Examples", href: "/examples" },
+      { name: "Showcase", href: "/examples" },
       { name: "Pricing", href: "/pricing" },
     ],
     company: [
@@ -50,11 +49,13 @@ export default function Footer() {
               <span className="font-semibold">Miao Platform</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-sm">
-              Launch your SaaS in minutes with our production-ready Next.js starter kit. Everything you need, from auth
-              to payments.
+              An all-in-one platform designed for STEM students to easily take notes, collaborate in real-time, and
+              complete assignments. It integrates text, code, equations, and scientific visualizations, making learning
+              seamless and efficient. With AI Copilots and an intuitive editor, users can start right away, regardless
+              of their technical skills..
             </p>
             <div className="flex space-x-4">
-              <Link href="https://github.com/michaelshimeles/nextjs14-starter-template" target="_blank">
+              <Link href="https://github.com/guming/ai-editor" target="_blank">
                 <Button variant="ghost" size="icon">
                   <Github className="h-5 w-5" />
                 </Button>
@@ -102,26 +103,6 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Stay Updated</h3>
-              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-                Subscribe to our newsletter for updates, tips, and special offers.
-              </p>
-              <form onSubmit={handleSubmit(onSubmit)} className="mt-4 sm:flex sm:max-w-md">
-                <div className="flex-1">
-                  <Input
-                    {...register("email", { required: true })}
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full min-w-0 rounded-full border-gray-300"
-                  />
-                </div>
-                <div className="mt-3 sm:ml-3 sm:mt-0">
-                  <Button type="submit" className="w-full rounded-full bg-blue-600 hover:bg-blue-500 text-white">
-                    Subscribe
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </form>
               <div className="mt-8">
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Legal</h3>
                 <ul className="mt-4 space-y-4">
