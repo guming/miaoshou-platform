@@ -29,10 +29,10 @@ An all-in-one platform designed for STEM students to easily take notes, collabor
 
 ### Customize
 
-- Table
+- TableBlock
 - float-menu
-- Emoji
-- Code
+- Emoji inline
+- CodeBlock
 
 ### Notebook SAAS
 
