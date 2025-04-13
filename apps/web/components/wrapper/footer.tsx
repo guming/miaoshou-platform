@@ -20,7 +20,6 @@ export default function Footer() {
 
   const links = {
     product: [
-      { name: "Features", href: "/features" },
       { name: "Documentation", href: "/docs" },
       { name: "Showcase", href: "/examples" },
       { name: "Pricing", href: "/pricing" },
@@ -28,7 +27,6 @@ export default function Footer() {
     company: [
       { name: "About", href: "/about" },
       { name: "Blog", href: "/blog" },
-      { name: "Careers", href: "/careers" },
       { name: "Contact", href: "/contact" },
     ],
     legal: [
