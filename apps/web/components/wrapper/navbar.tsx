@@ -80,7 +80,7 @@ export default function NavBar() {
 
                 <div className="px-2 py-4 border-t">
                   <h2 className="text-sm font-medium text-muted-foreground mb-2">Links</h2>
-                  <Link href="https://github.com/guming/ai-editor" target="_blank" prefetch={true}>
+                  <Link href="https://github.com/guming/miaoshou-platform" target="_blank" prefetch={true}>
                     <Button
                       variant="ghost"
                       className="w-full justify-start text-base font-normal h-11 border border-muted/40 mb-2 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition-colors"
@@ -157,7 +157,7 @@ export default function NavBar() {
           <Link href="/playground" prefetch={true}>
             <Button variant="ghost">Miao AI-Playground</Button>
           </Link>
-          <Link href="https://github.com/guming/ai-editor" prefetch={true}>
+          <Link href="https://github.com/guming/miaoshou-platform" prefetch={true}>
             <Button variant="ghost" size="icon">
               <Github className="h-5 w-5" />
             </Button>

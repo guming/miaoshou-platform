@@ -13,19 +13,16 @@ export const metadata: Metadata = {
     default: "Miao Platform",
     template: `%s | Miao Platform`,
   },
-  description:
-    "The Ultimate Nextjs 15 Starter Kit for quickly building your SaaS, giving you time to focus on what really matters",
+  description: "",
   openGraph: {
-    description:
-      "The Ultimate Nextjs 15 Starter Kit for quickly building your SaaS, giving you time to focus on what really matters",
+    description: "",
     images: ["https://dwdwn8b5ye.ufs.sh/f/MD2AM9SEY8GucGJl7b5qyE7FjNDKYduLOG2QHWh3f5RgSi0c"],
-    url: "https://nextstarter.xyz/",
+    url: "https://miaoshou.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nextjs Starter Kit",
-    description:
-      "The Ultimate Nextjs 15 Starter Kit for quickly building your SaaS, giving you time to focus on what really matters",
+    title: "miaoshou platform",
+    description: "",
     siteId: "",
     creator: "@rasmickyy",
     creatorId: "",

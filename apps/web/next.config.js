@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: "/github",
-        destination: "https://github.com/guming/ai-editor",
+        destination: "https://github.com/guming/miaodou-platform",
         permanent: true,
       },
       {

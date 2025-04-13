@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "guming/ai-editor"
+      "repo": "guming/miaoshou-platform"
     }
   ],
   "commit": false,

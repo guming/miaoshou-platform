@@ -55,7 +55,7 @@ export default function Footer() {
               of their technical skills..
             </p>
             <div className="flex space-x-4">
-              <Link href="https://github.com/guming/ai-editor" target="_blank">
+              <Link href="https://github.com/guming/miaoshou-platform" target="_blank">
                 <Button variant="ghost" size="icon">
                   <Github className="h-5 w-5" />
                 </Button>
